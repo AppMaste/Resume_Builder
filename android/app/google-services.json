@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1000890927926",
+    "project_id": "resume-builder-app-cf244",
+    "storage_bucket": "resume-builder-app-cf244.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000890927926:android:681231bb0950af6b8f4197",
+        "android_client_info": {
+          "package_name": "com.example.resume_builder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLK3gLwKq9ZD96j4yq3u_9GMu5OIQT9RA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000890927926:android:fd6fd74b674e68128f4197",
+        "android_client_info": {
+          "package_name": "com.example.resume_builder_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLK3gLwKq9ZD96j4yq3u_9GMu5OIQT9RA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
