@@ -8,6 +8,8 @@ import '../../widgets/global/MediaQuery/size.dart';
 import '../functions/Notifications/Notification.dart';
 
 
+ADController tapController = Get.put(ADController());
+
 
 class ADController extends GetxController {
   Future<void> _launchURL(String url) async {
@@ -22,11 +24,8 @@ class ADController extends GetxController {
 
   Rx Count = 1.obs;
 
-  showbuttonad(BuildContext context, String page, String name, var aa,
-      var datapass) async {
-    // clickCount.value++;
-    // ignore: unrelated_type_equality_checks
-    if (firebaseConfig.value["Count"] == Count.value) {
+  showbuttonad(BuildContext context, String page, String name, var aa) async {
+    if (firebaseConfig.value["Resume_Counter"] == Count.value) {
       showDialog(
         barrierDismissible: false,
         context: context,
@@ -53,9 +52,9 @@ class ADController extends GetxController {
           );
         },
       );
-      if (firebaseConfig.value[name]["interstitial_type"] == 'admob') {
+      if (firebaseConfig.value[name]["Resume_Interstitial_type"] == 'admob') {
         InterstitialAd.load(
-          adUnitId: firebaseConfig.value[name]["interstitial_Admob"],
+          adUnitId: firebaseConfig.value[name]["Resume_Interstitial_Admob"],
           // adUnitId: "/6499/example/interstitial",
           request: const AdManagerAdRequest(),
           adLoadCallback: InterstitialAdLoadCallback(onAdLoaded: (ad) {
@@ -65,7 +64,7 @@ class ADController extends GetxController {
             Count.value = 1;
           }, onAdFailedToLoad: (error) {
             InterstitialAd.load(
-              adUnitId: firebaseConfig.value[name]["interstitial_Admob"],
+              adUnitId: firebaseConfig.value[name]["Resume_Interstitial_Admob"],
               // adUnitId: "/6499/example/interstitial",
               request: const AdManagerAdRequest(),
               adLoadCallback: InterstitialAdLoadCallback(onAdLoaded: (ad) {
@@ -83,9 +82,9 @@ class ADController extends GetxController {
         );
       }
 
-      if (firebaseConfig.value[name]["interstitial_type"] == 'fb') {
+      if (firebaseConfig.value[name]["Resume_Interstitial_type"] == 'fb') {
         FacebookInterstitialAd.loadInterstitialAd(
-          placementId: firebaseConfig.value["Interstitial_FB"],
+          placementId: firebaseConfig.value["Resume_Interstitial_Facebook"],
           // placementId: "IMG_16_9_APP_INSTALL#2312433698835503_2650502525028617",
           listener: (result, value) {
             if (result == InterstitialAdResult.LOADED) {
@@ -102,8 +101,8 @@ class ADController extends GetxController {
           },
         );
       }
-      if (firebaseConfig.value[name]["interstitial_type"] == "url") {
-        _launchURL(firebaseConfig.value[name]["Url"]);
+      if (firebaseConfig.value[name]["Resume_Interstitial_type"] == "url") {
+        _launchURL(firebaseConfig.value[name]["Resume_Url"]);
         Future.delayed(
           const Duration(seconds: 2),
               () {

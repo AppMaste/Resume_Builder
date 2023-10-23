@@ -56,7 +56,7 @@ class _AddMoreSectionScreenState extends State<AddMoreSectionScreen>
               ),
               onPress: () async {
                 _animationController.reverse();
-                Get.to(() => AddMoreSectionScreen());
+                // Get.to(() => AddMoreSectionScreen());
               },
               icon: Icons.info_outline_rounded,
             ),

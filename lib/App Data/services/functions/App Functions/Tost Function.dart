@@ -47,7 +47,6 @@ class TostController extends GetxController {
       "PLAYING CHESS",
     ].obs;
 
-
     return Container(
       height: ScreenSize.horizontalBlockSize! * 210,
       width: double.maxFinite,
@@ -2365,7 +2364,7 @@ class TostController extends GetxController {
                   // setState(() {
                   print('Slider value: $value');
                   // });
-                },
+                }, Color: '',
               ),
             ),
           ),
@@ -2400,7 +2399,7 @@ class TostController extends GetxController {
                   // setState(() {
                   print('Slider value: $value');
                   // });
-                },
+                }, Color: '',
               ),
             ),
           ),
@@ -2436,6 +2435,7 @@ class TostController extends GetxController {
                   print('Slider value: $value');
                   // });
                 },
+                Color: '',
               ),
             ),
           ),
@@ -2470,7 +2470,7 @@ class TostController extends GetxController {
                   // setState(() {
                   print('Slider value: $value');
                   // });
-                },
+                }, Color: '',
               ),
             ),
           ),
@@ -2505,7 +2505,7 @@ class TostController extends GetxController {
                   // setState(() {
                   print('Slider value: $value');
                   // });
-                },
+                }, Color: '',
               ),
             ),
           ),
@@ -2692,4 +2692,3 @@ class TostController extends GetxController {
     );
   }
 }
-

@@ -11,17 +11,19 @@ import '../../../utils/color.dart';
 import '../../../utils/images.dart';
 import '../../../utils/style.dart';
 import '../../../widgets/global/MediaQuery/size.dart';
+import '../../Controller/Tap Controller.dart';
 
 AppFunctionController appFunctionController = AppFunctionController();
 
 class AppFunctionController extends GetxController {
-  getStartedContainer() {
+  getStartedContainer(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         GestureDetector(
           onTap: () {
-            Get.to(() => const ResumeBuilderScreen());
+            tapController.showbuttonad(context, "/ResumeBuilderScreen", "/MainScreen", '',);
+            // Get.to(() => const ResumeBuilderScreen());
           },
           child: Container(
             decoration: BoxDecoration(

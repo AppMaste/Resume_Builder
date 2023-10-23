@@ -1616,7 +1616,7 @@ class PreViewAppController extends GetxController {
                                       // setState(() {
                                       print('Slider value: $value');
                                       // });
-                                    },
+                                    }, color: '',  width: ScreenSize.horizontalBlockSize! * 21,
                                   ),
                                 ),
                               ),
@@ -4097,7 +4097,7 @@ class PreViewAppController extends GetxController {
         //// Contact
         Positioned(
           top: ScreenSize.horizontalBlockSize! * 55,
-          left: ScreenSize.horizontalBlockSize! * 57,
+          left: ScreenSize.horizontalBlockSize! * 53,
           child: Text(
             "Contact",
             style: GoogleFonts.openSans(
@@ -4110,7 +4110,7 @@ class PreViewAppController extends GetxController {
         //// Mail Icon
         Positioned(
             top: ScreenSize.horizontalBlockSize! * 64.3,
-            left: ScreenSize.horizontalBlockSize! * 57,
+            left: ScreenSize.horizontalBlockSize! * 56,
             child: Icon(
               Icons.mail,
               size: ScreenSize.fSize_10(),
@@ -4137,7 +4137,7 @@ class PreViewAppController extends GetxController {
         //// Address Icon
         Positioned(
             top: ScreenSize.horizontalBlockSize! * 72.3,
-            left: ScreenSize.horizontalBlockSize! * 57,
+            left: ScreenSize.horizontalBlockSize! * 56,
             child: Icon(
               Icons.home_filled,
               size: ScreenSize.fSize_12(),
@@ -4164,7 +4164,7 @@ class PreViewAppController extends GetxController {
         //// Mobile Number
         Positioned(
             top: ScreenSize.horizontalBlockSize! * 81.3,
-            left: ScreenSize.horizontalBlockSize! * 57,
+            left: ScreenSize.horizontalBlockSize! * 56,
             child: Icon(
               Icons.phone_android_outlined,
               size: ScreenSize.fSize_12(),
@@ -4191,7 +4191,7 @@ class PreViewAppController extends GetxController {
         //// Website
         Positioned(
           top: ScreenSize.horizontalBlockSize! * 90.3,
-          left: ScreenSize.horizontalBlockSize! * 57.5,
+          left: ScreenSize.horizontalBlockSize! * 56.5,
           child: Transform(
             alignment: Alignment.center,
             transform: Matrix4.rotationY(math.pi),
@@ -4223,7 +4223,7 @@ class PreViewAppController extends GetxController {
         //// Skills
         Positioned(
           top: ScreenSize.horizontalBlockSize! * 100,
-          left: ScreenSize.horizontalBlockSize! * 57,
+          left: ScreenSize.horizontalBlockSize! * 53,
           child: Text(
             "Skills",
             style: GoogleFonts.openSans(
@@ -4233,10 +4233,121 @@ class PreViewAppController extends GetxController {
             ),
           ),
         ),
+        ///// Round Slider
+        Positioned(
+          top: ScreenSize.horizontalBlockSize! * 111,
+          left: ScreenSize.horizontalBlockSize! * 52,
+          child: Container(
+            width: ScreenSize.horizontalBlockSize! * 43,
+            // color: Colors.red,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CircularPercentIndicator(
+                  backgroundColor: const Color(0xFFBBD3D7),
+                  radius: 20.0,
+                  lineWidth: 4.0,
+                  percent: 0.79,
+                  center: Text(
+                    "PHP",
+                    style: GoogleFonts.openSans(
+                        color: const Color(0xFF06314D),
+                        fontWeight: FontWeight.w800,
+                        fontSize: ScreenSize.horizontalBlockSize! * 2),
+                  ),
+                  progressColor: const Color(0xFF06314D),
+                ),
+                CircularPercentIndicator(
+                  backgroundColor: const Color(0xFFBBD3D7),
+                  radius: 20.0,
+                  lineWidth: 4.0,
+                  percent: 0.79,
+                  center: Text(
+                    "JAVA",
+                    style: GoogleFonts.openSans(
+                        color: const Color(0xFF06314D),
+                        fontWeight: FontWeight.w800,
+                        fontSize: ScreenSize.horizontalBlockSize! * 2),
+                  ),
+                  progressColor: const Color(0xFF06314D),
+                ),
+                CircularPercentIndicator(
+                  backgroundColor: const Color(0xFFBBD3D7),
+                  radius: 20.0,
+                  lineWidth: 4.0,
+                  percent: 0.79,
+                  center: Text(
+                    "HTML",
+                    style: GoogleFonts.openSans(
+                        color: const Color(0xFF06314D),
+                        fontWeight: FontWeight.w800,
+                        fontSize: ScreenSize.horizontalBlockSize! * 2),
+                  ),
+                  progressColor: const Color(0xFF06314D),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          top: ScreenSize.horizontalBlockSize! * 128,
+          left: ScreenSize.horizontalBlockSize! * 52,
+          child: Container(
+            width: ScreenSize.horizontalBlockSize! * 43,
+            // color: Colors.red,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CircularPercentIndicator(
+                  backgroundColor: const Color(0xFFBBD3D7),
+                  radius: 20.0,
+                  lineWidth: 4.0,
+                  percent: 0.79,
+                  center: Text(
+                    "CSS",
+                    style: GoogleFonts.openSans(
+                        color: const Color(0xFF06314D),
+                        fontWeight: FontWeight.w800,
+                        fontSize: ScreenSize.horizontalBlockSize! * 2),
+                  ),
+                  progressColor: const Color(0xFF06314D),
+                ),
+                CircularPercentIndicator(
+                  backgroundColor: const Color(0xFFBBD3D7),
+                  radius: 20.0,
+                  lineWidth: 4.0,
+                  percent: 0.79,
+                  center: Text(
+                    "SWIFT",
+                    style: GoogleFonts.openSans(
+                        color: const Color(0xFF06314D),
+                        fontWeight: FontWeight.w800,
+                        fontSize: ScreenSize.horizontalBlockSize! * 2),
+                  ),
+                  progressColor: const Color(0xFF06314D),
+                ),
+                CircularPercentIndicator(
+                  backgroundColor: const Color(0xFFBBD3D7),
+                  radius: 20.0,
+                  lineWidth: 4.0,
+                  percent: 0.79,
+                  center: Text(
+                    "RUBY",
+                    style: GoogleFonts.openSans(
+                        color: const Color(0xFF06314D),
+                        fontWeight: FontWeight.w800,
+                        fontSize: ScreenSize.horizontalBlockSize! * 2),
+                  ),
+                  progressColor: const Color(0xFF06314D),
+                ),
+              ],
+            ),
+          ),
+        ),
         //// Language
         Positioned(
-          top: ScreenSize.horizontalBlockSize! * 150,
-          left: ScreenSize.horizontalBlockSize! * 57,
+          top: ScreenSize.horizontalBlockSize! * 148,
+          left: ScreenSize.horizontalBlockSize! * 55,
           child: Text(
             "Language",
             style: GoogleFonts.openSans(
@@ -4244,6 +4355,103 @@ class PreViewAppController extends GetxController {
               color: const Color(0xFF05334B),
               fontSize: ScreenSize.fSize_16(),
             ),
+          ),
+        ),
+        ////Language Slider
+        Positioned(
+          left: ScreenSize.horizontalBlockSize! * 55,
+          top: ScreenSize.horizontalBlockSize! * 158,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "ENGLISH",
+                style: GoogleFonts.openSans(
+                  fontSize: ScreenSize.horizontalBlockSize! * 2.5,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF05334B),
+                ),
+              ),
+              SizedBox(height: ScreenSize.fSize_4()),
+              Container(
+                width: ScreenSize.horizontalBlockSize! * 37,
+                height: ScreenSize.horizontalBlockSize! * 1,
+                child: Resume6CustomSlider(
+                  value: 10.0,
+                  min: 0.0,
+                  max: 100.0,
+                  onChanged: (value) {
+                    // setState(() {
+                    print('Slider value: $value');
+                    // });
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.horizontalBlockSize! * 55,
+          top: ScreenSize.horizontalBlockSize! * 170,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "ENGLISH",
+                style: GoogleFonts.openSans(
+                  fontSize: ScreenSize.horizontalBlockSize! * 2.5,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF05334B),
+                ),
+              ),
+              SizedBox(height: ScreenSize.fSize_4()),
+              Container(
+                width: ScreenSize.horizontalBlockSize! * 37,
+                height: ScreenSize.horizontalBlockSize! * 1,
+                child: Resume6CustomSlider(
+                  value: 10.0,
+                  min: 0.0,
+                  max: 100.0,
+                  onChanged: (value) {
+                    // setState(() {
+                    print('Slider value: $value');
+                    // });
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.horizontalBlockSize! * 55,
+          top: ScreenSize.horizontalBlockSize! * 182,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "ENGLISH",
+                style: GoogleFonts.openSans(
+                  fontSize: ScreenSize.horizontalBlockSize! * 2.5,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF05334B),
+                ),
+              ),
+              SizedBox(height: ScreenSize.fSize_4()),
+              Container(
+                width: ScreenSize.horizontalBlockSize! * 37,
+                height: ScreenSize.horizontalBlockSize! * 1,
+                child: Resume6CustomSlider(
+                  value: 10.0,
+                  min: 0.0,
+                  max: 100.0,
+                  onChanged: (value) {
+                    // setState(() {
+                    print('Slider value: $value');
+                    // });
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ],

@@ -22,14 +22,14 @@ var object = [
           "Hey, this is my homepage, so I have to say something about myself. Sometimes it is hard to introduce yourself because you know yourself so well that you do not know where to start with. Let me give a try to see what kind of image you have about me through my self-description. I hope that my impression about myself and your impression about me are not so different. Here it goes."),
 ].obs;
 
-class ObjectiveSCreen extends StatefulWidget {
-  const ObjectiveSCreen({super.key});
+class ObjectiveScreen extends StatefulWidget {
+  const ObjectiveScreen({super.key});
 
   @override
-  State<ObjectiveSCreen> createState() => _ObjectiveSCreenState();
+  State<ObjectiveScreen> createState() => _ObjectiveScreenState();
 }
 
-class _ObjectiveSCreenState extends State<ObjectiveSCreen>
+class _ObjectiveScreenState extends State<ObjectiveScreen>
     with SingleTickerProviderStateMixin {
   late final Animation<double> _animation;
 

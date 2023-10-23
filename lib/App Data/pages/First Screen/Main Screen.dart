@@ -43,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
                 style: appFontStyleData.mainTitle,
               ),
             ),
-            appFunctionController.getStartedContainer(),
+            appFunctionController.getStartedContainer(context),
           ],
         ),
       ),

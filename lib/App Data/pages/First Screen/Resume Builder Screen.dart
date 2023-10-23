@@ -323,7 +323,7 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
                   "View & Share Resume",
                   appImageDataController.viewandShare,
                   () {
-                    Get.to(() => ViewandShareResumeScreen());
+                    Get.to(() => ViewAndShareResumeScreen());
                   },
                 ),
               ],

@@ -6,8 +6,8 @@ import '../../utils/color.dart';
 import '../../widgets/features/Appbar.dart';
 import '../../widgets/global/MediaQuery/size.dart';
 
-class ViewandShareResumeScreen extends StatelessWidget {
-  ViewandShareResumeScreen({super.key});
+class ViewAndShareResumeScreen extends StatelessWidget {
+  ViewAndShareResumeScreen({super.key});
 
   var percent = 0.79;
 
@@ -158,26 +158,6 @@ class ViewandShareResumeScreen extends StatelessWidget {
                     ),
                   );
                 },
-              ),
-              SizedBox(height: ScreenSize.fSize_20()),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-
-                  CircularPercentIndicator(
-                    backgroundColor: const Color(0xFFBBD3D7),
-                    radius: 30.0,
-                    lineWidth: 8.0,
-                    percent: percent,
-                    center: Text(
-                      "PHP",
-                      style: GoogleFonts.openSans(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    progressColor: const Color(0xFF06314D),
-                  ),
-                ],
               ),
             ],
           ),

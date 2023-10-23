@@ -76,7 +76,7 @@ var abc;
 
 var pages = [
   const PersonalInformationScreen(),
-  const ObjectiveSCreen(),
+  const ObjectiveScreen(),
   const WorkExperienceScreen(),
   const EducationScreen(),
   const ProjectDetailsScreen(),

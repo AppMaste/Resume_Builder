@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:resume_builder/App%20Data/services/functions/App%20Functions/shape.dart';
 // import 'package:resume_builder_app/App%20Data/services/functions/App%20Functions/shape.dart';
 
+import '../../../utils/Resume Slider.dart';
 import '../../../widgets/features/TextController.dart';
 import '../../../widgets/global/MediaQuery/size.dart';
 
@@ -853,6 +854,182 @@ class PreViewAppController2 extends GetxController {
               ],
             ),
           ),
+          //// Skills Slider
+          Positioned(
+            left: ScreenSize.fSize_10(),
+            top: ScreenSize.horizontalBlockSize! * 135,
+            child: Row(
+              children: [
+                Container(
+                  width: ScreenSize.horizontalBlockSize! * 19,
+                  child: Text(
+                    "Adobe Photoshop",
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.openSans(
+                      fontSize: ScreenSize.horizontalBlockSize! * 2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(width: ScreenSize.fSize_10()),
+                Container(
+                  width: ScreenSize.horizontalBlockSize! * 21,
+                  height: ScreenSize.horizontalBlockSize! * 2,
+                  child: Resume3CustomSlider(
+                    value: 50.0,
+                    min: 0.0,
+                    max: 100.0,
+                    onChanged: (value) {
+                      // setState(() {
+                      print('Slider value: $value');
+                      // });
+                    },
+                    Color: "black",
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: ScreenSize.fSize_10(),
+            top: ScreenSize.horizontalBlockSize! * 140,
+            child: Row(
+              children: [
+                Container(
+                  width: ScreenSize.horizontalBlockSize! * 19,
+                  child: Text(
+                    "Adobe Illustrator",
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.openSans(
+                      fontSize: ScreenSize.horizontalBlockSize! * 2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(width: ScreenSize.fSize_10()),
+                Container(
+                  width: ScreenSize.horizontalBlockSize! * 21,
+                  height: ScreenSize.horizontalBlockSize! * 2,
+                  child: Resume3CustomSlider(
+                    value: 50.0,
+                    min: 0.0,
+                    max: 100.0,
+                    onChanged: (value) {
+                      // setState(() {
+                      print('Slider value: $value');
+                      // });
+                    },
+                    Color: "black",
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: ScreenSize.fSize_10(),
+            top: ScreenSize.horizontalBlockSize! * 145,
+            child: Row(
+              children: [
+                Container(
+                  width: ScreenSize.horizontalBlockSize! * 19,
+                  child: Text(
+                    "Microsoft Word",
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.openSans(
+                      fontSize: ScreenSize.horizontalBlockSize! * 2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(width: ScreenSize.fSize_10()),
+                Container(
+                  width: ScreenSize.horizontalBlockSize! * 21,
+                  height: ScreenSize.horizontalBlockSize! * 2,
+                  child: Resume3CustomSlider(
+                    value: 50.0,
+                    min: 0.0,
+                    max: 100.0,
+                    onChanged: (value) {
+                      // setState(() {
+                      print('Slider value: $value');
+                      // });
+                    },
+                    Color: 'black',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: ScreenSize.fSize_10(),
+            top: ScreenSize.horizontalBlockSize! * 150,
+            child: Row(
+              children: [
+                Container(
+                  width: ScreenSize.horizontalBlockSize! * 19,
+                  child: Text(
+                    "HTML-S/CSS-3",
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.openSans(
+                      fontSize: ScreenSize.horizontalBlockSize! * 2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(width: ScreenSize.fSize_10()),
+                Container(
+                  width: ScreenSize.horizontalBlockSize! * 21,
+                  height: ScreenSize.horizontalBlockSize! * 2,
+                  child: Resume3CustomSlider(
+                    value: 50.0,
+                    min: 0.0,
+                    max: 100.0,
+                    onChanged: (value) {
+                      // setState(() {
+                      print('Slider value: $value');
+                      // });
+                    },
+                    Color: 'black',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: ScreenSize.fSize_10(),
+            top: ScreenSize.horizontalBlockSize! * 155,
+            child: Row(
+              children: [
+                Container(
+                  width: ScreenSize.horizontalBlockSize! * 19,
+                  child: Text(
+                    "Microsoft Powerpoint",
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.openSans(
+                      fontSize: ScreenSize.horizontalBlockSize! * 2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(width: ScreenSize.fSize_10()),
+                Container(
+                  width: ScreenSize.horizontalBlockSize! * 21,
+                  height: ScreenSize.horizontalBlockSize! * 2,
+                  child: Resume3CustomSlider(
+                    value: 50.0,
+                    min: 0.0,
+                    max: 100.0,
+                    onChanged: (value) {
+                      // setState(() {
+                      print('Slider value: $value');
+                      // });
+                    },
+                    Color: "black",
+                  ),
+                ),
+              ],
+            ),
+          ),
           //// Language
           Positioned(
             left: ScreenSize.fSize_10(),
@@ -1279,16 +1456,35 @@ class PreViewAppController2 extends GetxController {
               color: Colors.transparent,
               child: ListView.builder(
                 itemCount: 4,
+                physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.only(top: ScreenSize.fSize_6()),
                     child: Row(
                       children: [
-                        Text(
-                          "language[index]",
-                          style: GoogleFonts.openSans(
-                              fontSize: ScreenSize.fSize_10(),
-                              fontWeight: FontWeight.w500),
+                        Container(
+                          width: ScreenSize.horizontalBlockSize! * 18,
+                          child: Text(
+                            "Photoshop",
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.openSans(
+                                fontSize: ScreenSize.fSize_10(),
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        Container(
+                          width: ScreenSize.horizontalBlockSize! * 21,
+                          height: ScreenSize.horizontalBlockSize! * 1.5,
+                          child: Resume8CustomSlider(
+                            value: 50.0,
+                            min: 0.0,
+                            max: 100.0,
+                            onChanged: (value) {
+                              // setState(() {
+                              print('Slider value: $value');
+                              // });
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -3031,33 +3227,52 @@ class PreViewAppController2 extends GetxController {
                         )
                       ],
                     ),
-                    SizedBox(height: ScreenSize.fSize_3()),
+                    SizedBox(height: ScreenSize.fSize_10()),
                     Container(
-                      height: ScreenSize.horizontalBlockSize! * 35,
+                      height: ScreenSize.horizontalBlockSize! * 32,
                       width: ScreenSize.horizontalBlockSize! * 41,
-                      color: Colors.transparent,
+                      // color: Colors.red,
                       child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: skills.length,
                         itemBuilder: (context, index) {
-                          return Row(
-                            children: [
-                              Container(
-                                height: ScreenSize.fSize_24(),
-                                width: ScreenSize.horizontalBlockSize! * 21,
-                                color: Colors.transparent,
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: skills[index],
-                                    hintStyle: GoogleFonts.openSans(
+                          return Padding(
+                            padding:
+                                EdgeInsets.only(bottom: ScreenSize.fSize_14()),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Container(
+                                  width: ScreenSize.horizontalBlockSize! * 18,
+                                  // color: Colors.red,
+                                  child: Text(
+                                    skills[index],
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.openSans(
                                       fontWeight: FontWeight.w800,
                                       fontSize:
                                           ScreenSize.horizontalBlockSize! * 1.8,
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Container(
+                                  width: ScreenSize.horizontalBlockSize! * 21,
+                                  height: ScreenSize.horizontalBlockSize! * 2,
+                                  child: Resume4CustomSlider(
+                                    value: 50.0,
+                                    min: 0.0,
+                                    max: 100.0,
+                                    onChanged: (value) {
+                                      // setState(() {
+                                      print('Slider value: $value');
+                                      // });
+                                    },
+                                    color: 'black',
+                                    width: ScreenSize.horizontalBlockSize! * 21,
+                                  ),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       ),
@@ -3103,52 +3318,72 @@ class PreViewAppController2 extends GetxController {
                     ),
                     SizedBox(height: ScreenSize.fSize_12()),
                     Container(
-                      height: ScreenSize.horizontalBlockSize! * 7,
-                      width: ScreenSize.horizontalBlockSize! * 41,
-                      color: Colors.transparent,
-                      child: GridView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: language.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                                // color: Colors.red,
-                                border:
-                                    Border.all(color: const Color(0xFF333333))),
-                            child: Center(
-                              child: Text(
-                                language[index],
-                                style: GoogleFonts.openSans(
+                      width: ScreenSize.horizontalBlockSize! * 40,
+                      // color: Colors.red,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            height: ScreenSize.horizontalBlockSize! * 4,
+                            width: ScreenSize.horizontalBlockSize! * 12,
+                            color: Colors.transparent,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  // color: Colors.red,
+                                  border: Border.all(color: const Color(0xFF333333))),
+                              child: Center(
+                                child: Text(
+                                  "ENGLISH",
+                                  style: GoogleFonts.openSans(
                                     fontWeight: FontWeight.w700,
-                                    fontSize:
-                                        ScreenSize.horizontalBlockSize! * 2.8),
+                                    fontSize: ScreenSize.horizontalBlockSize! * 1.8,
+                                  ),
+                                ),
                               ),
                             ),
-                            /* child: Center(
-                                        child: TextField(
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            hintText: skills[index],
-                                            hintStyle: GoogleFonts.openSans(
-                                              fontWeight: FontWeight.w800,
-                                              fontSize: ScreenSize
-                                                      .horizontalBlockSize! *
-                                                  1.8,
-                                            ),
-                                          ),
-                                        ),
-                                      ),*/
-                          );
-                        },
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 0.4,
-                          mainAxisSpacing: 10,
-                          crossAxisCount: 1,
-                        ),
+                          ),
+                          Container(
+                            height: ScreenSize.horizontalBlockSize! * 4,
+                            width: ScreenSize.horizontalBlockSize! * 12,
+                            color: Colors.transparent,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  // color: Colors.red,
+                                  border: Border.all(color: const Color(0xFF333333))),
+                              child: Center(
+                                child: Text(
+                                  "SPANISH",
+                                  style: GoogleFonts.openSans(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: ScreenSize.horizontalBlockSize! * 1.8,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: ScreenSize.horizontalBlockSize! * 4,
+                            width: ScreenSize.horizontalBlockSize! * 12,
+                            color: Colors.transparent,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  // color: Colors.red,
+                                  border: Border.all(color: const Color(0xFF333333))),
+                              child: Center(
+                                child: Text(
+                                  "FRENCH",
+                                  style: GoogleFonts.openSans(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: ScreenSize.horizontalBlockSize! * 1.8,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(height: ScreenSize.fSize_10()),
+                    SizedBox(height: ScreenSize.fSize_6 ()),
                     ///// Divider
                     const Padding(
                       padding: EdgeInsets.only(right: 9),
@@ -3158,7 +3393,7 @@ class PreViewAppController2 extends GetxController {
                       ),
                     ),
                     ///// Hobbies
-                    SizedBox(height: ScreenSize.fSize_10()),
+                    SizedBox(height: ScreenSize.fSize_8()),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -3188,36 +3423,106 @@ class PreViewAppController2 extends GetxController {
                         )
                       ],
                     ),
-                    Container(
-                      height: ScreenSize.horizontalBlockSize! * 15,
-                      width: ScreenSize.horizontalBlockSize! * 41,
-                      color: Colors.transparent,
-                      child: ListView.builder(
-                        itemCount: hobbies.length,
-                        itemBuilder: (context, index) {
-                          return Row(
-                            children: [
-                              Container(
-                                height: ScreenSize.fSize_24(),
-                                width: ScreenSize.horizontalBlockSize! * 21,
-                                color: Colors.transparent,
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: hobbies[index],
-                                    hintStyle: GoogleFonts.openSans(
-                                      fontWeight: FontWeight.w800,
-                                      fontSize:
-                                          ScreenSize.horizontalBlockSize! * 1.8,
-                                    ),
-                                  ),
-                                ),
+                    SizedBox(height: ScreenSize.fSize_15()),
+                    Row(
+                      children: [
+                        Container(
+                          width: ScreenSize.horizontalBlockSize! * 21,
+                          // color: Colors.red,
+                          child: Text(
+                               "Book Reading",
+                              style: GoogleFonts.openSans(
+                                fontWeight: FontWeight.w800,
+                                fontSize:
+                                ScreenSize.horizontalBlockSize! * 2.0,
                               ),
-                            ],
-                          );
-                        },
-                      ),
+                            ),
+                          ),
+                        Container(
+                          width: ScreenSize.horizontalBlockSize! * 21,
+                          height: ScreenSize.horizontalBlockSize! * 2,
+                          child: Resume4CustomSlider(
+                            value: 50.0,
+                            min: 0.0,
+                            max: 100.0,
+                            onChanged: (value) {
+                              // setState(() {
+                              print('Slider value: $value');
+                              // });
+                            },
+                            color: 'black',
+                            width: ScreenSize.horizontalBlockSize! * 21,
+                          ),
+                        ),
+                      ],
                     ),
+                    SizedBox(height: ScreenSize.fSize_15()),
+                    Row(
+                      children: [
+                        Container(
+                          width: ScreenSize.horizontalBlockSize! * 21,
+                          // color: Colors.red,
+                          child: Text(
+                               "Traveling",
+                              style: GoogleFonts.openSans(
+                                fontWeight: FontWeight.w800,
+                                fontSize:
+                                ScreenSize.horizontalBlockSize! *2.0,
+                              ),
+                            ),
+                          ),
+                        Container(
+                          width: ScreenSize.horizontalBlockSize! * 21,
+                          height: ScreenSize.horizontalBlockSize! * 2,
+                          child: Resume4CustomSlider(
+                            value: 50.0,
+                            min: 0.0,
+                            max: 100.0,
+                            onChanged: (value) {
+                              // setState(() {
+                              print('Slider value: $value');
+                              // });
+                            },
+                            color: 'black',
+                            width: ScreenSize.horizontalBlockSize! * 21,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: ScreenSize.fSize_15()),
+                    Row(
+                      children: [
+                        Container(
+                          width: ScreenSize.horizontalBlockSize! * 21,
+                          // color: Colors.red,
+                          child: Text(
+                               "Playing Chess",
+                              style: GoogleFonts.openSans(
+                                fontWeight: FontWeight.w800,
+                                fontSize:
+                                ScreenSize.horizontalBlockSize! * 2.0,
+                              ),
+                            ),
+                          ),
+                        Container(
+                          width: ScreenSize.horizontalBlockSize! * 21,
+                          height: ScreenSize.horizontalBlockSize! * 2,
+                          child: Resume4CustomSlider(
+                            value: 50.0,
+                            min: 0.0,
+                            max: 100.0,
+                            onChanged: (value) {
+                              // setState(() {
+                              print('Slider value: $value');
+                              // });
+                            },
+                            color: 'black',
+                            width: ScreenSize.horizontalBlockSize! * 21,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: ScreenSize.fSize_4()),
                     ///// Divider
                     const Padding(
                       padding: EdgeInsets.only(right: 9),
@@ -6560,7 +6865,7 @@ class PreViewAppController2 extends GetxController {
                 ? Container(
                     height: ScreenSize.horizontalBlockSize! * 35,
                     width: ScreenSize.horizontalBlockSize! * 35,
-                    decoration:  BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           image: FileImage(textController.profileImage),
