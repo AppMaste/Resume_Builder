@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 
 import '../../../../utils/color.dart';
 import '../../../../utils/images.dart';
@@ -54,7 +55,8 @@ class _WorkExperienceScreenState extends State<KnownLanguageScreen>
             ),
             onPress: () async {
               _animationController.reverse();
-              Get.to(() => AddKnownLanguageScreen());
+              tapController.showbuttonad(context, "/AddKnownLanguageScreen", "/KnownLanguageScreen", "");
+              // Get.to(() => AddKnownLanguageScreen());
             },
             icon: Icons.info_outline_rounded,
           ),

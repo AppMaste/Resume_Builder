@@ -2,6 +2,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 
 import '../../../../utils/color.dart';
 import '../../../../utils/images.dart';
@@ -50,7 +51,8 @@ class _SocialScreenState extends State<SocialScreen>  with SingleTickerProviderS
             ),
             onPress: () async {
               setState(() {});
-              Get.to(() => const AddSocialScreen());
+              tapController.showbuttonad(context, "/AddSocialScreen", "/SocialScreen", "");
+              // Get.to(() => const AddSocialScreen());
               _animationController.reverse();
             },
             icon: Icons.info_outline_rounded,

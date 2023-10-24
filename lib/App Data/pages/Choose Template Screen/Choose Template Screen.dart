@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 import '../../widgets/features/Appbar.dart';
 import '../../widgets/global/MediaQuery/size.dart';
 import 'Template Preview Screen.dart';
@@ -47,7 +48,8 @@ class ChooseTemplateScreen extends StatelessWidget {
             return Container(
               child: GestureDetector(
                 onTap: () {
-                  Get.to(() =>  TemplatePreviewScreen(),arguments: index);
+                  tapController.showbuttonad(context, "/TemplatePreviewScreen", "/ChooseTemplateScreen", index);
+                  // Get.to(() =>  TemplatePreviewScreen(),arguments: index);
                 },
                 child: Image.asset(
                   templateImage[index],

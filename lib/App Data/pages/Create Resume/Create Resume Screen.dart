@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../services/Controller/Tap Controller.dart';
 import '../../services/functions/App Functions/app Functions.dart';
 import '../../utils/color.dart';
 import '../../utils/images.dart';
@@ -88,6 +89,20 @@ var pages = [
   const HobbiesScreen(),
   const SocialScreen(),
 ];
+var page = [
+  "/PersonalInformationScreen",
+  "/ObjectiveScreen",
+  "/WorkExperienceScreen",
+  "/EducationScreen",
+  "/ProjectDetailsScreen",
+  "/AchievementsScreen",
+  "/KnownLanguageScreen",
+  "/SkillsScreen",
+  "/ReferenceScreen",
+  "/InterestScreen",
+  "/HobbiesScreen",
+  "/SocialScreen",
+];
 
 class CreateResumeScreen extends StatefulWidget {
   const CreateResumeScreen({super.key});
@@ -130,7 +145,9 @@ class _CreateResumeScreenState extends State<CreateResumeScreen>
             ),
             onPress: () async {
               _animationController.reverse();
-              Get.to(() => AddMoreSectionScreen());
+              tapController.showbuttonad(
+                  context, "/AddMoreSectionScreen", "/CreateResumeScreen", "");
+              // Get.to(() => AddMoreSectionScreen());
             },
             icon: Icons.info_outline_rounded,
           ),
@@ -145,7 +162,7 @@ class _CreateResumeScreenState extends State<CreateResumeScreen>
       ),
       appBar: appbarController.customAppBarController(context, "Create Resume"),
       body: Obx(
-        () =>  SingleChildScrollView(
+        () => SingleChildScrollView(
           child: Column(
             children: [
               ListView.builder(
@@ -158,17 +175,19 @@ class _CreateResumeScreenState extends State<CreateResumeScreen>
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
                             onTap: () {
-                              Get.to(() => pages[index]);
+                              tapController.showbuttonad(context, page[index],
+                                  "/CreateResumeScreen", '');
+                              // Get.to(() => pages[index]);
                               // navigator!.push(MaterialPageRoute(
                               //   builder: (context) => pages[index],
                               // ));
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(ScreenSize.fSize_15()),
-                                color:
-                                    appColorController.boxColor.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(
+                                    ScreenSize.fSize_15()),
+                                color: appColorController.boxColor
+                                    .withOpacity(0.1),
                                 border: Border.all(
                                     color: const Color(0xFF59E2D7), width: 1.5),
                               ),
@@ -211,7 +230,9 @@ class _CreateResumeScreenState extends State<CreateResumeScreen>
               SizedBox(height: ScreenSize.fSize_50()),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => ChooseTemplateScreen());
+                  tapController.showbuttonad(context, "/ChooseTemplateScreen",
+                      "/CreateResumeScreen", '');
+                  // Get.to(() => ChooseTemplateScreen());
                 },
                 child: Container(
                   height: ScreenSize.horizontalBlockSize! * 13,

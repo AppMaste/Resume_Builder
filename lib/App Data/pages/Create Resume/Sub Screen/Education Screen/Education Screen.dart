@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 
 import '../../../../utils/color.dart';
 import '../../../../utils/images.dart';
@@ -54,7 +55,8 @@ class _EducationScreenState extends State<EducationScreen>
             ),
             onPress: () async {
               _animationController.reverse();
-              Get.to(() => const AddEducationDetailsScreen());
+              tapController.showbuttonad(context, "/AddEducationDetailsScreen", "/EducationScreen", "");
+              // Get.to(() => const AddEducationDetailsScreen());
             },
             icon: Icons.info_outline_rounded,
           ),
@@ -89,124 +91,115 @@ class _EducationScreenState extends State<EducationScreen>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: ScreenSize.fSize_10()),
-                            Text(
-                              "School / College Name:-",
-                              style: GoogleFonts.openSans(
-                                fontSize: ScreenSize.fSize_10(),
-                              ),
-                            ),
                             Container(
+                              height: ScreenSize.fSize_55(),
                               width: ScreenSize.horizontalBlockSize! * 90,
                               // color: Colors.red,
-                              child: Text(
-                                "${education.value[index][0]}",
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.openSans(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: ScreenSize.fSize_15(),
+                              child: TextField(
+                                controller: education.value[index][0],
+                                decoration: const InputDecoration(
+                                  labelText: "School / College Name:-",
+                                  border: InputBorder.none,
                                 ),
                               ),
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             CustomPaint(
                               painter: DottedLinePainter(),
                               size: const Size(
                                   400, 0), // Adjust the size of the dotted line
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
-                            Text(
-                              "Degree / Course Name:-",
-                              style: GoogleFonts.openSans(),
-                            ),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             Container(
-                              width: ScreenSize.horizontalBlockSize! * 60,
+                              height: ScreenSize.fSize_55(),
+                              width: ScreenSize.horizontalBlockSize! * 90,
                               // color: Colors.red,
-                              child: Text(
-                                "${education.value[index][1]}",
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.openSans(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: ScreenSize.fSize_15(),
+                              child: TextField(
+                                controller: education.value[index][1],
+                                decoration: const InputDecoration(
+                                  labelText: "Degree / Course Name:-",
+                                  border: InputBorder.none,
                                 ),
                               ),
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             CustomPaint(
                               painter: DottedLinePainter(),
                               size: const Size(
                                   400, 0), // Adjust the size of the dotted line
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Start Date:-",
-                                      style: GoogleFonts.openSans(),
+                                Container(
+                                  height: ScreenSize.fSize_55(),
+                                  width: ScreenSize.fSize_70(),
+                                  // color: Colors.red,
+                                  child: TextField(
+                                    controller: education.value[index][2],
+                                    decoration: const InputDecoration(
+                                      labelText: "Start Date:-",
+                                      border: InputBorder.none,
                                     ),
-                                    Container(
-                                      width: ScreenSize.fSize_80(),
-                                      child: Text(
-                                        "${education.value[index][2]}",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.openSans(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: ScreenSize.fSize_15(),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "End Date:-",
-                                      style: GoogleFonts.openSans(),
-                                    ),
-                                    Container(
-                                      width: ScreenSize.fSize_80(),
-                                      child: Text(
-                                        education.value[index][5] == "true"
-                                            ? "Present"
-                                            : education.value[index][3],
-                                        // "asjfbasbf",
-                                        style: GoogleFonts.openSans(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: ScreenSize.fSize_15(),
+                                Container(
+                                  height: ScreenSize.fSize_55(),
+                                  width: ScreenSize.fSize_80(),
+                                  // color: Colors.red,
+                                  child: education.value[index][5] == "true"
+                                      ? Center(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(height: ScreenSize.fSize_10()),
+                                              Text(
+                                                "End Date:-",
+                                                style: GoogleFonts.openSans(
+                                                  fontSize: ScreenSize.fSize_10()
+                                                ),
+                                              ),
+                                              Text(
+                                                "Present",
+                                                style: GoogleFonts.openSans(
+                                                    fontSize:
+                                                        ScreenSize.fSize_15(),
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : TextField(
+                                          controller: education.value[index][3],
+                                          decoration: const InputDecoration(
+                                            labelText: 'End Date:',
+                                            border: InputBorder.none,
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  ],
                                 ),
                               ],
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             CustomPaint(
                               painter: DottedLinePainter(),
                               size: const Size(
                                   400, 0), // Adjust the size of the dotted line
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
-                            Text(
-                              "Additional Info:-",
-                              style: GoogleFonts.openSans(),
-                            ),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             Container(
-                              child: Text(
-                                "${education.value[index][4]}",
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.openSans(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: ScreenSize.fSize_15(),
+                              height: ScreenSize.fSize_55(),
+                              width: ScreenSize.horizontalBlockSize! * 90,
+                              // color: Colors.red,
+                              child: TextField(
+                                controller: education.value[index][4],
+                                decoration: const InputDecoration(
+                                  labelText: "Additional Info:-",
+                                  border: InputBorder.none,
                                 ),
                               ),
                             ),
-                            SizedBox(height: ScreenSize.fSize_10()),
                           ],
                         ),
                       ),

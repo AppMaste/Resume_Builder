@@ -17,6 +17,7 @@ import '../../../../widgets/features/Appbar.dart';
 import '../../../../widgets/features/TextController.dart';
 import '../../../../widgets/features/TextField.dart';
 import '../../../../widgets/global/MediaQuery/size.dart';
+import 'Work Experience Screen.dart';
 
 var workList = [].obs;
 
@@ -233,11 +234,11 @@ class _AddWorkExperienceScreenState extends State<AddWorkExperienceScreen>
                   tostController.successTost();
                   workList.value.add(
                     [
-                      textControllers[0].text,
-                      textControllers[1].text,
-                      textControllers[2].text,
-                      textControllers[3].text,
-                      textControllers[4].text,
+                      textControllers[0],
+                      textControllers[1],
+                      textControllers[2],
+                      textControllers[3],
+                      textControllers[4],
                       textController.workShowButton.string,
                     ],
                   );

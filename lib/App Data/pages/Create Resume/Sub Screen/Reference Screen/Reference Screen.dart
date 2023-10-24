@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 
 import '../../../../services/functions/App Functions/app Functions.dart';
 import '../../../../utils/color.dart';
@@ -41,7 +42,6 @@ class _ReferenceScreenState extends State<ReferenceScreen>
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +57,9 @@ class _ReferenceScreenState extends State<ReferenceScreen>
             ),
             onPress: () async {
               _animationController.reverse();
-              Get.to(() => const AddReferenceScreen());
+              tapController.showbuttonad(
+                  context, "/AddReferenceScreen", "/ReferenceScreen", "");
+              // Get.to(() => const AddReferenceScreen());
             },
             icon: Icons.info_outline_rounded,
           ),
@@ -72,134 +74,122 @@ class _ReferenceScreenState extends State<ReferenceScreen>
       ),
       appBar: appbarController.customAppBarController(context, "Reference"),
       body: Obx(
-        () => reference.value.isNotEmpty ? ListView.builder(
-          itemCount: reference.value.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius:
-                    BorderRadius.circular(ScreenSize.fSize_10()),
-                    border: Border.all(
-                      width: 2,
-                      color: appColorController.boxColor,
-                    )),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: ScreenSize.fSize_10()),
-                      Text(
-                        "Referens Name:-",
-                        style: GoogleFonts.openSans(
-                          fontSize: ScreenSize.fSize_10(),
+        () => reference.value.isNotEmpty
+            ? ListView.builder(
+                itemCount: reference.value.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(ScreenSize.fSize_10()),
+                          border: Border.all(
+                            width: 2,
+                            color: appColorController.boxColor,
+                          )),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: ScreenSize.fSize_10()),
+                            Container(
+                              height: ScreenSize.fSize_55(),
+                              width: ScreenSize.horizontalBlockSize! * 90,
+                              // color: Colors.red,
+                              child: TextField(
+                                controller: reference.value[index][0],
+                                decoration: const InputDecoration(
+                                  labelText: "References Name:-",
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: ScreenSize.fSize_4()),
+                            CustomPaint(
+                              painter: DottedLinePainter(),
+                              size: const Size(
+                                  400, 0), // Adjust the size of the dotted line
+                            ),
+                            SizedBox(height: ScreenSize.fSize_4()),
+                            Container(
+                              height: ScreenSize.fSize_55(),
+                              width: ScreenSize.horizontalBlockSize! * 90,
+                              // color: Colors.red,
+                              child: TextField(
+                                controller: reference.value[index][1],
+                                decoration: const InputDecoration(
+                                  labelText: "References Address:-",
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: ScreenSize.fSize_4()),
+                            CustomPaint(
+                              painter: DottedLinePainter(),
+                              size: const Size(
+                                  400, 0), // Adjust the size of the dotted line
+                            ),
+                            SizedBox(height: ScreenSize.fSize_4()),
+                            Container(
+                              height: ScreenSize.fSize_55(),
+                              width: ScreenSize.horizontalBlockSize! * 90,
+                              // color: Colors.red,
+                              child: TextField(
+                                controller: reference.value[index][2],
+                                decoration: const InputDecoration(
+                                  labelText: "References Number:-",
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: ScreenSize.fSize_4()),
+                            CustomPaint(
+                              painter: DottedLinePainter(),
+                              size: const Size(
+                                  400, 0), // Adjust the size of the dotted line
+                            ),
+                            SizedBox(height: ScreenSize.fSize_4()),
+                            Container(
+                              height: ScreenSize.fSize_55(),
+                              width: ScreenSize.horizontalBlockSize! * 90,
+                              // color: Colors.red,
+                              child: TextField(
+                                controller: reference.value[index][3],
+                                decoration: const InputDecoration(
+                                  labelText: "References Mail:-",
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Container(
-                        width: ScreenSize.horizontalBlockSize! * 90,
-                        // color: Colors.red,
-                        child: Text(
-                          "${reference.value[index][0]}",
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.openSans(
-                            fontWeight: FontWeight.w600,
-                            fontSize: ScreenSize.fSize_15(),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: ScreenSize.fSize_15()),
-                      CustomPaint(
-                        painter: DottedLinePainter(),
-                        size: const Size(
-                            400, 0), // Adjust the size of the dotted line
-                      ),
-                      SizedBox(height: ScreenSize.fSize_15()),
-                      Text(
-                        "Referens Address:-",
-                        style: GoogleFonts.openSans(),
-                      ),
-                      Container(
-                        width: ScreenSize.horizontalBlockSize! * 60,
-                        // color: Colors.red,
-                        child: Text(
-                          "${reference.value[index][1]}",
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.openSans(
-                            fontWeight: FontWeight.w600,
-                            fontSize: ScreenSize.fSize_15(),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: ScreenSize.fSize_15()),
-                      CustomPaint(
-                        painter: DottedLinePainter(),
-                        size: const Size(
-                            400, 0), // Adjust the size of the dotted line
-                      ),
-                      SizedBox(height: ScreenSize.fSize_15()),
-                      Text(
-                        "Referens Number:-",
-                        style: GoogleFonts.openSans(),
-                      ),
-                      Container(
-                        child: Text(
-                          "${reference.value[index][2]}",
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.openSans(
-                            fontWeight: FontWeight.w600,
-                            fontSize: ScreenSize.fSize_15(),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: ScreenSize.fSize_15()),
-                      CustomPaint(
-                        painter: DottedLinePainter(),
-                        size: const Size(
-                            400, 0), // Adjust the size of the dotted line
-                      ),
-                      SizedBox(height: ScreenSize.fSize_15()),
-                      Text(
-                        "Referens Email:-",
-                        style: GoogleFonts.openSans(),
-                      ),
-                      Container(
-                        child: Text(
-                          "${reference.value[index][3]}",
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.openSans(
-                            fontWeight: FontWeight.w600,
-                            fontSize: ScreenSize.fSize_15(),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  );
+                },
+              )
+            : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      appImageDataController.noDatFound,
+                      scale: 1.3,
+                    ),
+                    Text(
+                      "No Data Found",
+                      style: appFontStyleData.resumeBuilder,
+                    ),
+                    SizedBox(height: ScreenSize.fSize_10()),
+                    Text(
+                      "Create One Now!",
+                      style: appFontStyleData.workTextStyle,
+                    ),
+                  ],
                 ),
               ),
-            );
-          },
-        ) : Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                appImageDataController.noDatFound,
-                scale: 1.3,
-              ),
-              Text(
-                "No Data Found",
-                style: appFontStyleData.resumeBuilder,
-              ),
-              SizedBox(height: ScreenSize.fSize_10()),
-              Text(
-                "Create One Now!",
-                style: appFontStyleData.workTextStyle,
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

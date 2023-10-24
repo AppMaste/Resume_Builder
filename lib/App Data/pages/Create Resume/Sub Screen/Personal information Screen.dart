@@ -179,6 +179,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen>
                         ],
                       );
                     } else {
+                      tostController.successTost();
                       PERSONAL.add(
                         [
                           textControllers[0],

@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 
 import '../../../../utils/color.dart';
 import '../../../../utils/images.dart';
@@ -55,7 +56,8 @@ class _HobbiesScreenState extends State<HobbiesScreen>
             ),
             onPress: () async {
               _animationController.reverse();
-              Get.to(() => const AddHobbiesScreen());
+              tapController.showbuttonad(context, "/AddHobbiesScreen", "/HobbiesScreen", "");
+              // Get.to(() => const AddHobbiesScreen());
             },
             icon: Icons.info_outline_rounded,
           ),

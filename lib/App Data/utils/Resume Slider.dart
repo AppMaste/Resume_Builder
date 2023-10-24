@@ -8,6 +8,7 @@ class Resume1CustomSlider extends StatefulWidget {
   final double min;
   final double max;
   final ValueChanged<double> onChanged;
+  final double width;
 
   const Resume1CustomSlider({
     super.key,
@@ -15,6 +16,7 @@ class Resume1CustomSlider extends StatefulWidget {
     required this.min,
     required this.max,
     required this.onChanged,
+    required this.width,
   });
 
   @override
@@ -57,7 +59,7 @@ class _Resume1CustomSliderState extends State<Resume1CustomSlider> {
             Container(
               width: (_value! - widget.min) /
                   (widget.max - widget.min) *
-                  MediaQuery.of(context).size.width,
+                  widget.width,
               height: 20.0,
               decoration: BoxDecoration(
                 color: const Color(0xFFF2AB01),
@@ -146,7 +148,8 @@ class Resume3CustomSlider extends StatefulWidget {
   final double min;
   final double max;
   final ValueChanged<double> onChanged;
-  final String Color;
+  final String color;
+  final double width;
 
   const Resume3CustomSlider({
     super.key,
@@ -154,7 +157,8 @@ class Resume3CustomSlider extends StatefulWidget {
     required this.min,
     required this.max,
     required this.onChanged,
-    required this.Color,
+    required this.color,
+    required this.width,
   });
 
   @override
@@ -185,22 +189,26 @@ class _Resume3CustomSliderState extends State<Resume3CustomSlider> {
         width: double.infinity,
         // height: 10.0,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 1),
+          border: widget.color == 'white'
+              ? Border.all(color: Colors.white, width: 1)
+              : Border.all(color: Colors.black, width: 1),
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.all(1.4),
+              padding: const EdgeInsets.all(2.0),
               child: Container(
                 width: (_value! - widget.min) /
                     (widget.max - widget.min) *
-                    MediaQuery.of(context).size.width,
+                    widget.width,
                 // height: 10.0,
                 decoration: BoxDecoration(
-                  color: widget.Color == "black"
+                  color: widget.color == "black"
                       ? Colors.black
-                      : const Color(0xFF01A698),
+                      : widget.color == "white"
+                          ? Colors.white
+                          : const Color(0xFF01A698),
                   borderRadius: BorderRadius.circular(15.0),
                 ),
               ),
@@ -227,7 +235,8 @@ class Resume4CustomSlider extends StatefulWidget {
     required this.min,
     required this.max,
     required this.onChanged,
-    required this.color, required this.width,
+    required this.color,
+    required this.width,
   });
 
   @override
@@ -272,7 +281,7 @@ class _Resume4CustomSliderState extends State<Resume4CustomSlider> {
                   (widget.max - widget.min) *
                   widget.width,
               height: 30.0,
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 color: widget.color == 'black'
                     ? Colors.black
                     : const Color(0xFFFF9C01),

@@ -6,7 +6,6 @@ TextControllerr textController = Get.put(TextControllerr());
 class TextControllerr extends GetxController {
   var profileImage;
 
-
   // Add Work Experience Details
   var workShowButton = false.obs;
 
@@ -25,14 +24,20 @@ class TextControllerr extends GetxController {
   var emailController = TextEditingController().obs;
   var nationalityController = TextEditingController().obs;
   var phoneController = TextEditingController().obs;
+  var phoneController2 = TextEditingController().obs;
   var addressController = TextEditingController().obs;
-
+  var webSiteController = TextEditingController().obs;
 
   // Reference
   var referenceName = TextEditingController().obs;
   var referenceAddress = TextEditingController().obs;
   var referenceNumber = TextEditingController().obs;
   var referenceEmail = TextEditingController().obs;
+
+  var referenceName2 = TextEditingController().obs;
+  var referenceAddress2 = TextEditingController().obs;
+  var referenceNumber2 = TextEditingController().obs;
+  var referenceEmail2 = TextEditingController().obs;
 
   // Achivmevement Details
   var awardTitleController = TextEditingController().obs;
@@ -47,6 +52,12 @@ class TextControllerr extends GetxController {
   var endDateController = TextEditingController().obs;
   var educationAdditionalController = TextEditingController().obs;
 
+  var schoolNameController2 = TextEditingController().obs;
+  var degreeController2 = TextEditingController().obs;
+  var startDateController2 = TextEditingController().obs;
+  var endDateController2 = TextEditingController().obs;
+  var educationAdditionalController2 = TextEditingController().obs;
+
   // Known Language
   var languageController = TextEditingController().obs;
 
@@ -58,8 +69,7 @@ class TextControllerr extends GetxController {
   var projectCompanyController = TextEditingController().obs;
   var projectAdditionalController = TextEditingController().obs;
 
-
-   // Add Skills
+  // Add Skills
   var skillsNameController = TextEditingController().obs;
 
   // Work Experience
@@ -71,4 +81,20 @@ class TextControllerr extends GetxController {
 
   // Objective
   var objectiveController = TextEditingController().obs;
+
+  // Resume 1 TextEditingController
+  var jobExperience1 = TextEditingController().obs;
+  var jobExperience2 = TextEditingController().obs;
+  var jobExperience3 = TextEditingController().obs;
+  var jobExperience4 = TextEditingController().obs;
+
+  var jobExperience11 = TextEditingController().obs;
+  var jobExperience12 = TextEditingController().obs;
+  var jobExperience13 = TextEditingController().obs;
+  var jobExperience14 = TextEditingController().obs;
+
+  var jobExperience21 = TextEditingController().obs;
+  var jobExperience22 = TextEditingController().obs;
+  var jobExperience23 = TextEditingController().obs;
+  var jobExperience24 = TextEditingController().obs;
 }

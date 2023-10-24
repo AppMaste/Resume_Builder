@@ -235,10 +235,10 @@ class _AddEducationDetailsScreenState extends State<AddAchievementDetailsScreen>
                     );
                     achivement.value.add(
                       [
-                        textControllers[0].text,
-                        textControllers[1].text,
-                        textControllers[2].text,
-                        textControllers[3].text,
+                        textControllers[0],
+                        textControllers[1],
+                        textControllers[2],
+                        textControllers[3],
                         textController.months.string,
                       ],
                     );

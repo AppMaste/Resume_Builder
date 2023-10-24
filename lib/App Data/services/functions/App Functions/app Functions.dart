@@ -22,7 +22,8 @@ class AppFunctionController extends GetxController {
       children: [
         GestureDetector(
           onTap: () {
-            tapController.showbuttonad(context, "/ResumeBuilderScreen", "/MainScreen", '',);
+            tapController.showbuttonad(
+              context, "/ResumeBuilderScreen", "/MainScreen", '',);
             // Get.to(() => const ResumeBuilderScreen());
           },
           child: Container(
@@ -146,12 +147,10 @@ class AppFunctionController extends GetxController {
     );
   }
 
-  resumeBuilderContainer(
-    BuildContext context,
-    String title,
-    String image,
-    var ontap,
-  ) {
+  resumeBuilderContainer(BuildContext context,
+      String title,
+      String image,
+      var ontap,) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -195,8 +194,8 @@ class AppFunctionController extends GetxController {
     );
   }
 
-  createResumeContainer(
-      BuildContext context, String title, String image, var ontap) {
+  createResumeContainer(BuildContext context, String title, String image,
+      var ontap) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -271,7 +270,8 @@ class AppFunctionController extends GetxController {
     );
   }
 
-  personalInfoTextField(BuildContext context, String hintText, var controller,var keyboardType) {
+  personalInfoTextField(BuildContext context, String hintText, var controller,
+      var keyboardType) {
     return Padding(
       padding: EdgeInsets.all(ScreenSize.fSize_14()),
       child: TextField(
@@ -284,7 +284,7 @@ class AppFunctionController extends GetxController {
           ),
           enabledBorder: UnderlineInputBorder(
             borderSide:
-                BorderSide(color: appColorController.boxColor, width: 2),
+            BorderSide(color: appColorController.boxColor, width: 2),
           ),
         ),
       ),

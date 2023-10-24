@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
@@ -55,7 +56,9 @@ class _WorkExperienceScreenState extends State<SkillsScreen>
             ),
             onPress: () async {
               _animationController.reverse();
-              Get.to(() => const AddSkillsScreen());
+              tapController.showbuttonad(
+                  context, "/AddSkillsScreen", "/SkillsScreen", "");
+              // Get.to(() => const AddSkillsScreen());
             },
             icon: Icons.info_outline_rounded,
           ),

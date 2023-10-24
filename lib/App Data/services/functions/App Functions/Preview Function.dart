@@ -1,8 +1,12 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:fdottedline_nullsafety/fdottedline__nullsafety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:resume_builder/App%20Data/pages/Create%20Resume/Sub%20Screen/Education%20Screen/Add%20Education%20Details%20Screen.dart';
+import 'package:resume_builder/App%20Data/pages/Create%20Resume/Sub%20Screen/Reference%20Screen/Add%20Reference%20Screen.dart';
 
 // import 'package:resume_builder_app/App%20Data/pages/Create%20Resume/Sub%20Screen/Personal%20information%20Screen.dart';
 // import 'package:resume_builder_app/App%20Data/pages/Create%20Resume/Sub%20Screen/Work%20Experience%20Screen/Add%20Work%20Experience%20Screen.dart';
@@ -19,7 +23,7 @@ PreViewAppController preViewAppController = PreViewAppController();
 
 class PreViewAppController extends GetxController {
   templatePreview() {
-    print("objecttttttt $workList");
+    print("objecttttttt $PERSONAL");
     return Stack(
       children: [
         Padding(
@@ -31,7 +35,7 @@ class PreViewAppController extends GetxController {
             child: Stack(
               children: [
                 Positioned(
-                  left: ScreenSize.horizontalBlockSize! * 49,
+                  left: ScreenSize.horizontalBlockSize! * 50,
                   top: ScreenSize.horizontalBlockSize! * 10,
                   child: Container(
                     color: Colors.transparent,
@@ -185,7 +189,7 @@ class PreViewAppController extends GetxController {
                 // setState(() {
                 //   print('Slider value: $value');
                 // });
-              },
+              }, width: ScreenSize.horizontalBlockSize! * 24,
             ),
           ),
         ),
@@ -219,7 +223,7 @@ class PreViewAppController extends GetxController {
                 // setState(() {
                 //   print('Slider value: $value');
                 // });
-              },
+              }, width: ScreenSize.horizontalBlockSize! * 24,
             ),
           ),
         ),
@@ -253,7 +257,7 @@ class PreViewAppController extends GetxController {
                 // setState(() {
                 //   print('Slider value: $value');
                 // });
-              },
+              }, width: ScreenSize.horizontalBlockSize! * 24,
             ),
           ),
         ),
@@ -287,7 +291,7 @@ class PreViewAppController extends GetxController {
                 // setState(() {
                 //   print('Slider value: $value');
                 // });
-              },
+              }, width: ScreenSize.horizontalBlockSize! * 24,
             ),
           ),
         ),
@@ -321,7 +325,7 @@ class PreViewAppController extends GetxController {
                 // setState(() {
                 //   print('Slider value: $value');
                 // });
-              },
+              }, width: ScreenSize.horizontalBlockSize! * 24,
             ),
           ),
         ),
@@ -352,6 +356,13 @@ class PreViewAppController extends GetxController {
                 width: ScreenSize.horizontalBlockSize! * 27,
                 color: Colors.transparent,
                 child: TextField(
+                  style: GoogleFonts.openSans(
+                    fontWeight: FontWeight.w800,
+                    fontSize: ScreenSize.fSize_8(),
+                  ),
+                  controller: workList.value.isEmpty
+                      ? textController.jobExperience1.value
+                      : workList.value[0][1],
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "SENIOR WEB DESIGNER",
@@ -369,6 +380,13 @@ class PreViewAppController extends GetxController {
                   width: ScreenSize.horizontalBlockSize! * 17,
                   color: Colors.transparent,
                   child: TextField(
+                    style: GoogleFonts.openSans(
+                      fontWeight: FontWeight.w800,
+                      fontSize: ScreenSize.fSize_8(),
+                    ),
+                    // controller: workList.value.isEmpty
+                    //     ? textController.jobExperience2
+                    //     : workList.value[0][0],
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "2020-Present",
@@ -393,6 +411,13 @@ class PreViewAppController extends GetxController {
                 width: ScreenSize.horizontalBlockSize! * 27,
                 color: Colors.transparent,
                 child: TextField(
+                  controller: workList.value.length != 2
+                      ? textController.jobExperience11.value
+                      : workList.value[1][0],
+                  style: GoogleFonts.openSans(
+                    fontWeight: FontWeight.w800,
+                    fontSize: ScreenSize.fSize_8(),
+                  ),
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "GRAPHIC DESIGNER",
@@ -424,6 +449,7 @@ class PreViewAppController extends GetxController {
             ],
           ),
         ),
+        //////////
         Positioned(
           left: ScreenSize.horizontalBlockSize! * 49,
           top: ScreenSize.horizontalBlockSize! * 137.5,
@@ -434,6 +460,13 @@ class PreViewAppController extends GetxController {
                 width: ScreenSize.horizontalBlockSize! * 27,
                 color: Colors.transparent,
                 child: TextField(
+                  controller: workList.value.length != 3
+                      ? textController.jobExperience21.value
+                      : workList.value[2][0],
+                  style: GoogleFonts.openSans(
+                    fontWeight: FontWeight.w800,
+                    fontSize: ScreenSize.fSize_8(),
+                  ),
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "MARKETING MANAGER",
@@ -473,6 +506,13 @@ class PreViewAppController extends GetxController {
             width: ScreenSize.horizontalBlockSize! * 28,
             color: Colors.transparent,
             child: TextField(
+              controller: workList.value.isEmpty
+                  ? textController.jobExperience23.value
+                  : workList.value[0][0],
+              style: GoogleFonts.openSans(
+                fontWeight: FontWeight.w500,
+                fontSize: ScreenSize.fSize_8(),
+              ),
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Creative Angery / Chicago",
@@ -492,6 +532,13 @@ class PreViewAppController extends GetxController {
             width: ScreenSize.horizontalBlockSize! * 28,
             color: Colors.transparent,
             child: TextField(
+              controller: workList.value.length != 2
+                  ? textController.jobExperience13.value
+                  : workList.value[1][0],
+              style: GoogleFonts.openSans(
+                fontWeight: FontWeight.w500,
+                fontSize: ScreenSize.fSize_8(),
+              ),
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Creative Market / Chicago",
@@ -511,6 +558,9 @@ class PreViewAppController extends GetxController {
             width: ScreenSize.horizontalBlockSize! * 28,
             color: Colors.transparent,
             child: TextField(
+              controller: workList.value.length != 3
+                  ? textController.jobExperience13.value
+                  : workList.value[2][0],
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Manufacturing Agency / NJ",
@@ -530,6 +580,9 @@ class PreViewAppController extends GetxController {
             width: ScreenSize.horizontalBlockSize! * 45,
             color: Colors.transparent,
             child: TextField(
+              controller: workList.value.isEmpty
+                  ? textController.jobExperience24.value
+                  : workList.value[0][4],
               style: GoogleFonts.openSans(
                 fontWeight: FontWeight.w500,
                 fontSize: ScreenSize.fSize_12(),
@@ -538,7 +591,7 @@ class PreViewAppController extends GetxController {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
                 hintStyle: GoogleFonts.openSans(
                   fontWeight: FontWeight.w500,
                   fontSize: ScreenSize.fSize_12(),
@@ -555,6 +608,9 @@ class PreViewAppController extends GetxController {
             width: ScreenSize.horizontalBlockSize! * 45,
             color: Colors.transparent,
             child: TextField(
+              controller: workList.value.length != 2
+                  ? textController.jobExperience24.value
+                  : workList.value[1][4],
               style: GoogleFonts.openSans(
                 fontWeight: FontWeight.w500,
                 fontSize: ScreenSize.fSize_12(),
@@ -563,7 +619,7 @@ class PreViewAppController extends GetxController {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
                 hintStyle: GoogleFonts.openSans(
                   fontWeight: FontWeight.w500,
                   fontSize: ScreenSize.fSize_12(),
@@ -580,6 +636,9 @@ class PreViewAppController extends GetxController {
             width: ScreenSize.horizontalBlockSize! * 45,
             color: Colors.transparent,
             child: TextField(
+              controller: workList.value.length != 3
+                  ? textController.jobExperience24.value
+                  : workList.value[2][4],
               style: GoogleFonts.openSans(
                 fontWeight: FontWeight.w500,
                 fontSize: ScreenSize.fSize_12(),
@@ -588,7 +647,7 @@ class PreViewAppController extends GetxController {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
                 hintStyle: GoogleFonts.openSans(
                   fontWeight: FontWeight.w500,
                   fontSize: ScreenSize.fSize_12(),
@@ -615,7 +674,7 @@ class PreViewAppController extends GetxController {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
-                    "A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs. This is because paragraphs show a reader where the subdivisions of an essay begin and end, and thus help the reader see the organization of the essay and grasp its main points.",
+                "A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs. This is because paragraphs show a reader where the subdivisions of an essay begin and end, and thus help the reader see the organization of the essay and grasp its main points.",
                 hintStyle: GoogleFonts.openSans(
                   color: Colors.black,
                   fontSize: ScreenSize.fSize_10(),
@@ -696,7 +755,7 @@ class PreViewAppController extends GetxController {
         ),
         Positioned(
           top: ScreenSize.horizontalBlockSize! * 80,
-          left: ScreenSize.horizontalBlockSize! * 45.5,
+          left: ScreenSize.horizontalBlockSize! * 45.7,
           child: Container(
             height: ScreenSize.fSize_30(),
             width: ScreenSize.fSize_8(),
@@ -729,13 +788,10 @@ class PreViewAppController extends GetxController {
           child: Container(
             height: ScreenSize.fSize_10(),
             width: ScreenSize.fSize_10(),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               // color: Colors.red,
-              color: const Color(0xFFF2AB01),
-              borderRadius: BorderRadius.circular(
-                ScreenSize.fSize_100(),
-              ),
-            ),
+                color: Color(0xFFF2AB01),
+                shape: BoxShape.circle),
           ),
         ),
         Positioned(
@@ -763,9 +819,8 @@ class PreViewAppController extends GetxController {
           child: Container(
             height: ScreenSize.fSize_10(),
             width: ScreenSize.fSize_10(),
-            decoration: BoxDecoration(
-                color: const Color(0xFFF2AB01),
-                borderRadius: BorderRadius.circular(ScreenSize.fSize_100())),
+            decoration: const BoxDecoration(
+                color: Color(0xFFF2AB01), shape: BoxShape.circle),
           ),
         ),
         Positioned(
@@ -774,9 +829,8 @@ class PreViewAppController extends GetxController {
           child: Container(
             height: ScreenSize.fSize_10(),
             width: ScreenSize.fSize_10(),
-            decoration: BoxDecoration(
-                color: const Color(0xFFF2AB01),
-                borderRadius: BorderRadius.circular(ScreenSize.fSize_100())),
+            decoration: const BoxDecoration(
+                color: Color(0xFFF2AB01), shape: BoxShape.circle),
           ),
         ),
         Positioned(
@@ -796,9 +850,8 @@ class PreViewAppController extends GetxController {
           child: Container(
             height: ScreenSize.fSize_10(),
             width: ScreenSize.fSize_10(),
-            decoration: BoxDecoration(
-                color: const Color(0xFFF2AB01),
-                borderRadius: BorderRadius.circular(ScreenSize.fSize_100())),
+            decoration: const BoxDecoration(
+                color: Color(0xFFF2AB01), shape: BoxShape.circle),
           ),
         ),
         Positioned(
@@ -807,9 +860,8 @@ class PreViewAppController extends GetxController {
           child: Container(
             height: ScreenSize.fSize_10(),
             width: ScreenSize.fSize_10(),
-            decoration: BoxDecoration(
-                color: const Color(0xFFF2AB01),
-                borderRadius: BorderRadius.circular(ScreenSize.fSize_100())),
+            decoration: const BoxDecoration(
+                color: Color(0xFFF2AB01), shape: BoxShape.circle),
           ),
         ),
         Positioned(
@@ -829,9 +881,8 @@ class PreViewAppController extends GetxController {
           child: Container(
             height: ScreenSize.fSize_10(),
             width: ScreenSize.fSize_10(),
-            decoration: BoxDecoration(
-                color: const Color(0xFFF2AB01),
-                borderRadius: BorderRadius.circular(ScreenSize.fSize_100())),
+            decoration: const BoxDecoration(
+                color: Color(0xFFF2AB01), shape: BoxShape.circle),
           ),
         ),
         Positioned(
@@ -840,9 +891,22 @@ class PreViewAppController extends GetxController {
           child: Container(
             height: ScreenSize.fSize_10(),
             width: ScreenSize.fSize_10(),
-            decoration: BoxDecoration(
-                color: const Color(0xFFF2AB01),
-                borderRadius: BorderRadius.circular(ScreenSize.fSize_100())),
+            decoration: const BoxDecoration(
+                color: Color(0xFFF2AB01), shape: BoxShape.circle),
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.fSize_16(),
+          top: ScreenSize.horizontalBlockSize! * 60,
+          child: Container(
+            height: ScreenSize.fSize_10(),
+            width: ScreenSize.fSize_10(),
+            decoration: const BoxDecoration(
+              // color: Colors.red,
+                color: Color(0xFFF2AB01),
+                shape: BoxShape.circle
+              // borderRadius: BorderRadius.circular(ScreenSize.fSize_100()),
+            ),
           ),
         ),
         Positioned(
@@ -869,93 +933,102 @@ class PreViewAppController extends GetxController {
         Positioned(
           left: ScreenSize.fSize_30(),
           top: ScreenSize.horizontalBlockSize! * 48.5,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(
-                "assets/image/Template Image/Resume 1 Images/Phone.png",
-                scale: 25.0,
-              ),
-              SizedBox(width: ScreenSize.fSize_6()),
-              Column(
-                children: [
-                  Container(
-                    color: Colors.transparent,
-                    height: ScreenSize.fSize_12(),
-                    width: ScreenSize.fSize_100(),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "+1-718-310-5588",
-                        hintStyle: GoogleFonts.openSans(
-                            color: Colors.white,
-                            fontSize: ScreenSize.fSize_11()),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.transparent,
-                    height: ScreenSize.fSize_12(),
-                    width: ScreenSize.fSize_100(),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "+1-718-310-5588",
-                        hintStyle: GoogleFonts.openSans(
-                            color: Colors.white,
-                            fontSize: ScreenSize.fSize_11()),
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
+          child: Image.asset(
+            "assets/image/Template Image/Resume 1 Images/Phone.png",
+            scale: 25.0,
           ),
         ),
         Positioned(
-          left: ScreenSize.fSize_30(),
-          top: ScreenSize.horizontalBlockSize! * 58.5,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(
-                "assets/image/Template Image/Resume 1 Images/Phone.png",
-                scale: 25.0,
+          left: ScreenSize.horizontalBlockSize! * 15,
+          top: ScreenSize.horizontalBlockSize! * 42.5,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.fSize_100(),
+            child: TextField(
+              controller: PERSONAL.value.isEmpty
+                  ? textController.phoneController.value
+                  : PERSONAL.value[0][4],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "+1-718-310-5588",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
               ),
-              SizedBox(width: ScreenSize.fSize_6()),
-              Column(
-                children: [
-                  Container(
-                    color: Colors.transparent,
-                    height: ScreenSize.fSize_12(),
-                    width: ScreenSize.fSize_100(),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "www.yourwebsite.com",
-                        hintStyle: GoogleFonts.openSans(
-                            color: Colors.white,
-                            fontSize: ScreenSize.fSize_11()),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.transparent,
-                    height: ScreenSize.fSize_12(),
-                    width: ScreenSize.fSize_100(),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "yourinfo@gmail.com",
-                        hintStyle: GoogleFonts.openSans(
-                            color: Colors.white,
-                            fontSize: ScreenSize.fSize_11()),
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
+            ),
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.horizontalBlockSize! * 15,
+          top: ScreenSize.horizontalBlockSize! * 47,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.fSize_100(),
+            child: TextField(
+              controller: textController.phoneController2.value,
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "+1-313-381-8167",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              ),
+            ),
+          ),
+        ),
+        //// web
+        Positioned(
+          left: ScreenSize.fSize_30(),
+          top: ScreenSize.horizontalBlockSize! * 59,
+          child: Image.asset(
+            "assets/image/Template Image/Resume 1 Images/www.png",
+            scale: 25.0,
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.horizontalBlockSize! * 15,
+          top: ScreenSize.horizontalBlockSize! * 53,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.fSize_100(),
+            child: TextField(
+              controller: textController.webSiteController.value,
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "www.yourwebsite.com",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.horizontalBlockSize! * 15,
+          top: ScreenSize.horizontalBlockSize! * 56.5,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.fSize_100(),
+            child: TextField(
+              controller: PERSONAL.value.isEmpty
+                  ? textController.emailController.value
+                  : PERSONAL.value[0][2],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "yourinfo@email.com",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              ),
+            ),
           ),
         ),
         Positioned(
@@ -971,27 +1044,34 @@ class PreViewAppController extends GetxController {
         Positioned(
           left: ScreenSize.fSize_30(),
           top: ScreenSize.horizontalBlockSize! * 68.5,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Icon(Icons.location_on_outlined,
-                  size: ScreenSize.fSize_20(), color: Colors.white),
-              SizedBox(width: ScreenSize.fSize_6()),
-              Container(
-                color: Colors.transparent,
-                height: ScreenSize.fSize_30(),
-                width: ScreenSize.fSize_100(),
-                child: TextField(
-                  maxLines: 3,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "769 Prudence Street Lincoln Park, MI 48146",
-                    hintStyle: GoogleFonts.openSans(
-                        color: Colors.white, fontSize: ScreenSize.fSize_11()),
-                  ),
-                ),
+          child: Image.asset(
+            "assets/image/Template Image/Resume 1 Images/location.png",
+            scale: 26.0,
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.horizontalBlockSize! * 15,
+          top: ScreenSize.horizontalBlockSize! * 64.5,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_50(),
+            width: ScreenSize.fSize_100(),
+            child: TextField(
+              controller: PERSONAL.value.isEmpty
+                  ? textController.addressController.value
+                  : PERSONAL.value[0][5],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              maxLines: 2,
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "769 Prudence Street Lincoln Park, MI 48146",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
               ),
-            ],
+            ),
           ),
         ),
         Positioned(
@@ -1015,146 +1095,201 @@ class PreViewAppController extends GetxController {
             ],
           ),
         ),
+        //// reference 1
         Positioned(
           left: ScreenSize.fSize_30(),
-          top: ScreenSize.horizontalBlockSize! * 104,
-          child: Text(
-            "DRAWIN B. MAGANA",
-            style: GoogleFonts.openSans(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: ScreenSize.fSize_11(),
+          top: ScreenSize.horizontalBlockSize! * 100,
+          child: Container(
+            // color: Colors.red,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.fSize_120(),
+            child: TextField(
+              controller: reference.value.isEmpty
+                  ? textController.referenceName.value
+                  : reference.value[0][0],
+              style: GoogleFonts.openSans(
+                color: Colors.white,
+                fontSize: ScreenSize.fSize_11(),
+                fontWeight: FontWeight.bold,
+              ),
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "DARWIN B. MAGANA",
+                hintStyle: GoogleFonts.openSans(
+                  color: Colors.white,
+                  fontSize: ScreenSize.fSize_11(),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ),
         Positioned(
           left: ScreenSize.fSize_30(),
-          top: ScreenSize.horizontalBlockSize! * 112,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                color: Colors.transparent,
-                height: ScreenSize.fSize_12(),
-                width: ScreenSize.horizontalBlockSize! * 35,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "2813 Shobe Lane Mancos, Co.",
-                    hintStyle: GoogleFonts.openSans(
-                        color: Colors.white, fontSize: ScreenSize.fSize_11()),
-                  ),
-                ),
+          top: ScreenSize.horizontalBlockSize! * 106,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.horizontalBlockSize! * 35,
+            child: TextField(
+              controller: reference.value.isEmpty
+                  ? textController.referenceAddress.value
+                  : reference.value[0][1],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "2813 Shobe Lane Mancos, Co.",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: ScreenSize.fSize_4(),
-                ),
-                child: Container(
-                  color: Colors.transparent,
-                  height: ScreenSize.fSize_12(),
-                  width: ScreenSize.fSize_100(),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Tel:+1-718-310-5588",
-                      hintStyle: GoogleFonts.openSans(
-                          color: Colors.white, fontSize: ScreenSize.fSize_10()),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: ScreenSize.fSize_4(),
-                ),
-                child: Container(
-                  color: Colors.transparent,
-                  height: ScreenSize.fSize_12(),
-                  width: ScreenSize.fSize_100(),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Email:www.yourwebsite.com",
-                      hintStyle: GoogleFonts.openSans(
-                          color: Colors.white, fontSize: ScreenSize.fSize_10()),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Positioned(
-          left: ScreenSize.fSize_30(),
-          top: ScreenSize.horizontalBlockSize! * 127,
-          child: Text(
-            "ROBERT J. BELVIN",
-            style: GoogleFonts.openSans(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: ScreenSize.fSize_11(),
             ),
           ),
         ),
         Positioned(
           left: ScreenSize.fSize_30(),
-          top: ScreenSize.horizontalBlockSize! * 135,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                color: Colors.transparent,
-                height: ScreenSize.fSize_12(),
-                width: ScreenSize.horizontalBlockSize! * 35,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "2119 Firefax Drive Newark, NJ.",
-                    hintStyle: GoogleFonts.openSans(
-                        color: Colors.white, fontSize: ScreenSize.fSize_11()),
-                  ),
-                ),
+          top: ScreenSize.horizontalBlockSize! * 110,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.horizontalBlockSize! * 35,
+            child: TextField(
+              controller: reference.value.isEmpty
+                  ? textController.referenceNumber.value
+                  : reference.value[0][2],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Tel:+1-908-987-5103",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: ScreenSize.fSize_4(),
-                ),
-                child: Container(
-                  color: Colors.transparent,
-                  height: ScreenSize.fSize_12(),
-                  width: ScreenSize.fSize_100(),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Tel:+1-908-987-5103",
-                      hintStyle: GoogleFonts.openSans(
-                          color: Colors.white, fontSize: ScreenSize.fSize_10()),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: ScreenSize.fSize_4(),
-                ),
-                child: Container(
-                  color: Colors.transparent,
-                  height: ScreenSize.fSize_12(),
-                  width: ScreenSize.fSize_100(),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Email:www.yourwebsite.com",
-                      hintStyle: GoogleFonts.openSans(
-                          color: Colors.white, fontSize: ScreenSize.fSize_10()),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
+        Positioned(
+          left: ScreenSize.fSize_30(),
+          top: ScreenSize.horizontalBlockSize! * 114,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.horizontalBlockSize! * 35,
+            child: TextField(
+              controller: reference.value.isEmpty
+                  ? textController.referenceEmail.value
+                  : reference.value[0][3],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Email:www.yourwebsite.com",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              ),
+            ),
+          ),
+        ),
+        //// reference 2
+        Positioned(
+          left: ScreenSize.fSize_30(),
+          top: ScreenSize.horizontalBlockSize! * 123.3,
+          child: Container(
+            // color: Colors.red,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.fSize_120(),
+            child: TextField(
+              controller: reference.value.length != 2
+                  ? textController.referenceName2.value
+                  : reference.value[1][0],
+              style: GoogleFonts.openSans(
+                color: Colors.white,
+                fontSize: ScreenSize.fSize_11(),
+                fontWeight: FontWeight.bold,
+              ),
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "ROBERT J. BELVIN",
+                hintStyle: GoogleFonts.openSans(
+                  color: Colors.white,
+                  fontSize: ScreenSize.fSize_11(),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.fSize_30(),
+          top: ScreenSize.horizontalBlockSize! * 129.5,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.horizontalBlockSize! * 35,
+            child: TextField(
+              controller: reference.value.length != 2
+                  ? textController.referenceAddress2.value
+                  : reference.value[1][1],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "2119 Fairfax Drive Newark, NJ.",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.fSize_30(),
+          top: ScreenSize.horizontalBlockSize! * 134,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.horizontalBlockSize! * 35,
+            child: TextField(
+              controller: reference.value.length != 2
+                  ? textController.referenceNumber2.value
+                  : reference.value[1][2],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Tel:+1-908-987-5103",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.fSize_30(),
+          top: ScreenSize.horizontalBlockSize! * 138.5,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.horizontalBlockSize! * 35,
+            child: TextField(
+              controller: reference.value.length != 2
+                  ? textController.referenceEmail2.value
+                  : reference.value[1][3],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Email:www.youwebsite.com",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_11()),
+              ),
+            ),
+          ),
+        ),
+        //// Education
         Positioned(
           left: ScreenSize.fSize_30(),
           top: ScreenSize.horizontalBlockSize! * 162,
@@ -1178,104 +1313,150 @@ class PreViewAppController extends GetxController {
         ),
         Positioned(
           left: ScreenSize.fSize_30(),
-          top: ScreenSize.horizontalBlockSize! * 173.3,
-          child: Text(
-            "STANFORD UNIVERSITY",
-            style: GoogleFonts.openSans(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: ScreenSize.fSize_10(),
+          top: ScreenSize.horizontalBlockSize! * 169,
+          child: Container(
+            // color: Colors.red,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.horizontalBlockSize! * 33,
+            child: TextField(
+              controller: education.value.isEmpty
+                  ? textController.schoolNameController.value
+                  : education.value[0][0],
+              style: GoogleFonts.openSans(
+                color: Colors.white,
+                fontSize: ScreenSize.fSize_11(),
+                fontWeight: FontWeight.bold,
+              ),
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "STANFORD UNIVERSITY",
+                hintStyle: GoogleFonts.openSans(
+                  color: Colors.white,
+                  fontSize: ScreenSize.fSize_11(),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: ScreenSize.fSize_30(),
+          top: ScreenSize.horizontalBlockSize! * 175,
+          child: Container(
+            // color: Colors.red,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.fSize_120(),
+            child: TextField(
+              controller:  education.value.isEmpty
+            ? textController.degreeController.value
+                : education.value[0][1],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_10()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "MASTER DEGREE GRADUATE",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_10()),
+              ),
             ),
           ),
         ),
         Positioned(
           left: ScreenSize.fSize_30(),
           top: ScreenSize.horizontalBlockSize! * 179,
-          child: Column(
-            children: [
-              Container(
-                color: Colors.transparent,
-                height: ScreenSize.fSize_12(),
-                width: ScreenSize.fSize_100(),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "MASTER DEGREE GRADUATE",
-                    hintStyle: GoogleFonts.openSans(
-                        color: Colors.white, fontSize: ScreenSize.fSize_10()),
-                  ),
-                ),
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.fSize_100(),
+            child: TextField(
+              controller: education.value.isEmpty
+                  ? textController.schoolNameController.value
+                  : education.value[0][2],
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "2011-2013",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_10()),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: ScreenSize.fSize_4()),
-                child: Container(
-                  color: Colors.transparent,
-                  height: ScreenSize.fSize_12(),
-                  width: ScreenSize.fSize_100(),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "2011-2013",
-                      hintStyle: GoogleFonts.openSans(
-                          color: Colors.white, fontSize: ScreenSize.fSize_10()),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
+      //// Education 2
         Positioned(
           left: ScreenSize.fSize_30(),
-          top: ScreenSize.horizontalBlockSize! * 191.5,
-          child: Text(
-            "UNIVERSITY OF CHICAGO",
-            style: GoogleFonts.openSans(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: ScreenSize.fSize_10(),
+          top: ScreenSize.horizontalBlockSize! * 187,
+          child: Container(
+            // color: Colors.red,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.horizontalBlockSize! * 33,
+            child: TextField(
+              controller: education.value.isEmpty
+                  ? textController.schoolNameController2.value
+                  : education.value[1][0],
+              style: GoogleFonts.openSans(
+                color: Colors.white,
+                fontSize: ScreenSize.fSize_11(),
+                fontWeight: FontWeight.bold,
+              ),
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "UNIVERSITY OF CHICAGO",
+                hintStyle: GoogleFonts.openSans(
+                  color: Colors.white,
+                  fontSize: ScreenSize.fSize_11(),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ),
         Positioned(
           left: ScreenSize.fSize_30(),
-          top: ScreenSize.horizontalBlockSize! * 198,
-          child: Column(
-            children: [
-              Container(
-                color: Colors.transparent,
-                height: ScreenSize.fSize_12(),
-                width: ScreenSize.fSize_100(),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "BACHELOR DEGREE GRADUATE",
-                    hintStyle: GoogleFonts.openSans(
-                        color: Colors.white, fontSize: ScreenSize.fSize_10()),
-                  ),
-                ),
+          top: ScreenSize.horizontalBlockSize! * 193,
+          child: Container(
+            // color: Colors.red,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.fSize_120(),
+            child: TextField(
+              controller:  education.value.isEmpty
+                  ? textController.degreeController2.value
+                  : education.value[1][1],
+              style: GoogleFonts.openSans(
+                  color: Colors.white, fontSize: ScreenSize.fSize_10()),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "BACHELOR DEGREE GRADUATE",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_10()),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: ScreenSize.fSize_4()),
-                child: Container(
-                  color: Colors.transparent,
-                  height: ScreenSize.fSize_12(),
-                  width: ScreenSize.fSize_100(),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "2007-2010",
-                      hintStyle: GoogleFonts.openSans(
-                        color: Colors.white,
-                        fontSize: ScreenSize.fSize_10(),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
+        Positioned(
+          left: ScreenSize.fSize_30(),
+          top: ScreenSize.horizontalBlockSize! * 196,
+          child: Container(
+            color: Colors.transparent,
+            height: ScreenSize.fSize_40(),
+            width: ScreenSize.fSize_100(),
+            child: TextField(
+              controller: education.value.isEmpty
+                  ? textController.schoolNameController.value
+                  : education.value[0][2],
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "2007-2010",
+                hintStyle: GoogleFonts.openSans(
+                    color: Colors.white, fontSize: ScreenSize.fSize_10()),
+              ),
+            ),
+          ),
+        ),
+        ////////
         Positioned(
           left: ScreenSize.fSize_30(),
           top: ScreenSize.horizontalBlockSize! * 82,
@@ -1361,7 +1542,7 @@ class PreViewAppController extends GetxController {
                     height: ScreenSize.fSize_40(),
                     width: ScreenSize.fSize_120(),
                     decoration: BoxDecoration(
-                        // color: const Color(0xFFFF9C01),
+                      // color: const Color(0xFFFF9C01),
                         border: Border.all(color: const Color(0xFFFF9C01))),
                     child: Center(
                       child: Text(
@@ -1565,7 +1746,7 @@ class PreViewAppController extends GetxController {
                     height: ScreenSize.fSize_40(),
                     width: ScreenSize.fSize_120(),
                     decoration: BoxDecoration(
-                        // color: const Color(0xFFFF9C01),
+                      // color: const Color(0xFFFF9C01),
                         border: Border.all(color: const Color(0xFFFF9C01))),
                     child: Center(
                       child: Text(
@@ -1616,7 +1797,9 @@ class PreViewAppController extends GetxController {
                                       // setState(() {
                                       print('Slider value: $value');
                                       // });
-                                    }, color: '',  width: ScreenSize.horizontalBlockSize! * 21,
+                                    },
+                                    color: '',
+                                    width: ScreenSize.horizontalBlockSize! * 21,
                                   ),
                                 ),
                               ),
@@ -1693,7 +1876,7 @@ class PreViewAppController extends GetxController {
             color: const Color(0xFFFF9C01),
             child: Padding(
               padding:
-                  EdgeInsets.only(left: ScreenSize.horizontalBlockSize! * 27),
+              EdgeInsets.only(left: ScreenSize.horizontalBlockSize! * 27),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -1729,29 +1912,29 @@ class PreViewAppController extends GetxController {
               padding: EdgeInsets.all(ScreenSize.fSize_10()),
               child: textController.profileImage != null
                   ? Container(
-                      height: ScreenSize.fSize_140(),
-                      width: ScreenSize.fSize_140(),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        // color: Colors.red,
-                        image: DecorationImage(
-                            image: FileImage(textController.profileImage),
-                            fit: BoxFit.cover),
-                        border: Border.all(color: Colors.white, width: 5),
-                      ),
-                    )
+                height: ScreenSize.fSize_140(),
+                width: ScreenSize.fSize_140(),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  // color: Colors.red,
+                  image: DecorationImage(
+                      image: FileImage(textController.profileImage),
+                      fit: BoxFit.cover),
+                  border: Border.all(color: Colors.white, width: 5),
+                ),
+              )
                   : Container(
-                      height: ScreenSize.fSize_140(),
-                      width: ScreenSize.fSize_140(),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        // color: Colors.red,
-                        image: const DecorationImage(
-                            image: NetworkImage(
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQloftq61cFe4VKJqXGU-4n7MtX18ajx3drukbn5UtCHAAvTvkguzFHal9JeUliQzW3u4w&usqp=CAU")),
-                        border: Border.all(color: Colors.white, width: 5),
-                      ),
-                    ),
+                height: ScreenSize.fSize_140(),
+                width: ScreenSize.fSize_140(),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  // color: Colors.red,
+                  image: const DecorationImage(
+                      image: NetworkImage(
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQloftq61cFe4VKJqXGU-4n7MtX18ajx3drukbn5UtCHAAvTvkguzFHal9JeUliQzW3u4w&usqp=CAU")),
+                  border: Border.all(color: Colors.white, width: 5),
+                ),
+              ),
             ),
           ),
         ),
@@ -2414,31 +2597,31 @@ class PreViewAppController extends GetxController {
                 padding: const EdgeInsets.all(6.0),
                 child: textController.profileImage != null
                     ? Container(
-                        height: ScreenSize.fSize_140(),
-                        width: ScreenSize.fSize_140(),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          // color: Colors.red,
-                          image: DecorationImage(
-                              image: FileImage(textController.profileImage),
-                              fit: BoxFit.cover),
-                          border: Border.all(
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
+                  height: ScreenSize.fSize_140(),
+                  width: ScreenSize.fSize_140(),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    // color: Colors.red,
+                    image: DecorationImage(
+                        image: FileImage(textController.profileImage),
+                        fit: BoxFit.cover),
+                    border: Border.all(
+                      color: Colors.white,
+                    ),
+                  ),
+                )
                     : Container(
-                        height: ScreenSize.fSize_140(),
-                        width: ScreenSize.fSize_140(),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          // color: Colors.red,
-                          image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQloftq61cFe4VKJqXGU-4n7MtX18ajx3drukbn5UtCHAAvTvkguzFHal9JeUliQzW3u4w&usqp=CAU")),
-                          border: Border.all(color: Colors.white, width: 5),
-                        ),
-                      ),
+                  height: ScreenSize.fSize_140(),
+                  width: ScreenSize.fSize_140(),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    // color: Colors.red,
+                    image: const DecorationImage(
+                        image: NetworkImage(
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQloftq61cFe4VKJqXGU-4n7MtX18ajx3drukbn5UtCHAAvTvkguzFHal9JeUliQzW3u4w&usqp=CAU")),
+                    border: Border.all(color: Colors.white, width: 5),
+                  ),
+                ),
               ),
             ),
           ),
@@ -2552,9 +2735,9 @@ class PreViewAppController extends GetxController {
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText:
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
                     hintStyle:
-                        GoogleFonts.openSans(fontSize: ScreenSize.fSize_12()),
+                    GoogleFonts.openSans(fontSize: ScreenSize.fSize_12()),
                   ),
                 ),
               ),
@@ -2595,7 +2778,7 @@ class PreViewAppController extends GetxController {
                         Text(
                           "JOB POSITION",
                           style:
-                              GoogleFonts.openSans(fontWeight: FontWeight.w600),
+                          GoogleFonts.openSans(fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -2630,7 +2813,7 @@ class PreViewAppController extends GetxController {
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
                             hintStyle: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
@@ -2653,7 +2836,7 @@ class PreViewAppController extends GetxController {
                         Text(
                           "JOB POSITION",
                           style:
-                              GoogleFonts.openSans(fontWeight: FontWeight.w600),
+                          GoogleFonts.openSans(fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -2688,7 +2871,7 @@ class PreViewAppController extends GetxController {
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
                             hintStyle: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
@@ -2711,7 +2894,7 @@ class PreViewAppController extends GetxController {
                         Text(
                           "JOB POSITION",
                           style:
-                              GoogleFonts.openSans(fontWeight: FontWeight.w600),
+                          GoogleFonts.openSans(fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -2746,7 +2929,7 @@ class PreViewAppController extends GetxController {
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
                             hintStyle: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
@@ -2769,7 +2952,7 @@ class PreViewAppController extends GetxController {
                         Text(
                           "JOB POSITION",
                           style:
-                              GoogleFonts.openSans(fontWeight: FontWeight.w600),
+                          GoogleFonts.openSans(fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -2804,7 +2987,7 @@ class PreViewAppController extends GetxController {
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
                             hintStyle: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
@@ -2827,7 +3010,7 @@ class PreViewAppController extends GetxController {
                         Text(
                           "JOB POSITION",
                           style:
-                              GoogleFonts.openSans(fontWeight: FontWeight.w600),
+                          GoogleFonts.openSans(fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -2862,7 +3045,7 @@ class PreViewAppController extends GetxController {
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
                             hintStyle: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
@@ -3615,29 +3798,29 @@ class PreViewAppController extends GetxController {
             angle: 0.8,
             child: textController.profileImage != null
                 ? Container(
-                    height: ScreenSize.fSize_110(),
-                    width: ScreenSize.fSize_110(),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: FileImage(textController.profileImage),
-                            fit: BoxFit.cover),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(ScreenSize.fSize_10()))),
-                  )
+              height: ScreenSize.fSize_110(),
+              width: ScreenSize.fSize_110(),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: FileImage(textController.profileImage),
+                      fit: BoxFit.cover),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(ScreenSize.fSize_10()))),
+            )
                 : Container(
-                    height: ScreenSize.fSize_110(),
-                    width: ScreenSize.fSize_110(),
-                    decoration: BoxDecoration(
-                        image: const DecorationImage(
-                            image: NetworkImage(
-                              "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg",
-                            ),
-                            fit: BoxFit.cover),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(ScreenSize.fSize_10()))),
-                  ),
+              height: ScreenSize.fSize_110(),
+              width: ScreenSize.fSize_110(),
+              decoration: BoxDecoration(
+                  image: const DecorationImage(
+                      image: NetworkImage(
+                        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg",
+                      ),
+                      fit: BoxFit.cover),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(ScreenSize.fSize_10()))),
+            ),
           ),
         ),
         //// Facebook
@@ -3774,7 +3957,7 @@ class PreViewAppController extends GetxController {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
                 hintStyle: GoogleFonts.openSans(
                   color: Colors.white,
                   fontSize: ScreenSize.fSize_8(),
@@ -3842,7 +4025,7 @@ class PreViewAppController extends GetxController {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
                 hintStyle: GoogleFonts.openSans(
                   color: Colors.white,
                   fontSize: ScreenSize.fSize_8(),
@@ -3903,7 +4086,7 @@ class PreViewAppController extends GetxController {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
                 hintStyle: GoogleFonts.openSans(
                   color: Colors.white,
                   fontSize: ScreenSize.fSize_8(),
@@ -3991,7 +4174,7 @@ class PreViewAppController extends GetxController {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
                 hintStyle: GoogleFonts.openSans(
                   color: Colors.white,
                   fontSize: ScreenSize.fSize_8(),
@@ -4052,7 +4235,7 @@ class PreViewAppController extends GetxController {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
                 hintStyle: GoogleFonts.openSans(
                   color: Colors.white,
                   fontSize: ScreenSize.fSize_8(),
@@ -4090,8 +4273,8 @@ class PreViewAppController extends GetxController {
                 color: const Color(0xFFE8F0F3),
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(ScreenSize.fSize_100()))
-                // color: Colors.red
-                ),
+              // color: Colors.red
+            ),
           ),
         ),
         //// Contact

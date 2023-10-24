@@ -24,7 +24,7 @@ class ADController extends GetxController {
 
   Rx Count = 1.obs;
 
-  showbuttonad(BuildContext context, String page, String name, var aa) async {
+  showbuttonad(BuildContext context, String nextpage, String pagename, var aa) async {
     if (firebaseConfig.value["Resume_Counter"] == Count.value) {
       showDialog(
         barrierDismissible: false,
@@ -52,29 +52,29 @@ class ADController extends GetxController {
           );
         },
       );
-      if (firebaseConfig.value[name]["Resume_Interstitial_type"] == 'admob') {
+      if (firebaseConfig.value[pagename]["Resume_Interstitial_type"] == 'admob') {
         InterstitialAd.load(
-          adUnitId: firebaseConfig.value[name]["Resume_Interstitial_Admob"],
+          adUnitId: firebaseConfig.value[pagename]["Resume_Interstitial_Admob"],
           // adUnitId: "/6499/example/interstitial",
           request: const AdManagerAdRequest(),
           adLoadCallback: InterstitialAdLoadCallback(onAdLoaded: (ad) {
             ad.show();
             Navigator.pop(context);
-            page != 'stop' ? Get.toNamed(page, arguments: aa) : null;
+            nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
             Count.value = 1;
           }, onAdFailedToLoad: (error) {
             InterstitialAd.load(
-              adUnitId: firebaseConfig.value[name]["Resume_Interstitial_Admob"],
+              adUnitId: firebaseConfig.value[pagename]["Resume_Interstitial_Admob"],
               // adUnitId: "/6499/example/interstitial",
               request: const AdManagerAdRequest(),
               adLoadCallback: InterstitialAdLoadCallback(onAdLoaded: (ad) {
                 ad.show();
                 Navigator.pop(context);
-                page != 'stop' ? Get.toNamed(page, arguments: aa) : null;
+                nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
                 Count.value = 1;
               }, onAdFailedToLoad: (error) {
                 Navigator.pop(context);
-                page != 'stop' ? Get.offNamed(page, arguments: aa) : null;
+                nextpage != 'stop' ? Get.offNamed(nextpage, arguments: aa) : null;
                 Count.value = 1;
               }),
             );
@@ -82,7 +82,7 @@ class ADController extends GetxController {
         );
       }
 
-      if (firebaseConfig.value[name]["Resume_Interstitial_type"] == 'fb') {
+      if (firebaseConfig.value[pagename]["Resume_Interstitial_type"] == 'fb') {
         FacebookInterstitialAd.loadInterstitialAd(
           placementId: firebaseConfig.value["Resume_Interstitial_Facebook"],
           // placementId: "IMG_16_9_APP_INSTALL#2312433698835503_2650502525028617",
@@ -90,31 +90,31 @@ class ADController extends GetxController {
             if (result == InterstitialAdResult.LOADED) {
               FacebookInterstitialAd.showInterstitialAd();
               Navigator.pop(context);
-              page != 'stop' ? Get.toNamed(page, arguments: aa) : null;
+              nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
               Count.value = 1;
             }
             if (result == InterstitialAdResult.ERROR) {
               Navigator.pop(context);
-              page != 'stop' ? Get.toNamed(page, arguments: aa) : null;
+              nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
               Count.value = 1;
             }
           },
         );
       }
-      if (firebaseConfig.value[name]["Resume_Interstitial_type"] == "url") {
-        _launchURL(firebaseConfig.value[name]["Resume_Url"]);
+      if (firebaseConfig.value[pagename]["Resume_Interstitial_type"] == "url") {
+        _launchURL(firebaseConfig.value[pagename]["Resume_Url"]);
         Future.delayed(
           const Duration(seconds: 2),
               () {
             Navigator.pop(context);
-            page != 'stop' ? Get.toNamed(page, arguments: aa) : null;
+            nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
             Count.value = 1;
           },
         );
       }
     } else {
       // Get.to(() => const FirstPage());
-      page != 'stop' ? Get.toNamed(page, arguments: aa) : null;
+      nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
       Count.value++;
       // controller.incrementClickCount(context, 'FirstPage');
     }

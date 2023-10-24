@@ -2364,7 +2364,7 @@ class TostController extends GetxController {
                   // setState(() {
                   print('Slider value: $value');
                   // });
-                }, Color: '',
+                }, color: '', width: ScreenSize.horizontalBlockSize! * 21,
               ),
             ),
           ),
@@ -2399,7 +2399,7 @@ class TostController extends GetxController {
                   // setState(() {
                   print('Slider value: $value');
                   // });
-                }, Color: '',
+                }, color: '', width: ScreenSize.horizontalBlockSize! * 21,
               ),
             ),
           ),
@@ -2435,7 +2435,7 @@ class TostController extends GetxController {
                   print('Slider value: $value');
                   // });
                 },
-                Color: '',
+                color: '', width: ScreenSize.horizontalBlockSize! * 21,
               ),
             ),
           ),
@@ -2470,7 +2470,7 @@ class TostController extends GetxController {
                   // setState(() {
                   print('Slider value: $value');
                   // });
-                }, Color: '',
+                }, color: '', width: ScreenSize.horizontalBlockSize! * 21,
               ),
             ),
           ),
@@ -2505,7 +2505,7 @@ class TostController extends GetxController {
                   // setState(() {
                   print('Slider value: $value');
                   // });
-                }, Color: '',
+                }, color: '', width: ScreenSize.horizontalBlockSize! * 21,
               ),
             ),
           ),

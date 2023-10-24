@@ -195,6 +195,17 @@ class _AddWorkExperienceScreenState extends State<AddProjectDetailsScreen>
                     tostController.errorTost();
                   } else {
                     tostController.successTost();
+                    project.value.add(
+                      [
+                        textControllers[0],
+                        textControllers[1],
+                        textControllers[2],
+                        textControllers[3],
+                        textControllers[4],
+                        textControllers[5],
+                        textController.projectShowButton.string,
+                      ],
+                    );
                     projectDetails = prefs.setStringList(
                       "project",
                       [
@@ -204,17 +215,6 @@ class _AddWorkExperienceScreenState extends State<AddProjectDetailsScreen>
                         textControllers[3].text,
                         textControllers[4].text,
                         textControllers[5].text,
-                        textController.projectShowButton.string,
-                      ],
-                    );
-                    project.value.add(
-                      [
-                        textControllers[0],
-                        textControllers[1],
-                        textControllers[2],
-                        textControllers[3],
-                        textControllers[4],
-                        textControllers[5],
                         textController.projectShowButton.string,
                       ],
                     );

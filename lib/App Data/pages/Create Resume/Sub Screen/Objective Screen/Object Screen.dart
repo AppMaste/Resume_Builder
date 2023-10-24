@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../services/functions/App Functions/Tost Function.dart';
@@ -82,7 +83,9 @@ class _ObjectiveScreenState extends State<ObjectiveScreen>
               onPress: () {
                 _animationController.reverse();
                 // final list = object.map((element) => element).toList();
-                Get.to(() => const AddObjectiveScreen());
+                tapController.showbuttonad(
+                    context, "/AddObjectiveScreen", "/ObjectiveScreen", "");
+                // Get.to(() => const AddObjectiveScreen());
               },
               icon: Icons.save,
             ),

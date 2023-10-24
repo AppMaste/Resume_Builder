@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 
 import '../../../../utils/color.dart';
 import '../../../../utils/images.dart';
@@ -53,7 +54,8 @@ class _WorkExperienceScreenState extends State<AchievementsScreen>
             ),
             onPress: () async {
               _animationController.reverse();
-              Get.to(() => const AddAchievementDetailsScreen());
+              tapController.showbuttonad(context, "/AddAchievementDetailsScreen", "/AchievementsScreen", "");
+              // Get.to(() => const AddAchievementDetailsScreen());
             },
             icon: Icons.info_outline_rounded,
           ),
@@ -87,73 +89,59 @@ class _WorkExperienceScreenState extends State<AchievementsScreen>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: ScreenSize.fSize_10()),
-                            Text(
-                              "Award Title:-",
-                              style: GoogleFonts.openSans(
-                                fontSize: ScreenSize.fSize_10(),
-                              ),
-                            ),
                             Container(
-                              width: ScreenSize.horizontalBlockSize! * 90,
+                              height: ScreenSize.fSize_55(),
+                              width: ScreenSize.fSize_70(),
                               // color: Colors.red,
-                              child: Text(
-                                "${achivement.value[index][0]}",
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.openSans(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: ScreenSize.fSize_15(),
+                              child: TextField(
+                                controller: achivement.value[index][0],
+                                decoration: const InputDecoration(
+                                  labelText: "Award Title:-",
+                                  border: InputBorder.none,
                                 ),
                               ),
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             CustomPaint(
                               painter: DottedLinePainter(),
                               size: const Size(
                                   400, 0), // Adjust the size of the dotted line
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
-                            Text(
-                              "Issuer Name:-",
-                              style: GoogleFonts.openSans(),
-                            ),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             Container(
-                              width: ScreenSize.horizontalBlockSize! * 60,
+                              height: ScreenSize.fSize_55(),
+                              width: ScreenSize.fSize_70(),
                               // color: Colors.red,
-                              child: Text(
-                                "${achivement.value[index][1]}",
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.openSans(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: ScreenSize.fSize_15(),
+                              child: TextField(
+                                controller: achivement.value[index][1],
+                                decoration: const InputDecoration(
+                                  labelText: "Issuer Name:-",
+                                  border: InputBorder.none,
                                 ),
                               ),
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             CustomPaint(
                               painter: DottedLinePainter(),
                               size: const Size(
                                   400, 0), // Adjust the size of the dotted line
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Year:-",
-                                      style: GoogleFonts.openSans(),
-                                    ),
                                     Container(
-                                      width: ScreenSize.fSize_80(),
-                                      child: Text(
-                                        "${achivement.value[index][2]}",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.openSans(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: ScreenSize.fSize_15(),
+                                      height: ScreenSize.fSize_55(),
+                                      width: ScreenSize.fSize_70(),
+                                      // color: Colors.red,
+                                      child: TextField(
+                                        controller: achivement.value[index][2],
+                                        decoration: const InputDecoration(
+                                          labelText: "Year:-",
+                                          border: InputBorder.none,
                                         ),
                                       ),
                                     ),
@@ -170,7 +158,6 @@ class _WorkExperienceScreenState extends State<AchievementsScreen>
                                       width: ScreenSize.fSize_80(),
                                       child: Text(
                                         achivement.value[index][4],
-                                        // "asjfbasbf",
                                         style: GoogleFonts.openSans(
                                           fontWeight: FontWeight.w600,
                                           fontSize: ScreenSize.fSize_15(),
@@ -181,28 +168,25 @@ class _WorkExperienceScreenState extends State<AchievementsScreen>
                                 ),
                               ],
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             CustomPaint(
                               painter: DottedLinePainter(),
                               size: const Size(
                                   400, 0), // Adjust the size of the dotted line
                             ),
-                            SizedBox(height: ScreenSize.fSize_15()),
-                            Text(
-                              "Additional Info:-",
-                              style: GoogleFonts.openSans(),
-                            ),
+                            SizedBox(height: ScreenSize.fSize_4()),
                             Container(
-                              child: Text(
-                                "${achivement.value[index][3]}",
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.openSans(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: ScreenSize.fSize_15(),
+                              height: ScreenSize.fSize_55(),
+                              width: ScreenSize.horizontalBlockSize! * 90,
+                              // color: Colors.red,
+                              child: TextField(
+                                controller: achivement.value[index][3],
+                                decoration: const InputDecoration(
+                                  labelText: "Additional Info:-",
+                                  border: InputBorder.none,
                                 ),
                               ),
                             ),
-                            SizedBox(height: ScreenSize.fSize_10()),
                           ],
                         ),
                       ),

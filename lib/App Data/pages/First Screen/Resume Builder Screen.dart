@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../services/Controller/Tap Controller.dart';
 import '../../services/functions/App Functions/app Functions.dart';
 import '../../utils/color.dart';
 import '../../utils/images.dart';
@@ -42,7 +43,7 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
                     topRight: Radius.circular(ScreenSize.fSize_30()),
                     bottomLeft: Radius.circular(ScreenSize.fSize_30())),
                 // borderRadius: BorderRadius.circular(ScreenSize.fSize_16()),
-                gradient:  LinearGradient(
+                gradient: LinearGradient(
                   colors: [
                     const Color(0xFFB1F2EF).withOpacity(0.9),
                     const Color(0xFF59E2D7).withOpacity(0.9),
@@ -78,15 +79,16 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
                         child: Container(
                           height: ScreenSize.fSize_40(),
                           width: ScreenSize.horizontalBlockSize! * 35,
-                          decoration:  BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(ScreenSize.fSize_15())),
-                          color: const Color(0xFF00A59D),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(ScreenSize.fSize_15())),
+                            color: const Color(0xFF00A59D),
                           ),
                           child: Center(
                             child: Text(
                               "No",
                               style: GoogleFonts.beVietnamPro(
-                                color: Colors.white,
+                                  color: Colors.white,
                                   // color: const Color(0xFFCB4D50),
                                   fontWeight: FontWeight.w600),
                             ),
@@ -99,8 +101,9 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
                           height: ScreenSize.fSize_40(),
                           width: ScreenSize.horizontalBlockSize! * 35,
                           // color: Colors.red,
-                          decoration:  BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(ScreenSize.fSize_15())),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(ScreenSize.fSize_15())),
                             color: const Color(0xFF00A59D),
                           ),
                           child: Center(
@@ -307,7 +310,9 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
                   "Create Resume",
                   appImageDataController.createResume,
                   () {
-                    Get.to(() => const CreateResumeScreen());
+                    tapController.showbuttonad(context, "/CreateResumeScreen",
+                        "/ResumeBuilderScreen", "");
+                    // Get.to(() => const CreateResumeScreen());
                   },
                 ),
                 appFunctionController.resumeBuilderContainer(
@@ -315,7 +320,9 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
                   "Choose Template",
                   appImageDataController.chooseTemplate,
                   () {
-                    Get.to(() => ChooseTemplateScreen());
+                    tapController.showbuttonad(context, "/ChooseTemplateScreen",
+                        "/ResumeBuilderScreen", "");
+                    // Get.to(() => ChooseTemplateScreen());
                   },
                 ),
                 appFunctionController.resumeBuilderContainer(
@@ -323,7 +330,12 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
                   "View & Share Resume",
                   appImageDataController.viewandShare,
                   () {
-                    Get.to(() => ViewAndShareResumeScreen());
+                    tapController.showbuttonad(
+                        context,
+                        "/ViewAndShareResumeScreen",
+                        "/ResumeBuilderScreen",
+                        "");
+                    // Get.to(() => ViewAndShareResumeScreen());
                   },
                 ),
               ],

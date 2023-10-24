@@ -32,7 +32,7 @@ class _TemplatePreviewScreenState extends State<TemplatePreviewScreen> {
 
   var argument = Get.arguments;
 
-  var slider = 20.0;
+  var slider = 20.0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -91,8 +91,14 @@ class _TemplatePreviewScreenState extends State<TemplatePreviewScreen> {
                                                                         .template12Preview()
                                                                     : argument ==
                                                                             12
-                                                                        ? preViewAppController2
-                                                                            .template13Preview()
+                                                                        ? Obx(() =>
+                                                                            preViewAppController2.template13Preview(
+                                                                              context,
+                                                                              slider.value,
+                                                                              (double value) {
+                                                                                slider.value = value;
+                                                                              },
+                                                                            ))
                                                                         : Container(
                                                                             height:
                                                                                 100,

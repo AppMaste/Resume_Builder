@@ -75,25 +75,25 @@ class _AddReferenceScreenState extends State<AddReferenceScreen>
         children: [
           appFunctionController.personalInfoTextField(
             context,
-            "Referens Name",
+            "Reference Name",
             textControllers[0],
             TextInputType.name,
           ),
           appFunctionController.personalInfoTextField(
             context,
-            "Referens Address",
+            "Reference Address",
             textControllers[1],
             TextInputType.streetAddress,
           ),
           appFunctionController.personalInfoTextField(
             context,
-            "Referens Number",
+            "Reference Number",
             textControllers[2],
             TextInputType.phone,
           ),
           appFunctionController.personalInfoTextField(
             context,
-            "Referens Email",
+            "Reference Email",
             textControllers[3],
             TextInputType.emailAddress,
           ),
@@ -122,10 +122,10 @@ class _AddReferenceScreenState extends State<AddReferenceScreen>
                   );
                   reference.add(
                     [
-                      textControllers[0].text,
-                      textControllers[1].text,
-                      textControllers[2].text,
-                      textControllers[3].text,
+                      textControllers[0],
+                      textControllers[1],
+                      textControllers[2],
+                      textControllers[3],
                     ],
                   );
                 }

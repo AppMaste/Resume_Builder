@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 // import 'package:resume_builder_app/App%20Data/pages/Create%20Resume/Sub%20Screen/Interest%20Screen/Add%20Interests%20Screen.dart';
 // import 'package:resume_builder_app/App%20Data/utils/color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,8 +61,9 @@ class _InterestScreenState extends State<InterestScreen>
               color: const Color(0xFF658583),
             ),
             onPress: () async {
-              Get.to(() => const AddInterestsScreen());
               _animationController.reverse();
+              tapController.showbuttonad(context, "/AddInterestsScreen", "/InterestScreen", "");
+              // Get.to(() => const AddInterestsScreen());
             },
             icon: Icons.info_outline_rounded,
           ),
