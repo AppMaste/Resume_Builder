@@ -128,6 +128,7 @@ class _AddReferenceScreenState extends State<AddReferenceScreen>
                       textControllers[3],
                     ],
                   );
+                  Get.back();
                 }
                 reference.refresh();
               },

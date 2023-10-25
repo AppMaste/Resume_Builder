@@ -73,7 +73,7 @@ class _WorkExperienceScreenState extends State<SkillsScreen>
       ),
       appBar: appbarController.customAppBarController(context, "Skills"),
       body: Obx(
-        () => skillValue.value.isNotEmpty
+        () => skillNameValue.value.isNotEmpty
             ? ListView.builder(
                 itemCount: skill.value.length,
                 itemBuilder: (context, index) {

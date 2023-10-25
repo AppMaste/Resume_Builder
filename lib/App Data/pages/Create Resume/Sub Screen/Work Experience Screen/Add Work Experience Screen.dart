@@ -254,6 +254,7 @@ class _AddWorkExperienceScreenState extends State<AddWorkExperienceScreen>
                       date.toString(),
                     ],
                   );
+                  Get.back();
                   log("listlistlist $workList");
                 }
                 workList.refresh();

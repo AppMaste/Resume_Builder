@@ -79,6 +79,7 @@ class Resume2CustomSlider extends StatefulWidget {
   final double min;
   final double max;
   final ValueChanged<double> onChanged;
+  final double width;
 
   const Resume2CustomSlider({
     super.key,
@@ -86,6 +87,7 @@ class Resume2CustomSlider extends StatefulWidget {
     required this.min,
     required this.max,
     required this.onChanged,
+    required this.width,
   });
 
   @override
@@ -128,7 +130,7 @@ class _Resume2CustomSliderState extends State<Resume2CustomSlider> {
             Container(
               width: (_value! - widget.min) /
                   (widget.max - widget.min) *
-                  MediaQuery.of(context).size.width,
+                 widget.width,
               height: 10.0,
               decoration: BoxDecoration(
                 color: const Color(0xFF333333),
@@ -300,13 +302,14 @@ class Resume5CustomSlider extends StatefulWidget {
   final double min;
   final double max;
   final ValueChanged<double> onChanged;
+  final double width;
 
   const Resume5CustomSlider({
     super.key,
     required this.value,
     required this.min,
     required this.max,
-    required this.onChanged,
+    required this.onChanged, required this.width,
   });
 
   @override
@@ -348,7 +351,7 @@ class Resume5CustomSliderState extends State<Resume5CustomSlider> {
             Container(
               width: (_value! - widget.min) /
                   (widget.max - widget.min) *
-                  MediaQuery.of(context).size.width,
+                  widget.width,
               height: 30.0,
               decoration: const BoxDecoration(
                 color: Color(0xFF41556E),

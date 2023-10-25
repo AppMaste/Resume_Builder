@@ -64,7 +64,7 @@ class ADController extends GetxController {
             Count.value = 1;
           }, onAdFailedToLoad: (error) {
             InterstitialAd.load(
-              adUnitId: firebaseConfig.value[pagename]["Resume_Interstitial_Admob"],
+              adUnitId: firebaseConfig.value[pagename]["Resume_Interstitial"],
               // adUnitId: "/6499/example/interstitial",
               request: const AdManagerAdRequest(),
               adLoadCallback: InterstitialAdLoadCallback(onAdLoaded: (ad) {

@@ -48,7 +48,7 @@ class _ReferenceScreenState extends State<ReferenceScreen>
       floatingActionButton: FloatingActionBubble(
         items: [
           Bubble(
-            title: "Add Language",
+            title: "Add Reference",
             iconColor: Colors.red,
             bubbleColor: Colors.white,
             titleStyle: GoogleFonts.beVietnamPro(
@@ -93,7 +93,6 @@ class _ReferenceScreenState extends State<ReferenceScreen>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: ScreenSize.fSize_10()),
                             Container(
                               height: ScreenSize.fSize_55(),
                               width: ScreenSize.horizontalBlockSize! * 90,

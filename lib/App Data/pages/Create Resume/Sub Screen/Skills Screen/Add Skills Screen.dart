@@ -16,18 +16,23 @@ import '../../../../utils/style.dart';
 import '../../../../widgets/features/Appbar.dart';
 import '../../../../widgets/global/MediaQuery/size.dart';
 
-var skillValue = [].obs;
+var skillNameValue = [].obs;
+var skillRateValue = [].obs;
 
 var skill = [
   TextEditingController(text: "Adobe Photoshop"),
   TextEditingController(text: "Adobe Illustrator"),
   TextEditingController(text: "Microsoft Word"),
+  TextEditingController(text: "Microsoft Powerpoint"),
+  TextEditingController(text: "HTML-S/CSS-3"),
 ].obs;
 
 var skillDoubleValue = [
   30.0,
   40.0,
   50.0,
+  60.0,
+  70.0,
 ].obs;
 
 class AddSkillsScreen extends StatefulWidget {
@@ -230,8 +235,11 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
                   () async {
                     tostController.successTost();
                     final prefs = await SharedPreferences.getInstance();
-                     skillValue.value = [...skill.value, ...skillDoubleValue.value];
-                    skillValue.refresh();
+                     // skillValue.value = [skill.value];
+                    skillNameValue.value.add(skill.value);
+                    skillRateValue.value.add(skillDoubleValue.value);
+                    skillNameValue.refresh();
+                    Get.back();
                     // log("skillValue ${skillValue.value}");
                   },
                 ),

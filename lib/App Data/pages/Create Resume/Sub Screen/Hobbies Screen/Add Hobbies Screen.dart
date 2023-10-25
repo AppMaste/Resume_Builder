@@ -112,6 +112,7 @@ class _AddHobbiesScreenState extends State<AddHobbiesScreen>
                       () async {
                         hobbies.refresh();
                         tostController.successTost();
+                        Get.back();
                       },
                     ),
                   )

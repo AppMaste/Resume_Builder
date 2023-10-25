@@ -118,6 +118,7 @@ class _AddWorkExperienceScreenState extends State<AddKnownLanguageScreen>
                       () async {
                         language.refresh();
                         tostController.successTost();
+                        Get.back();
                         // final prefs = await SharedPreferences.getInstance();
                         // if (textController
                         //     .languageController.value.text.isEmpty) {

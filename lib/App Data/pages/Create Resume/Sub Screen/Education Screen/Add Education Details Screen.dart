@@ -206,6 +206,7 @@ class _AddEducationDetailsScreenState extends State<AddEducationDetailsScreen>
                       textController.educationShowButton.string,
                     ],
                   );
+                  Get.back();
                 }
                 education.refresh();
               },

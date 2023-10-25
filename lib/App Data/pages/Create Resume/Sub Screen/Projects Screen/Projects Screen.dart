@@ -168,7 +168,7 @@ class _WorkExperienceScreenState extends State<ProjectDetailsScreen>
                                                 "In Progress",
                                                 style: GoogleFonts.openSans(
                                                     fontSize:
-                                                        ScreenSize.fSize_15(),
+                                                        ScreenSize.fSize_12(),
                                                     fontWeight:
                                                         FontWeight.w600),
                                               ),

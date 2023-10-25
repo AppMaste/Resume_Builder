@@ -190,6 +190,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen>
                           textControllers[5],
                         ],
                       );
+                      Get.back();
                     }
                   }
                   PERSONAL.refresh();
