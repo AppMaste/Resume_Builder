@@ -35,7 +35,7 @@ class AppDataLoadScreen extends GetxController with WidgetsBindingObserver {
               channel.name,
               // color: Colors.blue,
               playSound: true,
-              icon: "@drawable/ic_logo_launch",
+              icon: "@mipmap/ic_launcher",
             ),
           ),
         );

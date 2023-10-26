@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
@@ -28,6 +29,7 @@ import 'App Data/pages/Create Resume/Sub Screen/Reference Screen/Add Reference S
 import 'App Data/pages/Create Resume/Sub Screen/Reference Screen/Reference Screen.dart';
 import 'App Data/pages/Create Resume/Sub Screen/Skills Screen/Add Skills Screen.dart';
 import 'App Data/pages/Create Resume/Sub Screen/Skills Screen/Skills Screen.dart';
+import 'App Data/pages/Create Resume/Sub Screen/Social/Add Social Screen.dart';
 import 'App Data/pages/Create Resume/Sub Screen/Social/Social Screen.dart';
 import 'App Data/pages/Create Resume/Sub Screen/Work Experience Screen/Add Work Experience Screen.dart';
 import 'App Data/pages/Create Resume/Sub Screen/Work Experience Screen/Work Experience Screen.dart';
@@ -37,12 +39,35 @@ import 'App Data/pages/Starting Screens/Main Screen/Splash Screen.dart';
 import 'App Data/pages/View and Share Resume Screen/View and Share Resume Screen.dart';
 import 'App Data/services/functions/Notifications/Notification.dart';
 
+
+
+
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    "Hello", "Resume Builder",
+    importance: Importance.high, playSound: true);
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
+
+Future<void> _firebasemessgingBackgroundMessagingHandler(
+    RemoteMessage message) async {
+  await Firebase.initializeApp();
+}
+
+Future initConfig() async {
+  await firebaseRemoteConfig.setConfigSettings(RemoteConfigSettings(
+    fetchTimeout: const Duration(seconds: 1),
+    minimumFetchInterval: const Duration(seconds: 10),
+  ));
+  await firebaseRemoteConfig.fetchAndActivate();
+}
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+
   FirebaseMessaging.onBackgroundMessage(
-          (message) => firebasemessgingBackgroundMessagingHandler(message));
+          (message) => _firebasemessgingBackgroundMessagingHandler(message));
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
@@ -100,6 +125,7 @@ Future<void> main() async {
         "/AddHobbiesScreen": (context) => const AddHobbiesScreen(),
         "/SocialScreen": (context) => const SocialScreen(),
         "/TemplatePreviewScreen": (context) =>  TemplatePreviewScreen(),
+        "/AddSocialScreen": (context) =>  const AddSocialScreen(),
       },
       // home: const SplashScreen(),
     ),

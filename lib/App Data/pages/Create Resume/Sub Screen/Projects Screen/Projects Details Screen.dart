@@ -218,6 +218,7 @@ class _AddWorkExperienceScreenState extends State<AddProjectDetailsScreen>
                         textController.projectShowButton.string,
                       ],
                     );
+                    Get.back();
                     print("projectetails $project");
                   }
                   project.refresh();

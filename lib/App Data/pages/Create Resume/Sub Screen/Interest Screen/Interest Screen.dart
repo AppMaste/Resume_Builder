@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
+
 // import 'package:resume_builder_app/App%20Data/pages/Create%20Resume/Sub%20Screen/Interest%20Screen/Add%20Interests%20Screen.dart';
 // import 'package:resume_builder_app/App%20Data/utils/color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../utils/color.dart';
+import '../../../../utils/images.dart';
 import '../../../../utils/style.dart';
 import '../../../../widgets/features/Appbar.dart';
 import '../../../../widgets/features/TextController.dart';
@@ -62,7 +64,8 @@ class _InterestScreenState extends State<InterestScreen>
             ),
             onPress: () async {
               _animationController.reverse();
-              tapController.showbuttonad(context, "/AddInterestsScreen", "/InterestScreen", "");
+              tapController.showbuttonad(
+                  context, "/AddInterestsScreen", "/InterestScreen", "");
               // Get.to(() => const AddInterestsScreen());
             },
             icon: Icons.info_outline_rounded,
@@ -77,35 +80,56 @@ class _InterestScreenState extends State<InterestScreen>
         backGroundColor: appColorController.boxColor,
       ),
       body: Obx(
-        () => ListView.builder(
-          itemCount: interest.value.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: ScreenSize.fSize_10(),
-                horizontal: ScreenSize.fSize_15(),
+        () => interest.value.isNotEmpty
+            ? ListView.builder(
+                itemCount: interest.value.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: ScreenSize.fSize_10(),
+                      horizontal: ScreenSize.fSize_15(),
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: interest3.value[index] == true
+                            ? Colors.red[200]
+                            : appColorController.boxColor.withOpacity(0.3),
+                        border: Border.all(
+                          color: interest3.value[index] == true
+                              ? Colors.red
+                              : appColorController.boxColor,
+                        ),
+                        borderRadius:
+                            BorderRadius.circular(ScreenSize.fSize_10()),
+                      ),
+                      child: ListTile(
+                        title: Text(interest.value[index]),
+                        leading: Image.asset(interest2.value[index],
+                            color: Colors.black, scale: 14.0),
+                      ),
+                    ),
+                  );
+                },
+              )
+            : Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                appImageDataController.noDatFound,
+                scale: 1.3,
               ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: interest3.value[index] == true
-                      ? Colors.red[200]
-                      : appColorController.boxColor.withOpacity(0.3),
-                  border: Border.all(
-                    color: interest3.value[index] == true
-                        ? Colors.red
-                        : appColorController.boxColor,
-                  ),
-                  borderRadius: BorderRadius.circular(ScreenSize.fSize_10()),
-                ),
-                child: ListTile(
-                  title: Text(interest.value[index]),
-                  leading: Image.asset(interest2.value[index],
-                      color: Colors.black, scale: 14.0
-                  ),
-                ),
+              Text(
+                "No Data Found",
+                style: appFontStyleData.resumeBuilder,
               ),
-            );
-          },
+              SizedBox(height: ScreenSize.fSize_10()),
+              Text(
+                "Create One Now!",
+                style: appFontStyleData.workTextStyle,
+              ),
+            ],
+          ),
         ),
       ),
     );

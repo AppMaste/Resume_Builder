@@ -242,6 +242,7 @@ class _AddEducationDetailsScreenState extends State<AddAchievementDetailsScreen>
                         textController.months.string,
                       ],
                     );
+                    Get.back();
                   }
                   achivement.refresh();
                 },

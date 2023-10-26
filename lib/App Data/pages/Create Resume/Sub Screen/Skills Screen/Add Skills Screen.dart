@@ -78,11 +78,12 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
               color: const Color(0xFF658583),
             ),
             onPress: () {
-              skill.refresh();
+              setState(() {});
               skillDoubleValue.refresh();
               _animationController.reverse();
               skill.value.add(TextEditingController());
               skillDoubleValue.value.add(30.0);
+              skill.refresh();
             },
             icon: Icons.info_outline_rounded,
           ),
@@ -235,7 +236,7 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
                   () async {
                     tostController.successTost();
                     final prefs = await SharedPreferences.getInstance();
-                     // skillValue.value = [skill.value];
+                    // skillValue.value = [skill.value];
                     skillNameValue.value.add(skill.value);
                     skillRateValue.value.add(skillDoubleValue.value);
                     skillNameValue.refresh();

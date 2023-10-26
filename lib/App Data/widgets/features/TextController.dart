@@ -20,6 +20,7 @@ class TextControllerr extends GetxController {
 
   // Personal Infomation
   var nameController = TextEditingController().obs;
+  var nameController2 = TextEditingController().obs;
   var professionController = TextEditingController().obs;
   var emailController = TextEditingController().obs;
   var nationalityController = TextEditingController().obs;
@@ -94,16 +95,22 @@ class TextControllerr extends GetxController {
   var resume4ExName2 = TextEditingController().obs;
   var resume4ExName3 = TextEditingController().obs;
   var resume4ExName4 = TextEditingController().obs;
+  var resume4ExName5 = TextEditingController().obs;
+  var resume4ExName6 = TextEditingController().obs;
 
   var resume4ExPosition1 = TextEditingController().obs;
   var resume4ExPosition2 = TextEditingController().obs;
   var resume4ExPosition3 = TextEditingController().obs;
   var resume4ExPosition4 = TextEditingController().obs;
+  var resume4ExPosition5 = TextEditingController().obs;
+  var resume4ExPosition6 = TextEditingController().obs;
 
   var resume4ExDescription1 = TextEditingController().obs;
   var resume4ExDescription2 = TextEditingController().obs;
   var resume4ExDescription3 = TextEditingController().obs;
   var resume4ExDescription4 = TextEditingController().obs;
+  var resume4ExDescription5 = TextEditingController().obs;
+  var resume4ExDescription6 = TextEditingController().obs;
 
   var resume4ExPresent1 = TextEditingController(text: "Present").obs;
   var resume4ExPresent2 = TextEditingController(text: "Present").obs;

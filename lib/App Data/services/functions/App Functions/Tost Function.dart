@@ -1588,7 +1588,7 @@ class TostController extends GetxController {
                         fontSize: ScreenSize.horizontalBlockSize! * 1.9,
                         fontWeight: FontWeight.bold,
                       ),
-                      // controller: language.value[3],
+                      controller: language.value[3],
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Skill Name",
@@ -1630,7 +1630,7 @@ class TostController extends GetxController {
                         fontSize: ScreenSize.horizontalBlockSize! * 1.9,
                         fontWeight: FontWeight.bold,
                       ),
-                      // controller: language.value[4],
+                      controller: language.value[4],
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Skill Name",
@@ -1671,7 +1671,7 @@ class TostController extends GetxController {
                 controller: hobbies.value[0],
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: "Skill Name",
+                  hintText: "Hobbies Name",
                   hintStyle: GoogleFonts.openSans(
                     fontSize: ScreenSize.horizontalBlockSize! * 1.9,
                     fontWeight: FontWeight.bold,

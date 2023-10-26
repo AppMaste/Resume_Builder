@@ -60,6 +60,7 @@ class _AddHobbiesScreenState extends State<AddHobbiesScreen>
               color: const Color(0xFF658583),
             ),
             onPress: () async {
+              setState(() {});
               hobbies.value.add(TextEditingController());
               _animationController.reverse();
             },

@@ -130,7 +130,7 @@ class _Resume2CustomSliderState extends State<Resume2CustomSlider> {
             Container(
               width: (_value! - widget.min) /
                   (widget.max - widget.min) *
-                 widget.width,
+                  widget.width,
               height: 10.0,
               decoration: BoxDecoration(
                 color: const Color(0xFF333333),
@@ -199,7 +199,7 @@ class _Resume3CustomSliderState extends State<Resume3CustomSlider> {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.all(2.0),
+              padding: const EdgeInsets.all(1.0),
               child: Container(
                 width: (_value! - widget.min) /
                     (widget.max - widget.min) *
@@ -309,7 +309,8 @@ class Resume5CustomSlider extends StatefulWidget {
     required this.value,
     required this.min,
     required this.max,
-    required this.onChanged, required this.width,
+    required this.onChanged,
+    required this.width,
   });
 
   @override
@@ -370,6 +371,7 @@ class Resume6CustomSlider extends StatefulWidget {
   final double min;
   final double max;
   final ValueChanged<double> onChanged;
+  final double width;
 
   const Resume6CustomSlider({
     super.key,
@@ -377,6 +379,7 @@ class Resume6CustomSlider extends StatefulWidget {
     required this.min,
     required this.max,
     required this.onChanged,
+    required this.width,
   });
 
   @override
@@ -418,7 +421,7 @@ class Resume6CustomSliderState extends State<Resume6CustomSlider> {
             Container(
               width: (_value! - widget.min) /
                   (widget.max - widget.min) *
-                  MediaQuery.of(context).size.width,
+                  widget.width,
               height: 10.0,
               decoration: const BoxDecoration(
                 color: Color(0xFF0C344D),
@@ -437,6 +440,7 @@ class Resume8CustomSlider extends StatefulWidget {
   final double min;
   final double max;
   final ValueChanged<double> onChanged;
+  final double width;
 
   const Resume8CustomSlider({
     super.key,
@@ -444,6 +448,7 @@ class Resume8CustomSlider extends StatefulWidget {
     required this.min,
     required this.max,
     required this.onChanged,
+    required this.width,
   });
 
   @override
@@ -485,7 +490,7 @@ class Resume8CustomSliderState extends State<Resume8CustomSlider> {
             Container(
               width: (_value! - widget.min) /
                   (widget.max - widget.min) *
-                  MediaQuery.of(context).size.width,
+                  widget.width,
               height: 10.0,
               decoration: const BoxDecoration(
                 color: Color(0xFFF0C829),

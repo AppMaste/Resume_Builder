@@ -10,7 +10,9 @@ import '../../../../widgets/features/Appbar.dart';
 import '../../../../widgets/global/MediaQuery/size.dart';
 
 var social = [
-  TextEditingController(text: "WhatsApp"),
+  TextEditingController(text: "Facebook"),
+  TextEditingController(text: "@twitter"),
+  TextEditingController(text: "Instagram"),
 ].obs;
 
 class AddSocialScreen extends StatefulWidget {
@@ -107,6 +109,7 @@ class _AddSocialScreenState extends State<AddSocialScreen>
                       () async {
                         social.refresh();
                         tostController.successTost();
+                        Get.back();
                         // final prefs = await SharedPreferences.getInstance();
                         // if (textController
                         //     .languageController.value.text.isEmpty) {
