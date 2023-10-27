@@ -15,11 +15,16 @@ class TextControllerr extends GetxController {
   // Add Project Details
   var projectShowButton = false.obs;
 
-  // Add Achivement Details
+  // Add Achievement Details
   var months = "".obs;
+  var achieveTitle = TextEditingController().obs;
+  var achieveIssuer = TextEditingController().obs;
+  var achieveYear = TextEditingController().obs;
+  var achieveInfo = TextEditingController().obs;
 
   // Personal Infomation
   var nameController = TextEditingController().obs;
+  var objectController = TextEditingController().obs;
   var nameController2 = TextEditingController().obs;
   var professionController = TextEditingController().obs;
   var emailController = TextEditingController().obs;
@@ -52,7 +57,9 @@ class TextControllerr extends GetxController {
   var startDateController = TextEditingController().obs;
   var endDateController = TextEditingController().obs;
   var educationAdditionalController = TextEditingController().obs;
-  var presentController = TextEditingController(text: "Present").obs;
+  var presentController1 = TextEditingController(text: "Present").obs;
+  var presentController2 = TextEditingController(text: "Present").obs;
+  var presentController3 = TextEditingController(text: "Present").obs;
 
   var schoolNameController2 = TextEditingController().obs;
   var degreeController2 = TextEditingController().obs;
@@ -132,6 +139,13 @@ class TextControllerr extends GetxController {
   var skillsNameController1 = TextEditingController().obs;
   var skillsNameController2 = TextEditingController().obs;
   var skillsNameController3 = TextEditingController().obs;
+
+  // Professional Skill
+  var professionalSlider1 = TextEditingController(text: "Ux Design").obs;
+  var professionalSlider2 = TextEditingController(text: "Ui Design").obs;
+  var professionalSlider3 = TextEditingController(text: "User Research").obs;
+  var professionalSlider4 = TextEditingController(text: "Design System").obs;
+  var professionalSlider5 = TextEditingController(text: "User Research").obs;
 
   // Work Experience
   var workCompanyController = TextEditingController().obs;

@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, invalid_use_of_protected_member
 
 import 'dart:math';
 
@@ -16,9 +16,11 @@ import '../../services/functions/App Functions/Preview Function 2.dart';
 import '../../services/functions/App Functions/Preview Function.dart';
 import '../../services/functions/App Functions/Tost Function.dart';
 import '../../services/functions/App Functions/app Functions.dart';
+import '../../utils/Resume Slider.dart';
 import '../../utils/color.dart';
 import '../../widgets/features/Appbar.dart';
 import '../../widgets/global/MediaQuery/size.dart';
+import '../Create Resume/Sub Screen/Skills Screen/Add Skills Screen.dart';
 
 class TemplatePreviewScreen extends StatefulWidget {
   TemplatePreviewScreen({super.key});
@@ -33,6 +35,13 @@ class _TemplatePreviewScreenState extends State<TemplatePreviewScreen> {
   var argument = Get.arguments;
 
   var slider = 20.0.obs;
+  var resume11 = 20.0.obs;
+
+  var resume12 = 30.0.obs;
+  var resume13 = 40.0.obs;
+  var resume14 = 50.0.obs;
+  var resume15 = 60.0.obs;
+  var resume16 = 70.0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +93,139 @@ class _TemplatePreviewScreenState extends State<TemplatePreviewScreen> {
                                                             ? preViewAppController2
                                                                 .template10Preview()
                                                             : argument == 10
-                                                                ? preViewAppController2
-                                                                    .template11Preview()
+                                                                ? Obx(
+                                                                    () => preViewAppController2
+                                                                        .template11Preview(
+                                                                      context,
+                                                                      // Slider 1
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          skillDoubleValue
+                                                                              .value[0],
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        skillDoubleValue.value[0] =
+                                                                            value;
+                                                                      }),
+                                                                      // Slider 2
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          skillDoubleValue
+                                                                              .value[1],
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        skillDoubleValue.value[1] =
+                                                                            value;
+                                                                      }),
+                                                                      // Slider 3
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          skillDoubleValue
+                                                                              .value[2],
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        skillDoubleValue.value[2] =
+                                                                            value;
+                                                                      }),
+                                                                      // Slider 4
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          skillDoubleValue
+                                                                              .value[3],
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        skillDoubleValue.value[3] =
+                                                                            value;
+                                                                      }),
+                                                                      // Slider 5
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          skillDoubleValue
+                                                                              .value[4],
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        skillDoubleValue.value[4] =
+                                                                            value;
+                                                                      }),
+                                                                      // Slider 6
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          resume11
+                                                                              .value,
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        resume11.value =
+                                                                            value;
+                                                                        // resume11
+                                                                      }),
+                                                                      // Professional Skill Slider 1
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          resume11
+                                                                              .value,
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        resume11.value =
+                                                                            value;
+                                                                        // resume11
+                                                                      }),
+                                                                      // Professional Skill Slider 2
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          resume12
+                                                                              .value,
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        resume12.value =
+                                                                            value;
+                                                                        // resume11
+                                                                      }),
+                                                                      // Professional Skill Slider 3
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          resume13
+                                                                              .value,
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        resume13.value =
+                                                                            value;
+                                                                        // resume11
+                                                                      }),
+                                                                      // Professional Skill Slider 4
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          resume14
+                                                                              .value,
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        resume14.value =
+                                                                            value;
+                                                                        // resume11
+                                                                      }),
+                                                                      // Professional Skill Slider 5
+                                                                      resume11CustomSlider.slider11(
+                                                                          context,
+                                                                          resume15
+                                                                              .value,
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {});
+                                                                        resume15.value =
+                                                                            value;
+                                                                        // resume11
+                                                                      }),
+                                                                    ),
+                                                                  )
                                                                 : argument == 11
                                                                     ? preViewAppController2
                                                                         .template12Preview()

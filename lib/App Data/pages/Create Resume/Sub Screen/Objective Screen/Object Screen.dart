@@ -122,12 +122,14 @@ class _ObjectiveScreenState extends State<ObjectiveScreen>
                         context,
                         "SAVE",
                         () async {
+                          object.refresh();
+                          tostController.successTost();
+                          Get.back();
                           // final prefs = await SharedPreferences.getInstance();
                           //
                           // if (textController.objectiveController.value.text.isEmpty) {
                           //   tostController.errorTost();
                           // } else {
-                          //   tostController.successTost();
                           //   object = prefs.setString(
                           //       "Object", textController.objectiveController.value.text);
                           // }

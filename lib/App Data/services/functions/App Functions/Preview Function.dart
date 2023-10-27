@@ -508,7 +508,7 @@ class PreViewAppController extends GetxController {
                     controller: workList.value.length < 2
                         ? textController.workPresentController2.value
                         : workList.value[1][5] == "true"
-                            ? textController.presentController.value
+                            ? textController.resume4Present2.value
                             : workList.value[1][2],
                     style: GoogleFonts.openSans(
                       fontWeight: FontWeight.w800,
@@ -5037,11 +5037,11 @@ class PreViewAppController extends GetxController {
         Image.asset("assets/image/Template Image/Resume 6 Image/Vector 8.png",
             scale: 2.3, color: const Color(0xFFE8F0F3)),
         Positioned(
-          top: ScreenSize.fSize_15(),
+          top: ScreenSize.fSize_6(),
           left: ScreenSize.fSize_20(),
           child: Container(
             color: Colors.transparent,
-            height: ScreenSize.fSize_40(),
+            height: ScreenSize.fSize_50(),
             width: ScreenSize.horizontalBlockSize! * 43,
             child: TextField(
               controller: PERSONAL.value.isEmpty
@@ -5323,7 +5323,7 @@ class PreViewAppController extends GetxController {
           ),
         ),
         Positioned(
-          top: ScreenSize.horizontalBlockSize! * 80,
+          top: ScreenSize.horizontalBlockSize! * 81,
           left: ScreenSize.fSize_10(),
           child: Container(
             height: ScreenSize.fSize_40(),
@@ -5409,7 +5409,7 @@ class PreViewAppController extends GetxController {
           ),
         ),
         Positioned(
-          top: ScreenSize.horizontalBlockSize! * 102,
+          top: ScreenSize.horizontalBlockSize! * 103,
           left: ScreenSize.fSize_10(),
           child: Container(
             height: ScreenSize.fSize_40(),
@@ -5440,7 +5440,7 @@ class PreViewAppController extends GetxController {
           top: ScreenSize.horizontalBlockSize! * 110,
           left: ScreenSize.fSize_10(),
           child: Container(
-            height: ScreenSize.fSize_60(),
+            height: ScreenSize.fSize_50(),
             width: ScreenSize.horizontalBlockSize! * 42,
             color: Colors.transparent,
             child: TextField(
@@ -5451,7 +5451,7 @@ class PreViewAppController extends GetxController {
                 color: Colors.white,
                 fontSize: ScreenSize.fSize_8(),
               ),
-              maxLines: 3,
+              maxLines: 2,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
@@ -5465,7 +5465,7 @@ class PreViewAppController extends GetxController {
           ),
         ),
         Positioned(
-          top: ScreenSize.horizontalBlockSize! * 122,
+          top: ScreenSize.horizontalBlockSize! * 118,
           left: ScreenSize.fSize_10(),
           child: Container(
             height: ScreenSize.fSize_40(),
@@ -5550,10 +5550,10 @@ class PreViewAppController extends GetxController {
           ),
         ),
         Positioned(
-          top: ScreenSize.horizontalBlockSize! * 152,
+          top: ScreenSize.horizontalBlockSize! * 151,
           left: ScreenSize.fSize_10(),
           child: Container(
-            height: ScreenSize.fSize_60(),
+            height: ScreenSize.fSize_50(),
             width: ScreenSize.horizontalBlockSize! * 42,
             color: Colors.transparent,
             child: TextField(
@@ -5564,7 +5564,7 @@ class PreViewAppController extends GetxController {
                 color: Colors.white,
                 fontSize: ScreenSize.fSize_8(),
               ),
-              maxLines: 3,
+              maxLines: 2,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText:
@@ -5578,7 +5578,7 @@ class PreViewAppController extends GetxController {
           ),
         ),
         Positioned(
-          top: ScreenSize.horizontalBlockSize! * 164,
+          top: ScreenSize.horizontalBlockSize! * 158,
           left: ScreenSize.fSize_10(),
           child: Container(
             height: ScreenSize.fSize_40(),
@@ -5637,14 +5637,14 @@ class PreViewAppController extends GetxController {
           ),
         ),
         Positioned(
-          top: ScreenSize.horizontalBlockSize! * 179,
+          top: ScreenSize.horizontalBlockSize! * 178,
           left: ScreenSize.fSize_10(),
           child: Container(
-            height: ScreenSize.fSize_60(),
+            height: ScreenSize.fSize_50(),
             width: ScreenSize.horizontalBlockSize! * 42,
             color: Colors.transparent,
             child: TextField(
-              maxLines: 3,
+              maxLines: 2,
               controller: workList.value.length < 2
                   ? textController.resume4ExDescription2.value
                   : workList.value[1][4],
@@ -5665,7 +5665,7 @@ class PreViewAppController extends GetxController {
           ),
         ),
         Positioned(
-          top: ScreenSize.horizontalBlockSize! * 190,
+          top: ScreenSize.horizontalBlockSize! * 186,
           left: ScreenSize.fSize_10(),
           child: Container(
             height: ScreenSize.fSize_40(),

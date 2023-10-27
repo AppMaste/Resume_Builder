@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: library_private_types_in_public_api
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 import '../widgets/global/MediaQuery/size.dart';
 
 ////// Resume 1 //////
@@ -497,6 +501,49 @@ class Resume8CustomSliderState extends State<Resume8CustomSlider> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+////// Resume 11 //////
+Resume11CustomSlider resume11CustomSlider = Get.put(Resume11CustomSlider());
+
+class Resume11CustomSlider extends GetxController {
+  slider11(BuildContext context, var value,var onchanged) {
+    return Container(
+      width: ScreenSize.horizontalBlockSize! * 32,
+      child: SfSliderTheme(
+        data: SfSliderThemeData(
+          thumbColor: Colors.transparent,
+          thumbStrokeWidth: 0,
+          activeTrackHeight: 5,
+          activeTrackColor: const Color(0xFF45B877),
+          inactiveTrackColor: const Color(0xFF4F5764),
+          thumbStrokeColor: Colors.black45,
+        ),
+        child: Center(
+          child: SfSlider(
+            showLabels: false,
+            value: value,
+            min: 10,
+            max: 100,
+            // interval: 1000,
+            thumbIcon: Container(
+              // height: 20.0,
+              // width: 5,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                        "assets/image/Template Image/Resume 11 Image/Group 137.png"),
+                    scale: 2.0,
+                  )
+                // color: Colors.red,
+              ),
+            ),
+            onChanged: onchanged,
+          ),
         ),
       ),
     );

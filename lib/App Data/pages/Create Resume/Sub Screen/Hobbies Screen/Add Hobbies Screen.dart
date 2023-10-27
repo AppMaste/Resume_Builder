@@ -49,6 +49,7 @@ class _AddHobbiesScreenState extends State<AddHobbiesScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionBubble(
         items: [
           Bubble(
