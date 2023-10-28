@@ -231,14 +231,32 @@ class _TemplatePreviewScreenState extends State<TemplatePreviewScreen> {
                                                                         .template12Preview()
                                                                     : argument ==
                                                                             12
-                                                                        ? Obx(() =>
-                                                                            preViewAppController2.template13Preview(
+                                                                        ? Obx(
+                                                                            () =>
+                                                                                preViewAppController2.template13Preview(
                                                                               context,
-                                                                              slider.value,
-                                                                              (double value) {
-                                                                                slider.value = value;
+                                                                              skillDoubleValue.value[0],
+                                                                              (value) {
+                                                                                setState(() {});
+                                                                                skillDoubleValue.value[0] = value;
                                                                               },
-                                                                            ))
+                                                                              skillDoubleValue.value[1],
+                                                                              (value) {
+                                                                                setState(() {});
+                                                                                skillDoubleValue.value[1] = value;
+                                                                              },
+                                                                              skillDoubleValue.value[2],
+                                                                              (value) {
+                                                                                setState(() {});
+                                                                                skillDoubleValue.value[2] = value;
+                                                                              },
+                                                                              skillDoubleValue.value[3],
+                                                                              (value) {
+                                                                                setState(() {});
+                                                                                skillDoubleValue.value[3] = value;
+                                                                              },
+                                                                            ),
+                                                                          )
                                                                         : Container(
                                                                             height:
                                                                                 100,

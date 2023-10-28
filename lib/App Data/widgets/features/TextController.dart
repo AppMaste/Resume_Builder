@@ -9,6 +9,10 @@ class TextControllerr extends GetxController {
   // Add Work Experience Details
   var workShowButton = false.obs;
 
+  var workLocation = TextEditingController().obs;
+  var workLocation2 = TextEditingController().obs;
+  var workLocation3 = TextEditingController().obs;
+
   // Add Education Details
   var educationShowButton = false.obs;
 
@@ -60,6 +64,11 @@ class TextControllerr extends GetxController {
   var presentController1 = TextEditingController(text: "Present").obs;
   var presentController2 = TextEditingController(text: "Present").obs;
   var presentController3 = TextEditingController(text: "Present").obs;
+
+  var nativeController = TextEditingController(text: "Native").obs;
+  var professionalController = TextEditingController(text: "Professional").obs;
+  var basicController = TextEditingController(text: "Basic").obs;
+  var basicController2 = TextEditingController(text: "Basic").obs;
 
   var schoolNameController2 = TextEditingController().obs;
   var degreeController2 = TextEditingController().obs;

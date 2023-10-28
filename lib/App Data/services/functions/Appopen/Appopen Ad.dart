@@ -3,13 +3,13 @@
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import '../../../../main.dart';
 import '../Notifications/Notification.dart';
 
 AppopenAdController adController = AppopenAdController();
 
 class AppopenAdController extends GetxController {
   AppOpenAd? appOpenAdd;
-  AppOpenAd? _appOpenAd;
   static bool isLoaded = false;
 
   appopenAd() {

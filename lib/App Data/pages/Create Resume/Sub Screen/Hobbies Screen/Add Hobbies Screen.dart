@@ -53,7 +53,7 @@ class _AddHobbiesScreenState extends State<AddHobbiesScreen>
       floatingActionButton: FloatingActionBubble(
         items: [
           Bubble(
-            title: "Add Achievements",
+            title: "Add Hobbies",
             iconColor: Colors.red,
             bubbleColor: Colors.white,
             titleStyle: GoogleFonts.beVietnamPro(
@@ -92,7 +92,7 @@ class _AddHobbiesScreenState extends State<AddHobbiesScreen>
                             controller: controller,
                             keyboardType: TextInputType.name,
                             decoration: InputDecoration(
-                              hintText: "Language Name",
+                              hintText: "Hobbie Name",
                               hintStyle: GoogleFonts.openSans(
                                 color: const Color(0xFF6E7474),
                               ),

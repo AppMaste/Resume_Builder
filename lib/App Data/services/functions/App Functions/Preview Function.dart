@@ -4314,7 +4314,7 @@ class PreViewAppController extends GetxController {
               radius: 15.0,
               lineWidth: 3.0,
               percent: skillRateValue.value.isEmpty
-                  ? (0.30 * 100)
+                  ? 0.30
                   : (skillDoubleValue.value[0] / 100),
               center: Text(
                 "${((skillDoubleValue.value[0] / 100) * 100).toStringAsFixed(0)}%",

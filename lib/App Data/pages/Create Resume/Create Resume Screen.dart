@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../services/Controller/Native and Banner Controller.dart';
 import '../../services/Controller/Tap Controller.dart';
 import '../../services/functions/App Functions/app Functions.dart';
 import '../../utils/color.dart';
@@ -132,137 +133,151 @@ class _CreateResumeScreenState extends State<CreateResumeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionBubble(
-        items: [
-          Bubble(
-            title: "Add More Section",
-            iconColor: Colors.red,
-            bubbleColor: Colors.white,
-            titleStyle: GoogleFonts.beVietnamPro(
-              fontSize: 16,
-              color: const Color(0xFF658583),
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/CreateResumeScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        floatingActionButton: FloatingActionBubble(
+          items: [
+            Bubble(
+              title: "Add More Section",
+              iconColor: Colors.red,
+              bubbleColor: Colors.white,
+              titleStyle: GoogleFonts.beVietnamPro(
+                fontSize: 16,
+                color: const Color(0xFF658583),
+              ),
+              onPress: () async {
+                _animationController.reverse();
+                tapController.showbuttonad(context, "/AddMoreSectionScreen",
+                    "/CreateResumeScreen", "");
+                // Get.to(() => AddMoreSectionScreen());
+              },
+              icon: Icons.info_outline_rounded,
             ),
-            onPress: () async {
-              _animationController.reverse();
-              tapController.showbuttonad(
-                  context, "/AddMoreSectionScreen", "/CreateResumeScreen", "");
-              // Get.to(() => AddMoreSectionScreen());
-            },
-            icon: Icons.info_outline_rounded,
-          ),
-        ],
-        animation: _animation,
-        onPress: () => _animationController.isCompleted
-            ? _animationController.reverse()
-            : _animationController.forward(),
-        iconColor: Colors.white,
-        iconData: Icons.add,
-        backGroundColor: appColorController.boxColor,
-      ),
-      appBar: appbarController.customAppBarController(context, "Create Resume"),
-      body: Obx(
-        () => SingleChildScrollView(
-          child: Column(
+          ],
+          animation: _animation,
+          onPress: () => _animationController.isCompleted
+              ? _animationController.reverse()
+              : _animationController.forward(),
+          iconColor: Colors.white,
+          iconData: Icons.add,
+          backGroundColor: appColorController.boxColor,
+        ),
+        appBar:
+            appbarController.customAppBarController(context, "Create Resume"),
+        body: Obx(
+          () => Stack(
             children: [
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: BUTTON.value.length,
-                itemBuilder: (context, index) {
-                  return BUTTON.value[index] == true
-                      ? Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              tapController.showbuttonad(context, page[index],
-                                  "/CreateResumeScreen", '');
-                              // Get.to(() => pages[index]);
-                              // navigator!.push(MaterialPageRoute(
-                              //   builder: (context) => pages[index],
-                              // ));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                    ScreenSize.fSize_15()),
-                                color: appColorController.boxColor
-                                    .withOpacity(0.1),
-                                border: Border.all(
-                                    color: const Color(0xFF59E2D7), width: 1.5),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(ScreenSize.fSize_15()),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image.asset(
-                                      imagess[index],
-                                      scale: 1.7,
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: BUTTON.value.length,
+                      itemBuilder: (context, index) {
+                        return BUTTON.value[index] == true
+                            ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    tapController.showbuttonad(context, page[index],
+                                        "/CreateResumeScreen", '');
+                                    // Get.to(() => pages[index]);
+                                    // navigator!.push(MaterialPageRoute(
+                                    //   builder: (context) => pages[index],
+                                    // ));
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                          ScreenSize.fSize_15()),
+                                      color: appColorController.boxColor
+                                          .withOpacity(0.1),
+                                      border: Border.all(
+                                          color: const Color(0xFF59E2D7),
+                                          width: 1.5),
                                     ),
-                                    SizedBox(width: ScreenSize.fSize_20()),
-                                    Container(
-                                      color: Colors.transparent,
-                                      width: ScreenSize.fSize_210(),
-                                      child: Text(
-                                        TITLE[index],
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.openSans(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: ScreenSize.fSize_18(),
-                                        ),
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.all(ScreenSize.fSize_15()),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Image.asset(
+                                            imagess[index],
+                                            scale: 1.7,
+                                          ),
+                                          SizedBox(width: ScreenSize.fSize_20()),
+                                          Container(
+                                            color: Colors.transparent,
+                                            width: ScreenSize.fSize_210(),
+                                            child: Text(
+                                              TITLE[index],
+                                              overflow: TextOverflow.ellipsis,
+                                              style: GoogleFonts.openSans(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: ScreenSize.fSize_18(),
+                                              ),
+                                            ),
+                                          ),
+                                          const Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: Colors.black,
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    const Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.black,
-                                    )
-                                  ],
+                                  ),
                                 ),
+                              )
+                            : Container();
+                      },
+                    ),
+                    SizedBox(height: ScreenSize.fSize_50()),
+                    GestureDetector(
+                      onTap: () {
+                        tapController.showbuttonad(context, "/ChooseTemplateScreen",
+                            "/CreateResumeScreen", '');
+                        // Get.to(() => ChooseTemplateScreen());
+                      },
+                      child: Container(
+                        height: ScreenSize.horizontalBlockSize! * 13,
+                        width: ScreenSize.fSize_170(),
+                        decoration: BoxDecoration(
+                            color: appColorController.boxColor,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                ScreenSize.fSize_100(),
                               ),
+                            )),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image.asset(
+                              "assets/image/Icons/View.png",
+                              scale: 2.2,
                             ),
-                          ),
-                        )
-                      : Container();
-                },
-              ),
-              SizedBox(height: ScreenSize.fSize_50()),
-              GestureDetector(
-                onTap: () {
-                  tapController.showbuttonad(context, "/ChooseTemplateScreen",
-                      "/CreateResumeScreen", '');
-                  // Get.to(() => ChooseTemplateScreen());
-                },
-                child: Container(
-                  height: ScreenSize.horizontalBlockSize! * 13,
-                  width: ScreenSize.fSize_170(),
-                  decoration: BoxDecoration(
-                      color: appColorController.boxColor,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(
-                          ScreenSize.fSize_100(),
+                            Text(
+                              "View Resume",
+                              style: GoogleFonts.openSans(
+                                  color: Colors.white,
+                                  fontSize: ScreenSize.fSize_16(),
+                                  fontWeight: FontWeight.w500),
+                            )
+                          ],
                         ),
-                      )),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Image.asset(
-                        "assets/image/Icons/View.png",
-                        scale: 2.2,
                       ),
-                      Text(
-                        "View Resume",
-                        style: GoogleFonts.openSans(
-                            color: Colors.white,
-                            fontSize: ScreenSize.fSize_16(),
-                            fontWeight: FontWeight.w500),
-                      )
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: ScreenSize.fSize_60()),
+                  ],
                 ),
               ),
-              SizedBox(height: ScreenSize.fSize_40()),
+              resumeBannerADController.showBanner("/CreateResumeScreen"),
             ],
           ),
         ),

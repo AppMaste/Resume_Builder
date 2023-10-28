@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
 import '../../services/Controller/Tap Controller.dart';
 import '../../services/functions/App Functions/app Functions.dart';
 import '../../utils/color.dart';
@@ -293,54 +294,61 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
             ),
           ),
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                appFunctionController.resumeBuilderTopDesign(),
-                Padding(
-                  padding: EdgeInsets.all(ScreenSize.fSize_15()),
-                  child: Image.asset(
-                    appImageDataController.vector2,
-                  ),
+        body: Stack(
+          children: [
+            Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    appFunctionController.resumeBuilderTopDesign(),
+                    Padding(
+                      padding: EdgeInsets.all(ScreenSize.fSize_15()),
+                      child: Image.asset(
+                        appImageDataController.vector2,
+                      ),
+                    ),
+                    SizedBox(height: ScreenSize.fSize_20()),
+                    appFunctionController.resumeBuilderContainer(
+                      context,
+                      "Create Resume",
+                      appImageDataController.createResume,
+                      () {
+                        tapController.showbuttonad(context, "/CreateResumeScreen",
+                            "/ResumeBuilderScreen", "");
+                        // Get.to(() => const CreateResumeScreen());
+                      },
+                    ),
+                    // resumeNativeADController.showNative("listTile", "/ResumeBuilderScreen"),
+                    appFunctionController.resumeBuilderContainer(
+                      context,
+                      "Choose Template",
+                      appImageDataController.chooseTemplate,
+                      () {
+                        tapController.showbuttonad(context, "/ChooseTemplateScreen",
+                            "/ResumeBuilderScreen", "");
+                        // Get.to(() => ChooseTemplateScreen());
+                      },
+                    ),
+                    appFunctionController.resumeBuilderContainer(
+                      context,
+                      "View & Share Resume",
+                      appImageDataController.viewandShare,
+                      () {
+                        tapController.showbuttonad(
+                            context,
+                            "/ViewAndShareResumeScreen",
+                            "/ResumeBuilderScreen",
+                            "");
+                        // Get.to(() => ViewAndShareResumeScreen());
+                      },
+                    ),
+                    SizedBox(height: ScreenSize.fSize_55()),
+                  ],
                 ),
-                SizedBox(height: ScreenSize.fSize_20()),
-                appFunctionController.resumeBuilderContainer(
-                  context,
-                  "Create Resume",
-                  appImageDataController.createResume,
-                  () {
-                    tapController.showbuttonad(context, "/CreateResumeScreen",
-                        "/ResumeBuilderScreen", "");
-                    // Get.to(() => const CreateResumeScreen());
-                  },
-                ),
-                appFunctionController.resumeBuilderContainer(
-                  context,
-                  "Choose Template",
-                  appImageDataController.chooseTemplate,
-                  () {
-                    tapController.showbuttonad(context, "/ChooseTemplateScreen",
-                        "/ResumeBuilderScreen", "");
-                    // Get.to(() => ChooseTemplateScreen());
-                  },
-                ),
-                appFunctionController.resumeBuilderContainer(
-                  context,
-                  "View & Share Resume",
-                  appImageDataController.viewandShare,
-                  () {
-                    tapController.showbuttonad(
-                        context,
-                        "/ViewAndShareResumeScreen",
-                        "/ResumeBuilderScreen",
-                        "");
-                    // Get.to(() => ViewAndShareResumeScreen());
-                  },
-                ),
-              ],
+              ),
             ),
-          ),
+                    resumeBannerADController.showBanner("/ResumeBuilderScreen"),
+          ],
         ),
       ),
     );

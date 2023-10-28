@@ -48,7 +48,7 @@ class _AddSocialScreenState extends State<AddSocialScreen>
       floatingActionButton: FloatingActionBubble(
         items: [
           Bubble(
-            title: "Add Language",
+            title: "Add More Social",
             iconColor: Colors.red,
             bubbleColor: Colors.white,
             titleStyle: GoogleFonts.beVietnamPro(
@@ -87,7 +87,7 @@ class _AddSocialScreenState extends State<AddSocialScreen>
                             controller: controller,
                             keyboardType: TextInputType.name,
                             decoration: InputDecoration(
-                              hintText: "Language Name",
+                              hintText: "Social Name",
                               hintStyle: GoogleFonts.openSans(
                                 color: const Color(0xFF6E7474),
                               ),

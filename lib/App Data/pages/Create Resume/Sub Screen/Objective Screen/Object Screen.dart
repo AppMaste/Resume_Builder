@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
 import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -101,43 +102,48 @@ class _ObjectiveScreenState extends State<ObjectiveScreen>
         appBar: appbarController.customAppBarController(context, "Objective"),
         body: Obx(
           () => object.value.isNotEmpty
-              ? SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        height: ScreenSize.horizontalBlockSize! * 160,
-                        // color: Colors.red,
-                        child: ListView.builder(
-                          itemCount: object.length,
-                          itemBuilder: (context, index) {
-                            return appAllTextFieldController.objectiveFiels(
-                                context,
-                                object.value[index],
-                                "Objective",
-                                TextInputType.name);
-                          },
-                        ),
+              ? Stack(
+                children: [
+                  SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            height: ScreenSize.horizontalBlockSize! * 150,
+                            // color: Colors.red,
+                            child: ListView.builder(
+                              itemCount: object.length,
+                              itemBuilder: (context, index) {
+                                return appAllTextFieldController.objectiveFiels(
+                                    context,
+                                    object.value[index],
+                                    "Objective",
+                                    TextInputType.name);
+                              },
+                            ),
+                          ),
+                          appFunctionController.createResumeButton(
+                            context,
+                            "SAVE",
+                            () async {
+                              object.refresh();
+                              tostController.successTost();
+                              Get.back();
+                              // final prefs = await SharedPreferences.getInstance();
+                              //
+                              // if (textController.objectiveController.value.text.isEmpty) {
+                              //   tostController.errorTost();
+                              // } else {
+                              //   object = prefs.setString(
+                              //       "Object", textController.objectiveController.value.text);
+                              // }
+                            },
+                          ),
+                        ],
                       ),
-                      appFunctionController.createResumeButton(
-                        context,
-                        "SAVE",
-                        () async {
-                          object.refresh();
-                          tostController.successTost();
-                          Get.back();
-                          // final prefs = await SharedPreferences.getInstance();
-                          //
-                          // if (textController.objectiveController.value.text.isEmpty) {
-                          //   tostController.errorTost();
-                          // } else {
-                          //   object = prefs.setString(
-                          //       "Object", textController.objectiveController.value.text);
-                          // }
-                        },
-                      ),
-                    ],
-                  ),
-                )
+                    ),
+                  resumeBannerADController.showBanner("/ObjectiveScreen"),
+                ],
+              )
               : Center(
                   child: Text(
                     "Not Created",

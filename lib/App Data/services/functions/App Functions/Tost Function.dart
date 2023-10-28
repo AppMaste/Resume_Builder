@@ -530,8 +530,6 @@ class TostController extends GetxController {
                               color: const Color(0xFF313131),
                               size: ScreenSize.fSize_16()),
                         ),
-                        // Image.asset("assets/image/Icons/Education.png",
-                        //     scale: 2.4),
                         SizedBox(width: ScreenSize.fSize_8()),
                         Text(
                           "REFERENCES",

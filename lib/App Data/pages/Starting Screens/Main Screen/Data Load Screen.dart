@@ -8,6 +8,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:timezone/data/latest.dart' as tz;
+import '../../../../main.dart';
 import '../../../services/functions/Appopen/Appopen Ad.dart';
 import '../../../services/functions/Notifications/Notification Service.dart';
 import '../../../services/functions/Notifications/Notification.dart';
@@ -57,7 +58,7 @@ class AppDataLoadScreen extends GetxController with WidgetsBindingObserver {
     if (firebaseConfig.value.isNotEmpty) {
       adController.appopenAd();
       Future.delayed(const Duration(seconds: 3), () {
-        Get.offAll(() =>  const MainScreen());
+        Get.offAll(() => const MainScreen());
       });
     } else {
       firebaseConfig.value =
@@ -67,9 +68,9 @@ class AppDataLoadScreen extends GetxController with WidgetsBindingObserver {
       tz.initializeTimeZones();
       NotificationService().showNotification(
         1,
-        firebaseConfig.value["Resume_Notification_Title"],
-        firebaseConfig.value["Resume_Notification_Body"],
-        firebaseConfig.value["Resume_Notification_Time"],
+        "firebaseConfig.value[Resume_Notification_Title]",
+        "firebaseConfig.value[Resume_Notification_Body]",
+        1,
       );
     }
   }
