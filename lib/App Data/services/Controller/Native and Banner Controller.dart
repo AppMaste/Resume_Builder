@@ -9,6 +9,7 @@ import 'package:resume_builder/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/global/MediaQuery/size.dart';
+import '../functions/Notifications/Notification.dart';
 
 ResumeAppNativeADController resumeNativeADController = Get.put(ResumeAppNativeADController());
 ResumeAppBannerADController resumeBannerADController = Get.put(ResumeAppBannerADController());
@@ -97,7 +98,7 @@ class ResumeAppNativeADController extends GetxController {
                   )
             : factoryId == "listTile"
                 ? Container(
-                    height: ScreenSize.fSize_150(),
+                    height: ScreenSize.horizontalBlockSize! * 50,
                     width: ScreenSize.fSize_350(),
                     decoration: BoxDecoration(
                       color: Colors.white,

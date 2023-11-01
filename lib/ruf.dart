@@ -1,54 +1,26 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:flutter_to_pdf/export_delegate.dart';
-import 'package:flutter_to_pdf/flutter_to_pdf.dart';
-import 'package:resume_builder/App%20Data/widgets/global/MediaQuery/size.dart';
+import 'package:screenshot/screenshot.dart';
 
-import 'App Data/services/functions/App Functions/Preview Function.dart';
-
-
-
-class MyCircularWidget extends StatefulWidget {
-  const MyCircularWidget({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<MyCircularWidget> createState() => _MyCircularWidgetState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyCircularWidgetState extends State<MyCircularWidget> {
-  final ExportDelegate exportDelegate = ExportDelegate();
-
-  Future<void> saveFile(document, String name) async {
-    final File file = File('/storage/emulated/0/Download/$name.pdf');
-
-    await file.writeAsBytes(await document.save());
-    debugPrint('Saved exported PDF at: ${file.path}');
-  }
+class _HomePageState extends State<HomePage> {
+  final ScreenshotController screenshotController = ScreenshotController();
 
   @override
   Widget build(BuildContext context) {
-    ScreenSize.sizerInit(context);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GestureDetector(
-              onTap: () async {
-                final pdf = await exportDelegate.exportToPdfDocument('someFrameId');
-                saveFile(pdf, 'static-example');
-              },
-              child: ExportFrame(
-                exportDelegate: exportDelegate,
-                frameId: 'someFrameId',
-                child: Container(
-                  color: Colors.amber,
-                  // height: 100,
-                  width: 2000,
-                  child: preViewAppController.templatePreview(),
-                ), // the widget you want to export
-              )),
+      appBar: AppBar(
+        title: const Text("Home Page"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {},
+          child: const Text("Press"),
         ),
       ),
     );

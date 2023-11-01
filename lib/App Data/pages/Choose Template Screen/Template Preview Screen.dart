@@ -21,6 +21,7 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:pdf/pdf.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
+import '../../../ruf.dart';
 import '../../services/functions/App Functions/Preview Function 2.dart';
 import '../../services/functions/App Functions/Preview Function.dart';
 import '../../services/functions/App Functions/Tost Function.dart';
@@ -307,8 +308,8 @@ class _TemplatePreviewScreenState extends State<TemplatePreviewScreen> {
                       context,
                       "Download Image",
                       "assets/image/Icons/Download pdf.png",
-                      () {
-                        /* container = MaterialApp(
+                      () async {
+                        container = MaterialApp(
                           debugShowCheckedModeBanner: false,
                           home: Scaffold(
                             body: Container(
@@ -446,143 +447,15 @@ class _TemplatePreviewScreenState extends State<TemplatePreviewScreen> {
                                     context, Material(child: container)),
                                 delay: const Duration(seconds: 1))
                             .then((capturedImage) async {
-                          imagestore = capturedImage;
+                          // imagestore = capturedImage;
                           _saved(capturedImage);
-                          final pdf = await exportDelegate.exportToPdfDocument("$capturedImage");
-                          saveFile(pdf, "name");
+                          getPdf(capturedImage);
+                          tostController.successTost();
+                          print("image Store Path:$imagestore");
+                          // final pdf = await exportDelegate.exportToPdfDocument("$capturedImage");
+                          // saveFile(pdf, "name");
                           // ShowCapturedWidget(context, capturedImage);
-                        });*/
-                        ExportFrame(
-                          exportDelegate: exportDelegate,
-                          frameId: 'someFrameId',
-                          child: Container(
-                              color: Colors.amber,
-                              height: 100,
-                              width: 2000,
-                              child: argument == 0
-                                  ? preViewAppController.templatePreview()
-                                  : argument == 1
-                                      ? tostController.template2Preview()
-                                      : argument == 2
-                                          ? tostController.template3Preview()
-                                          : argument == 3
-                                              ? preViewAppController
-                                                  .template4Preview()
-                                              : argument == 4
-                                                  ? preViewAppController
-                                                      .template5Preview()
-                                                  : argument == 5
-                                                      ? preViewAppController
-                                                          .template6Preview()
-                                                      : argument == 6
-                                                          ? preViewAppController2
-                                                              .template7Preview()
-                                                          : argument == 7
-                                                              ? preViewAppController2
-                                                                  .template8Preview()
-                                                              : argument == 8
-                                                                  ? preViewAppController2
-                                                                      .template9Preview()
-                                                                  : argument ==
-                                                                          9
-                                                                      ? preViewAppController2
-                                                                          .template10Preview()
-                                                                      : argument ==
-                                                                              10
-                                                                          ? preViewAppController2
-                                                                              .template11Preview(
-                                                                              context,
-                                                                              // Slider 1
-                                                                              resume11CustomSlider.slider11(context, skillDoubleValue.value[0], (value) {
-                                                                                setState(() {});
-                                                                                skillDoubleValue.value[0] = value;
-                                                                              }),
-                                                                              // Slider 2
-                                                                              resume11CustomSlider.slider11(context, skillDoubleValue.value[1], (value) {
-                                                                                setState(() {});
-                                                                                skillDoubleValue.value[1] = value;
-                                                                              }),
-                                                                              // Slider 3
-                                                                              resume11CustomSlider.slider11(context, skillDoubleValue.value[2], (value) {
-                                                                                setState(() {});
-                                                                                skillDoubleValue.value[2] = value;
-                                                                              }),
-                                                                              // Slider 4
-                                                                              resume11CustomSlider.slider11(context, skillDoubleValue.value[3], (value) {
-                                                                                setState(() {});
-                                                                                skillDoubleValue.value[3] = value;
-                                                                              }),
-                                                                              // Slider 5
-                                                                              resume11CustomSlider.slider11(context, skillDoubleValue.value[4], (value) {
-                                                                                setState(() {});
-                                                                                skillDoubleValue.value[4] = value;
-                                                                              }),
-                                                                              // Slider 6
-                                                                              resume11CustomSlider.slider11(context, resume11.value, (value) {
-                                                                                setState(() {});
-                                                                                resume11.value = value;
-                                                                                // resume11
-                                                                              }),
-                                                                              // Professional Skill Slider 1
-                                                                              resume11CustomSlider.slider11(context, resume11.value, (value) {
-                                                                                setState(() {});
-                                                                                resume11.value = value;
-                                                                                // resume11
-                                                                              }),
-                                                                              // Professional Skill Slider 2
-                                                                              resume11CustomSlider.slider11(context, resume12.value, (value) {
-                                                                                setState(() {});
-                                                                                resume12.value = value;
-                                                                                // resume11
-                                                                              }),
-                                                                              // Professional Skill Slider 3
-                                                                              resume11CustomSlider.slider11(context, resume13.value, (value) {
-                                                                                setState(() {});
-                                                                                resume13.value = value;
-                                                                                // resume11
-                                                                              }),
-                                                                              // Professional Skill Slider 4
-                                                                              resume11CustomSlider.slider11(context, resume14.value, (value) {
-                                                                                setState(() {});
-                                                                                resume14.value = value;
-                                                                                // resume11
-                                                                              }),
-                                                                              // Professional Skill Slider 5
-                                                                              resume11CustomSlider.slider11(context, resume15.value, (value) {
-                                                                                setState(() {});
-                                                                                resume15.value = value;
-                                                                                // resume11
-                                                                              }),
-                                                                            )
-                                                                          : argument == 11
-                                                                              ? preViewAppController2.template12Preview()
-                                                                              : argument == 12
-                                                                                  ? preViewAppController2.template13Preview(
-                                                                                      context,
-                                                                                      skillDoubleValue.value[0],
-                                                                                      (value) {
-                                                                                        setState(() {});
-                                                                                        skillDoubleValue.value[0] = value;
-                                                                                      },
-                                                                                      skillDoubleValue.value[1],
-                                                                                      (value) {
-                                                                                        setState(() {});
-                                                                                        skillDoubleValue.value[1] = value;
-                                                                                      },
-                                                                                      skillDoubleValue.value[2],
-                                                                                      (value) {
-                                                                                        setState(() {});
-                                                                                        skillDoubleValue.value[2] = value;
-                                                                                      },
-                                                                                      skillDoubleValue.value[3],
-                                                                                      (value) {
-                                                                                        setState(() {});
-                                                                                        skillDoubleValue.value[3] = value;
-                                                                                      },
-                                                                                    )
-                                                                                  : Container()),
-                        ); // the widget you want to export
-                        // tostController.successTost();
+                        });
                       },
                     ),
                     appFunctionController.previewContainer(
@@ -599,11 +472,13 @@ class _TemplatePreviewScreenState extends State<TemplatePreviewScreen> {
                         // final pdf = await exportDelegate.exportToPdfDocument('someFrameId');
                         // saveFile(pdf, 'pdf1');
                         // createPDF(imagestore);
-                        // savePDF();
-                        // final pdf  = await exportDelegate
-                        //     .exportToPdfPage('someFrameId');
+                        final pdf =
+                            await exportDelegate.exportToPdfPage('someFrameId');
+                        savePDF(pdf, "DATA");
                         // print("objectttttttttt ${}");
                         // saveFile(pdf.document, 'asjfsgfhagsf');
+                        // final imageFile = File('Internal storage/DCIM/Screenshots/Screenshot_2023-09-15-13-55-23-582_com.instagram.android.jpg');
+                        // await _generateAndSavePDF(imageFile);
                       },
                     ),
                     appFunctionController.previewContainer(
@@ -623,7 +498,8 @@ class _TemplatePreviewScreenState extends State<TemplatePreviewScreen> {
   }
 
   Future<void> saveFile(document, String name) async {
-     File file = File('/storage/emulated/0/Android/data/com.example.resume_builder/files/$name.pdf');
+    File file = File(
+        '/storage/emulated/0/Android/data/com.example.resume_builder/files/$name.pdf');
 
     await file.writeAsBytes(await document.save());
     debugPrint('Saved exported PDF at: ${file.path}');
@@ -650,7 +526,35 @@ class _TemplatePreviewScreenState extends State<TemplatePreviewScreen> {
 
   _saved(image) async {
     final result = await ImageGallerySaver.saveImage(image);
-    print("File Saved to Gallery ${result["filePath"]}");
+
+    // File file = File(
+    //     '/storage/emulated/0/Android/data/com.example.resume_builder/files/$name.pdf');
+
+    // await file.writeAsBytes(await document.save());
+    // debugPrint('Saved exported PDF at: ${file.path}');
+    // print("File Saved to Gallery $imagestore");
+  }
+
+  Future getPdf(Uint8List screenShot) async {
+    pw.Document pdf = pw.Document();
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (context) {
+          return pw.Center(
+              child: pw.Padding(
+                  padding:
+                      pw.EdgeInsets.symmetric(vertical: ScreenSize.fSize_20()),
+                  child: pw.Image(pw.MemoryImage(screenShot),
+                      fit: pw.BoxFit.fill)));
+        },
+      ),
+    );
+    final dir = await getDownloadsDirectory();
+    File pdfFile = File(
+        '/storage/emulated/0/Android/data/com.example.resume_builder/Resume.pdf');
+    print("objecttt $dir");
+    pdfFile.writeAsBytesSync(await pdf.save());
   }
 
   createPDF(var images) async {

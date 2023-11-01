@@ -1,11 +1,11 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:permission_handler/permission_handler.dart';
 import '../../../pages/First Screen/Resume Builder Screen.dart';
 import '../../../utils/color.dart';
 import '../../../utils/images.dart';
@@ -21,9 +21,28 @@ class AppFunctionController extends GetxController {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         GestureDetector(
-          onTap: () {
-            tapController.showbuttonad(
-              context, "/ResumeBuilderScreen", "/MainScreen", '',);
+          onTap: () async {
+            final permissionStatus = await Permission.storage.status;
+            final permissionStatus2 = await Permission.notification.status;
+            if (permissionStatus.isDenied || permissionStatus2.isDenied) {
+              await Permission.storage.request();
+              await Permission.photos.request();
+              await Permission.notification.request();
+              tapController.showbuttonad(
+                context,
+                "/ResumeBuilderScreen",
+                "/MainScreen",
+                '',
+              );
+            } else {
+              tapController.showbuttonad(
+                context,
+                "/ResumeBuilderScreen",
+                "/MainScreen",
+                '',
+              );
+            }
+
             // Get.to(() => const ResumeBuilderScreen());
           },
           child: Container(
@@ -147,10 +166,12 @@ class AppFunctionController extends GetxController {
     );
   }
 
-  resumeBuilderContainer(BuildContext context,
-      String title,
-      String image,
-      var ontap,) {
+  resumeBuilderContainer(
+    BuildContext context,
+    String title,
+    String image,
+    var ontap,
+  ) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -194,8 +215,8 @@ class AppFunctionController extends GetxController {
     );
   }
 
-  createResumeContainer(BuildContext context, String title, String image,
-      var ontap) {
+  createResumeContainer(
+      BuildContext context, String title, String image, var ontap) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -270,8 +291,8 @@ class AppFunctionController extends GetxController {
     );
   }
 
-  personalInfoTextField(BuildContext context, String hintText, var controller,
-      var keyboardType) {
+  personalInfoTextField(
+      BuildContext context, String hintText, var controller, var keyboardType) {
     return Padding(
       padding: EdgeInsets.all(ScreenSize.fSize_14()),
       child: TextField(
@@ -284,7 +305,7 @@ class AppFunctionController extends GetxController {
           ),
           enabledBorder: UnderlineInputBorder(
             borderSide:
-            BorderSide(color: appColorController.boxColor, width: 2),
+                BorderSide(color: appColorController.boxColor, width: 2),
           ),
         ),
       ),

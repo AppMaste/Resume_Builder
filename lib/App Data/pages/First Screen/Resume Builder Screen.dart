@@ -318,7 +318,9 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
                         // Get.to(() => const CreateResumeScreen());
                       },
                     ),
-                    // resumeNativeADController.showNative("listTile", "/ResumeBuilderScreen"),
+                    SizedBox(height: ScreenSize.fSize_20()),
+                    resumeNativeADController.showNative("listTile", "/ResumeBuilderScreen"),
+                    SizedBox(height: ScreenSize.fSize_20()),
                     appFunctionController.resumeBuilderContainer(
                       context,
                       "Choose Template",

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
@@ -39,42 +42,26 @@ import 'App Data/pages/First Screen/Resume Builder Screen.dart';
 import 'App Data/pages/Starting Screens/Main Screen/Splash Screen.dart';
 import 'App Data/pages/View and Share Resume Screen/View and Share Resume Screen.dart';
 import 'App Data/services/functions/Appopen/Appopen Ad.dart';
+import 'App Data/services/functions/Notifications/Notification Service.dart';
 import 'App Data/services/functions/Notifications/Notification.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
-final FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.instance;
-RxMap firebaseConfig = {}.obs;
 
-Future initConfig() async {
-  await firebaseRemoteConfig.setConfigSettings(RemoteConfigSettings(
-    fetchTimeout: const Duration(seconds: 1),
-    minimumFetchInterval: const Duration(seconds: 10),
-  ));
-  await firebaseRemoteConfig.fetchAndActivate();
-}
-
-const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    "Hello..!!", "Resume Builder",
-    importance: Importance.high, playSound: true);
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-
-Future<void> firebasemessgingBackgroundMessagingHandler(
-    RemoteMessage message) async {
-  await Firebase.initializeApp();
-}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
+  NotificationService().initNotification();
   MobileAds.instance.initialize();
   await Firebase.initializeApp();
-
   FirebaseMessaging.onBackgroundMessage(
-      (message) => firebasemessgingBackgroundMessagingHandler(message));
+    // (message) => NotificationService().initNotification(),
+          (message) => firebasemessgingBackgroundMessagingHandler(message));
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
+      AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
@@ -82,10 +69,11 @@ Future<void> main() async {
     badge: true,
     sound: true,
   );
+  initConfig().whenComplete(() {
+    firebaseConfig.value = json.decode(remoteConfig.getString('resume'));
+    //     loadAd();
+  });
 
-  FirebaseMessaging.onBackgroundMessage(
-      (message) => firebasemessgingBackgroundMessagingHandler(message));
-  // adController.appopenAd();
 
   return runApp(
     GetMaterialApp(
@@ -142,12 +130,10 @@ Future<void> main() async {
   );
 }
 
-/*
-Future<void> main() async {
-  return runApp(
-        GetMaterialApp(
-      home: MyApp(),
-    ),
-  );
-}
-*/
+// Future<void> main() async {
+//   return runApp(
+//         const GetMaterialApp(
+//       home: HomePage(),
+//     ),
+//   );
+// }

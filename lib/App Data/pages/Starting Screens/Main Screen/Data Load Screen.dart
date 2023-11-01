@@ -47,7 +47,7 @@ class AppDataLoadScreen extends GetxController with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
     initConfig().whenComplete(() {});
     firebaseConfig.value =
-        json.decode(firebaseRemoteConfig.getString("resume"));
+        json.decode(remoteConfig.getString("resume"));
     // update();
     Future.delayed(const Duration(seconds: 1), () {
       AdData();
@@ -62,15 +62,15 @@ class AppDataLoadScreen extends GetxController with WidgetsBindingObserver {
       });
     } else {
       firebaseConfig.value =
-          await json.decode(firebaseRemoteConfig.getString("resume"));
+          await json.decode(remoteConfig.getString("resume"));
       // update();
       AdData();
       tz.initializeTimeZones();
       NotificationService().showNotification(
         1,
-        "firebaseConfig.value[Resume_Notification_Title]",
-        "firebaseConfig.value[Resume_Notification_Body]",
-        1,
+        firebaseConfig.value['Resume_Notification_Title'],
+        firebaseConfig.value['Resume_Notification_Body'],
+        firebaseConfig.value['Resume_Notification_Time'],
       );
     }
   }
