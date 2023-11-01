@@ -6,6 +6,8 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -65,43 +67,50 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      floatingActionButton: FloatingActionBubble(
-        items: [
-          Bubble(
-            title: "Add Skills",
-            iconColor: Colors.red,
-            bubbleColor: Colors.white,
-            titleStyle: GoogleFonts.beVietnamPro(
-              fontSize: 16,
-              color: const Color(0xFF658583),
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/AddSkillsScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        floatingActionButton: FloatingActionBubble(
+          items: [
+            Bubble(
+              title: "Add Skills",
+              iconColor: Colors.red,
+              bubbleColor: Colors.white,
+              titleStyle: GoogleFonts.beVietnamPro(
+                fontSize: 16,
+                color: const Color(0xFF658583),
+              ),
+              onPress: () {
+                setState(() {});
+                skillDoubleValue.refresh();
+                _animationController.reverse();
+                skill.value.add(TextEditingController());
+                skillDoubleValue.value.add(30.0);
+                skill.refresh();
+              },
+              icon: Icons.info_outline_rounded,
             ),
-            onPress: () {
-              setState(() {});
-              skillDoubleValue.refresh();
-              _animationController.reverse();
-              skill.value.add(TextEditingController());
-              skillDoubleValue.value.add(30.0);
-              skill.refresh();
-            },
-            icon: Icons.info_outline_rounded,
-          ),
-        ],
-        animation: _animation,
-        onPress: () => _animationController.isCompleted
-            ? _animationController.reverse()
-            : _animationController.forward(),
-        iconColor: Colors.white,
-        iconData: Icons.add,
-        backGroundColor: appColorController.boxColor,
-      ),
-      appBar: appbarController.customAppBarController(context, "Add Skills"),
-      body: skill.value.isNotEmpty
-          ? Column(
+          ],
+          animation: _animation,
+          onPress: () => _animationController.isCompleted
+              ? _animationController.reverse()
+              : _animationController.forward(),
+          iconColor: Colors.white,
+          iconData: Icons.add,
+          backGroundColor: appColorController.boxColor,
+        ),
+        appBar: appbarController.customAppBarController(context, "Add Skills"),
+        body: Stack(
+          children: [
+            skill.value.isNotEmpty
+                ? Column(
               children: [
                 Container(
-                  height: ScreenSize.horizontalBlockSize! * 160,
+                  height: ScreenSize.horizontalBlockSize! * 150,
                   child: ListView.builder(
                     itemCount: skill.value.length,
                     itemBuilder: (context, index) {
@@ -125,7 +134,7 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         height: ScreenSize.fSize_45(),
@@ -139,7 +148,7 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
                                             border: InputBorder.none,
                                             hintText: "Skill Name",
                                             hintStyle:
-                                                appFontStyleData.workTextStyle,
+                                            appFontStyleData.workTextStyle,
                                           ),
                                         ),
                                       ),
@@ -159,27 +168,27 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
                                         style: appFontStyleData.workTextStyle,
                                       ),
                                       Obx(
-                                        () => Row(
+                                            () => Row(
                                           children: [
                                             Container(
                                               width: ScreenSize
-                                                      .horizontalBlockSize! *
+                                                  .horizontalBlockSize! *
                                                   75,
                                               // color: Colors.red,
                                               child: SfSliderTheme(
                                                 data: SfSliderThemeData(
                                                   activeTrackHeight: 6,
                                                   thumbColor:
-                                                      Colors.transparent,
+                                                  Colors.transparent,
                                                   thumbRadius: 10,
                                                   thumbStrokeWidth: 0,
                                                   activeTrackColor:
-                                                      appColorController
-                                                          .boxColor,
+                                                  appColorController
+                                                      .boxColor,
                                                   inactiveTrackColor:
-                                                      Colors.black12,
+                                                  Colors.black12,
                                                   thumbStrokeColor:
-                                                      Colors.black45,
+                                                  Colors.black45,
                                                 ),
                                                 child: Center(
                                                   child: SfSlider(
@@ -193,7 +202,7 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
                                                     onChanged: (value) {
                                                       setState(() {
                                                         skillDoubleValue
-                                                                .value[index] =
+                                                            .value[index] =
                                                             value;
                                                         // print(
                                                         //     "slider value${Value.value}");
@@ -210,7 +219,7 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
                                                 "${skillDoubleValue.value[index].round()}%",
                                                 overflow: TextOverflow.ellipsis,
                                                 style:
-                                                    appFontStyleData.skillStyle,
+                                                appFontStyleData.skillStyle,
                                               ),
                                             ),
                                           ],
@@ -233,7 +242,7 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
                 appFunctionController.createResumeButton(
                   context,
                   "SAVE",
-                  () async {
+                      () async {
                     tostController.successTost();
                     final prefs = await SharedPreferences.getInstance();
                     // skillValue.value = [skill.value];
@@ -246,12 +255,16 @@ class _AddSkillsScreenState extends State<AddSkillsScreen>
                 ),
               ],
             )
-          : Center(
+                : Center(
               child: Text(
                 "Create One Now!",
                 style: appFontStyleData.workTextStyle,
               ),
             ),
+            resumeBannerADController.showBanner("/AddSkillsScreen")
+          ],
+        )
+      ),
     );
   }
 }

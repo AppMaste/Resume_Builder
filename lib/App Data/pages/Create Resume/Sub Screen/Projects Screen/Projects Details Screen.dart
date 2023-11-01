@@ -4,6 +4,8 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../services/functions/App Functions/Tost Function.dart';
@@ -50,181 +52,192 @@ class _AddWorkExperienceScreenState extends State<AddProjectDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionBubble(
-        items: [
-          Bubble(
-            title: "Add Project Details",
-            iconColor: Colors.red,
-            bubbleColor: Colors.white,
-            titleStyle: GoogleFonts.beVietnamPro(
-              fontSize: 16,
-              color: const Color(0xFF658583),
+    return WillPopScope(
+      onWillPop: () {backController.showBackButton(context, "/AddProjectDetailsScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        floatingActionButton: FloatingActionBubble(
+          items: [
+            Bubble(
+              title: "Add Project Details",
+              iconColor: Colors.red,
+              bubbleColor: Colors.white,
+              titleStyle: GoogleFonts.beVietnamPro(
+                fontSize: 16,
+                color: const Color(0xFF658583),
+              ),
+              onPress: () async {
+                setState(() {});
+                textControllers =
+                    List.generate(6, (index) => TextEditingController());
+                _animationController.reverse();
+              },
+              icon: Icons.info_outline_rounded,
             ),
-            onPress: () async {
-              setState(() {});
-              textControllers =
-                  List.generate(6, (index) => TextEditingController());
-              _animationController.reverse();
-            },
-            icon: Icons.info_outline_rounded,
-          ),
-        ],
-        animation: _animation,
-        onPress: () => _animationController.isCompleted
-            ? _animationController.reverse()
-            : _animationController.forward(),
-        iconColor: Colors.white,
-        iconData: Icons.add,
-        backGroundColor: appColorController.boxColor,
-      ),
-      appBar: appbarController.customAppBarController(
-          context, "Add Project Details"),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          ],
+          animation: _animation,
+          onPress: () => _animationController.isCompleted
+              ? _animationController.reverse()
+              : _animationController.forward(),
+          iconColor: Colors.white,
+          iconData: Icons.add,
+          backGroundColor: appColorController.boxColor,
+        ),
+        appBar: appbarController.customAppBarController(
+            context, "Add Project Details"),
+        body: Stack(
           children: [
-            SizedBox(height: ScreenSize.fSize_20()),
-            appFunctionController.personalInfoTextField(
-              context,
-              "Project Title",
-              textControllers[0],
-              TextInputType.name,
-            ),
-            appFunctionController.personalInfoTextField(
-              context,
-              "Role",
-              textControllers[1],
-              TextInputType.name,
-            ),
-            Padding(
-              padding: EdgeInsets.all(ScreenSize.fSize_14()),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  appAllTextFieldController.addWorkTextField(
+                  SizedBox(height: ScreenSize.fSize_20()),
+                  appFunctionController.personalInfoTextField(
+                    context,
+                    "Project Title",
+                    textControllers[0],
+                    TextInputType.name,
+                  ),
+                  appFunctionController.personalInfoTextField(
+                    context,
+                    "Role",
+                    textControllers[1],
+                    TextInputType.name,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(ScreenSize.fSize_14()),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        appAllTextFieldController.addWorkTextField(
+                            context,
+                            textControllers[2],
+                            "Start Date",
+                            () {},
+                            TextInputType.datetime),
+                        appAllTextFieldController.addWorkTextField(
+                            context,
+                            textControllers[3],
+                            "End Date",
+                            () {},
+                            TextInputType.datetime),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: ScreenSize.fSize_20()),
+                  Padding(
+                    padding: EdgeInsets.all(ScreenSize.fSize_14()),
+                    child: Obx(
+                      () => GestureDetector(
+                        onTap: () {
+                          textController.projectShowButton.value =
+                              !textController.projectShowButton.value;
+                        },
+                        child: Row(
+                          children: [
+                            textController.projectShowButton.value == false
+                                ? Container(
+                                    width: ScreenSize.fSize_28(),
+                                    height: ScreenSize.fSize_28(),
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(ScreenSize.fSize_4()),
+                                      border: Border.all(
+                                        color: appColorController.workTextColor,
+                                        width: 2,
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    width: ScreenSize.fSize_28(),
+                                    height: ScreenSize.fSize_28(),
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(ScreenSize.fSize_4()),
+                                      border: Border.all(
+                                        color: appColorController.boxColor,
+                                        width: 2,
+                                      ),
+                                    ),
+                                    child: Icon(Icons.check,
+                                        color: appColorController.boxColor,
+                                        fill: 0.5),
+                                  ),
+                            SizedBox(width: ScreenSize.fSize_10()),
+                            Text("In Progress",
+                                style: appFontStyleData.educationStyle(
+                                    context, textController.projectShowButton.value)
+                                // style: appFontStyleData.objectiveStyle(context, value),
+                                ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  appFunctionController.personalInfoTextField(
+                    context,
+                    "Company Name",
+                    textControllers[4],
+                    TextInputType.name,
+                  ),
+                  appAllTextFieldController.objectiveFiels(
+                    context,
+                    textControllers[5],
+                    "Additional Info",
+                    TextInputType.name,
+                  ),
+                  SizedBox(height: ScreenSize.fSize_30()),
+                  Center(
+                    child: appFunctionController.createResumeButton(
                       context,
-                      textControllers[2],
-                      "Start Date",
-                      () {},
-                      TextInputType.datetime),
-                  appAllTextFieldController.addWorkTextField(
-                      context,
-                      textControllers[3],
-                      "End Date",
-                      () {},
-                      TextInputType.datetime),
+                      "SAVE",
+                      () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        if (textControllers[0].text.isEmpty ||
+                            textControllers[1].text.isEmpty ||
+                            textControllers[2].text.isEmpty ||
+                            textControllers[3].text.isEmpty ||
+                            textControllers[4].text.isEmpty ||
+                            textControllers[5].text.isEmpty) {
+                          tostController.errorTost();
+                        } else {
+                          tostController.successTost();
+                          project.value.add(
+                            [
+                              textControllers[0],
+                              textControllers[1],
+                              textControllers[2],
+                              textControllers[3],
+                              textControllers[4],
+                              textControllers[5],
+                              textController.projectShowButton.string,
+                            ],
+                          );
+                          projectDetails = prefs.setStringList(
+                            "project",
+                            [
+                              textControllers[0].text,
+                              textControllers[1].text,
+                              textControllers[2].text,
+                              textControllers[3].text,
+                              textControllers[4].text,
+                              textControllers[5].text,
+                              textController.projectShowButton.string,
+                            ],
+                          );
+                          Get.back();
+                          print("projectetails $project");
+                        }
+                        project.refresh();
+                      },
+                    ),
+                  ),
+                  SizedBox(height: ScreenSize.fSize_60()),
                 ],
               ),
             ),
-            SizedBox(height: ScreenSize.fSize_20()),
-            Padding(
-              padding: EdgeInsets.all(ScreenSize.fSize_14()),
-              child: Obx(
-                () => GestureDetector(
-                  onTap: () {
-                    textController.projectShowButton.value =
-                        !textController.projectShowButton.value;
-                  },
-                  child: Row(
-                    children: [
-                      textController.projectShowButton.value == false
-                          ? Container(
-                              width: ScreenSize.fSize_28(),
-                              height: ScreenSize.fSize_28(),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(ScreenSize.fSize_4()),
-                                border: Border.all(
-                                  color: appColorController.workTextColor,
-                                  width: 2,
-                                ),
-                              ),
-                            )
-                          : Container(
-                              width: ScreenSize.fSize_28(),
-                              height: ScreenSize.fSize_28(),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(ScreenSize.fSize_4()),
-                                border: Border.all(
-                                  color: appColorController.boxColor,
-                                  width: 2,
-                                ),
-                              ),
-                              child: Icon(Icons.check,
-                                  color: appColorController.boxColor,
-                                  fill: 0.5),
-                            ),
-                      SizedBox(width: ScreenSize.fSize_10()),
-                      Text("In Progress",
-                          style: appFontStyleData.educationStyle(
-                              context, textController.projectShowButton.value)
-                          // style: appFontStyleData.objectiveStyle(context, value),
-                          ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            appFunctionController.personalInfoTextField(
-              context,
-              "Company Name",
-              textControllers[4],
-              TextInputType.name,
-            ),
-            appAllTextFieldController.objectiveFiels(
-              context,
-              textControllers[5],
-              "Additional Info",
-              TextInputType.name,
-            ),
-            SizedBox(height: ScreenSize.fSize_30()),
-            Center(
-              child: appFunctionController.createResumeButton(
-                context,
-                "SAVE",
-                () async {
-                  final prefs = await SharedPreferences.getInstance();
-                  if (textControllers[0].text.isEmpty ||
-                      textControllers[1].text.isEmpty ||
-                      textControllers[2].text.isEmpty ||
-                      textControllers[3].text.isEmpty ||
-                      textControllers[4].text.isEmpty ||
-                      textControllers[5].text.isEmpty) {
-                    tostController.errorTost();
-                  } else {
-                    tostController.successTost();
-                    project.value.add(
-                      [
-                        textControllers[0],
-                        textControllers[1],
-                        textControllers[2],
-                        textControllers[3],
-                        textControllers[4],
-                        textControllers[5],
-                        textController.projectShowButton.string,
-                      ],
-                    );
-                    projectDetails = prefs.setStringList(
-                      "project",
-                      [
-                        textControllers[0].text,
-                        textControllers[1].text,
-                        textControllers[2].text,
-                        textControllers[3].text,
-                        textControllers[4].text,
-                        textControllers[5].text,
-                        textController.projectShowButton.string,
-                      ],
-                    );
-                    Get.back();
-                    print("projectetails $project");
-                  }
-                  project.refresh();
-                },
-              ),
-            )
+            resumeBannerADController.showBanner("/AddProjectDetailsScreen"),
           ],
         ),
       ),

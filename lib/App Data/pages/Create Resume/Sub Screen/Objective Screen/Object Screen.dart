@@ -53,103 +53,109 @@ class _ObjectiveScreenState extends State<ObjectiveScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: FloatingActionBubble(
-          items: [
-            Bubble(
-              title: "Add Objective",
-              iconColor: Colors.red,
-              bubbleColor: Colors.white,
-              titleStyle: GoogleFonts.beVietnamPro(
-                fontSize: 16,
-                color: const Color(0xFF658583),
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/ObjectiveScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+          floatingActionButton: FloatingActionBubble(
+            items: [
+              Bubble(
+                title: "Add Objective",
+                iconColor: Colors.red,
+                bubbleColor: Colors.white,
+                titleStyle: GoogleFonts.beVietnamPro(
+                  fontSize: 16,
+                  color: const Color(0xFF658583),
+                ),
+                onPress: () async {
+                  setState(() {});
+                  _animationController.reverse();
+                  object.value.add(TextEditingController());
+                  log("HEEEEEEEEE $object");
+                  // Get.to(() =>  const AddObjectiveScreen(),arguments: object);
+                },
+                icon: Icons.info_outline_rounded,
               ),
-              onPress: () async {
-                setState(() {});
-                _animationController.reverse();
-                object.value.add(TextEditingController());
-                log("HEEEEEEEEE $object");
-                // Get.to(() =>  const AddObjectiveScreen(),arguments: object);
-              },
-              icon: Icons.info_outline_rounded,
-            ),
-            Bubble(
-              title: "Save Objective",
-              iconColor: Colors.red,
-              bubbleColor: Colors.white,
-              titleStyle: GoogleFonts.beVietnamPro(
-                fontSize: 16,
-                color: const Color(0xFF658583),
+              Bubble(
+                title: "Save Objective",
+                iconColor: Colors.red,
+                bubbleColor: Colors.white,
+                titleStyle: GoogleFonts.beVietnamPro(
+                  fontSize: 16,
+                  color: const Color(0xFF658583),
+                ),
+                onPress: () {
+                  _animationController.reverse();
+                  // final list = object.map((element) => element).toList();
+                  tapController.showbuttonad(
+                      context, "/AddObjectiveScreen", "/ObjectiveScreen", "");
+                  // Get.to(() => const AddObjectiveScreen());
+                },
+                icon: Icons.save,
               ),
-              onPress: () {
-                _animationController.reverse();
-                // final list = object.map((element) => element).toList();
-                tapController.showbuttonad(
-                    context, "/AddObjectiveScreen", "/ObjectiveScreen", "");
-                // Get.to(() => const AddObjectiveScreen());
-              },
-              icon: Icons.save,
-            ),
-          ],
-          animation: _animation,
-          onPress: () => _animationController.isCompleted
-              ? _animationController.reverse()
-              : _animationController.forward(),
-          iconColor: Colors.white,
-          iconData: Icons.add,
-          backGroundColor: appColorController.boxColor,
-        ),
-        appBar: appbarController.customAppBarController(context, "Objective"),
-        body: Obx(
-          () => object.value.isNotEmpty
-              ? Stack(
-                children: [
-                  SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Container(
-                            height: ScreenSize.horizontalBlockSize! * 150,
-                            // color: Colors.red,
-                            child: ListView.builder(
-                              itemCount: object.length,
-                              itemBuilder: (context, index) {
-                                return appAllTextFieldController.objectiveFiels(
-                                    context,
-                                    object.value[index],
-                                    "Objective",
-                                    TextInputType.name);
+            ],
+            animation: _animation,
+            onPress: () => _animationController.isCompleted
+                ? _animationController.reverse()
+                : _animationController.forward(),
+            iconColor: Colors.white,
+            iconData: Icons.add,
+            backGroundColor: appColorController.boxColor,
+          ),
+          appBar: appbarController.customAppBarController(context, "Objective"),
+          body: Obx(
+            () => object.value.isNotEmpty
+                ? Stack(
+                  children: [
+                    SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Container(
+                              height: ScreenSize.horizontalBlockSize! * 150,
+                              // color: Colors.red,
+                              child: ListView.builder(
+                                itemCount: object.length,
+                                itemBuilder: (context, index) {
+                                  return appAllTextFieldController.objectiveFiels(
+                                      context,
+                                      object.value[index],
+                                      "Objective",
+                                      TextInputType.name);
+                                },
+                              ),
+                            ),
+                            appFunctionController.createResumeButton(
+                              context,
+                              "SAVE",
+                              () async {
+                                object.refresh();
+                                tostController.successTost();
+                                Get.back();
+                                // final prefs = await SharedPreferences.getInstance();
+                                //
+                                // if (textController.objectiveController.value.text.isEmpty) {
+                                //   tostController.errorTost();
+                                // } else {
+                                //   object = prefs.setString(
+                                //       "Object", textController.objectiveController.value.text);
+                                // }
                               },
                             ),
-                          ),
-                          appFunctionController.createResumeButton(
-                            context,
-                            "SAVE",
-                            () async {
-                              object.refresh();
-                              tostController.successTost();
-                              Get.back();
-                              // final prefs = await SharedPreferences.getInstance();
-                              //
-                              // if (textController.objectiveController.value.text.isEmpty) {
-                              //   tostController.errorTost();
-                              // } else {
-                              //   object = prefs.setString(
-                              //       "Object", textController.objectiveController.value.text);
-                              // }
-                            },
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                    resumeBannerADController.showBanner("/ObjectiveScreen"),
+                  ],
+                )
+                : Center(
+                    child: Text(
+                      "Not Created",
+                      style: GoogleFonts.openSans(),
                     ),
-                  resumeBannerADController.showBanner("/ObjectiveScreen"),
-                ],
-              )
-              : Center(
-                  child: Text(
-                    "Not Created",
-                    style: GoogleFonts.openSans(),
                   ),
-                ),
-        ));
+          )),
+    );
   }
 }

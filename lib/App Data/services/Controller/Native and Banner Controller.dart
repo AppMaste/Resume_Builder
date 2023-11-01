@@ -213,17 +213,13 @@ class ResumeAppBannerADController extends GetxController {
   late BannerAd bannerAd;
   int a = 1;
 
-  // var bannerLoaded = false.obs;
-
   Widget showBanner(String page) {
     if (firebaseConfig.value[page]["Resume_Banner_type"] == "admob") {
       bannerAd = BannerAd(
         size: AdSize.banner,
         adUnitId: firebaseConfig.value[page]["Resume_Banner"],
-        // adUnitId: "ca-app-pub-3940256099942544/6300978111",
         listener: BannerAdListener(
             onAdLoaded: (ad) {
-              // print("Banner ad Loaded${a++}");
             },
             onAdFailedToLoad: (ad, error) {}),
         request: const AdRequest(),
@@ -235,21 +231,17 @@ class ResumeAppBannerADController extends GetxController {
         ? Align(
       alignment: Alignment.bottomCenter,
       child: SizedBox(
-        // color: Colors.black12,
         height: 50,
         child: FacebookBannerAd(
-          // placementId: "YOUR_PLACEMENT_ID",
             placementId: firebaseConfig.value["Resume_Banner_Facebook"],
             bannerSize: BannerSize.STANDARD,
             listener: (result, value) {
-              // print("Banner Ad: $result -->  $value");
             }),
       ),
     )
         : Align(
       alignment: Alignment.bottomCenter,
       child: SizedBox(
-        // color: Colors.redAccent,
         height: 50,
         child: AdWidget(
           ad: bannerAd,

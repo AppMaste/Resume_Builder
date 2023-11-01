@@ -169,13 +169,11 @@ class BackController extends GetxController {
         print("objecttttttt ${firebaseConfig.value[pagename]["Resume_Interstitial_Admob"]}");
         InterstitialAd.load(
           adUnitId: firebaseConfig.value[pagename]["Resume_Interstitial_Admob"],
-          // adUnitId: "/6499/example/interstitial",
           request: const AdManagerAdRequest(),
           adLoadCallback: InterstitialAdLoadCallback(onAdLoaded: (ad) {
             ad.show();
             Navigator.pop(context);
             Navigator.pop(context);
-            // nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
             Count.value = 1;
           }, onAdFailedToLoad: (error) {
             InterstitialAd.load(
@@ -186,12 +184,10 @@ class BackController extends GetxController {
                 ad.show();
                 Navigator.pop(context);
                 Navigator.pop(context);
-                // nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
                 Count.value = 1;
               }, onAdFailedToLoad: (error) {
                 Navigator.pop(context);
                 Navigator.pop(context);
-                // nextpage != 'stop' ? Get.offNamed(nextpage, arguments: aa) : null;
                 Count.value = 1;
               }),
             );
@@ -202,19 +198,16 @@ class BackController extends GetxController {
       if (firebaseConfig.value[pagename]["Resume_Interstitial_type"] == 'fb') {
         FacebookInterstitialAd.loadInterstitialAd(
           placementId: firebaseConfig.value["Resume_Interstitial_Facebook"],
-          // placementId: "IMG_16_9_APP_INSTALL#2312433698835503_2650502525028617",
           listener: (result, value) {
             if (result == InterstitialAdResult.LOADED) {
               FacebookInterstitialAd.showInterstitialAd();
               Navigator.pop(context);
               Navigator.pop(context);
-              // nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
               Count.value = 1;
             }
             if (result == InterstitialAdResult.ERROR) {
               Navigator.pop(context);
               Navigator.pop(context);
-              // nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
               Count.value = 1;
             }
           },
@@ -227,7 +220,6 @@ class BackController extends GetxController {
               () {
             Navigator.pop(context);
             Navigator.pop(context);
-            // nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
             Count.value = 1;
           },
         );
@@ -235,9 +227,7 @@ class BackController extends GetxController {
     } else {
       // Get.to(() => const FirstPage());
       Navigator.pop(context);
-      // nextpage != 'stop' ? Get.toNamed(nextpage, arguments: aa) : null;
       Count.value++;
-      // controller.incrementClickCount(context, 'FirstPage');
     }
   }
 }

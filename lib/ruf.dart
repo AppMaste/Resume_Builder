@@ -1,70 +1,55 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-class DemoPage extends StatefulWidget {
-  const DemoPage({super.key});
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:flutter_to_pdf/export_delegate.dart';
+import 'package:flutter_to_pdf/flutter_to_pdf.dart';
+import 'package:resume_builder/App%20Data/widgets/global/MediaQuery/size.dart';
+
+import 'App Data/services/functions/App Functions/Preview Function.dart';
+
+
+
+class MyCircularWidget extends StatefulWidget {
+  const MyCircularWidget({super.key});
 
   @override
-  State<DemoPage> createState() => _DemoPageState();
+  State<MyCircularWidget> createState() => _MyCircularWidgetState();
 }
 
-class _DemoPageState extends State<DemoPage> {
-  var button = [
-    true,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
-  var button2 = [
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-  ];
+class _MyCircularWidgetState extends State<MyCircularWidget> {
+  final ExportDelegate exportDelegate = ExportDelegate();
+
+  Future<void> saveFile(document, String name) async {
+    final File file = File('/storage/emulated/0/Download/$name.pdf');
+
+    await file.writeAsBytes(await document.save());
+    debugPrint('Saved exported PDF at: ${file.path}');
+  }
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.sizerInit(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(""),
-      ),
-      body: ListView.builder(
-        itemCount: button.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 50,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                color: Colors.red,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GestureDetector(
+              onTap: () async {
+                final pdf = await exportDelegate.exportToPdfDocument('someFrameId');
+                saveFile(pdf, 'static-example');
+              },
+              child: ExportFrame(
+                exportDelegate: exportDelegate,
+                frameId: 'someFrameId',
+                child: Container(
+                  color: Colors.amber,
+                  // height: 100,
+                  width: 2000,
+                  child: preViewAppController.templatePreview(),
+                ), // the widget you want to export
               )),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      button[index] = !button[index];
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: button[index] == true
-                              ? Colors.green
-                              : Colors.black,
-                        )),
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
+        ),
       ),
     );
   }

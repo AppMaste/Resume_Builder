@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
 import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 
 import '../../../../services/functions/App Functions/app Functions.dart';
@@ -44,151 +45,165 @@ class _ReferenceScreenState extends State<ReferenceScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionBubble(
-        items: [
-          Bubble(
-            title: "Add Reference",
-            iconColor: Colors.red,
-            bubbleColor: Colors.white,
-            titleStyle: GoogleFonts.beVietnamPro(
-              fontSize: 16,
-              color: const Color(0xFF658583),
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/ReferenceScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        floatingActionButton: FloatingActionBubble(
+          items: [
+            Bubble(
+              title: "Add Reference",
+              iconColor: Colors.red,
+              bubbleColor: Colors.white,
+              titleStyle: GoogleFonts.beVietnamPro(
+                fontSize: 16,
+                color: const Color(0xFF658583),
+              ),
+              onPress: () async {
+                _animationController.reverse();
+                tapController.showbuttonad(
+                    context, "/AddReferenceScreen", "/ReferenceScreen", "");
+                // Get.to(() => const AddReferenceScreen());
+              },
+              icon: Icons.info_outline_rounded,
             ),
-            onPress: () async {
-              _animationController.reverse();
-              tapController.showbuttonad(
-                  context, "/AddReferenceScreen", "/ReferenceScreen", "");
-              // Get.to(() => const AddReferenceScreen());
-            },
-            icon: Icons.info_outline_rounded,
-          ),
-        ],
-        animation: _animation,
-        onPress: () => _animationController.isCompleted
-            ? _animationController.reverse()
-            : _animationController.forward(),
-        iconColor: Colors.white,
-        iconData: Icons.add,
-        backGroundColor: appColorController.boxColor,
-      ),
-      appBar: appbarController.customAppBarController(context, "Reference"),
-      body: Obx(
-        () => reference.value.isNotEmpty
-            ? ListView.builder(
-                itemCount: reference.value.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(ScreenSize.fSize_10()),
-                          border: Border.all(
-                            width: 2,
-                            color: appColorController.boxColor,
-                          )),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: ScreenSize.fSize_55(),
-                              width: ScreenSize.horizontalBlockSize! * 90,
-                              // color: Colors.red,
-                              child: TextField(
-                                controller: reference.value[index][0],
-                                decoration: const InputDecoration(
-                                  labelText: "References Name:-",
-                                  border: InputBorder.none,
+          ],
+          animation: _animation,
+          onPress: () => _animationController.isCompleted
+              ? _animationController.reverse()
+              : _animationController.forward(),
+          iconColor: Colors.white,
+          iconData: Icons.add,
+          backGroundColor: appColorController.boxColor,
+        ),
+        appBar: appbarController.customAppBarController(context, "Reference"),
+        body: Stack(
+          children: [
+            Obx(
+              () => reference.value.isNotEmpty
+                  ? Padding(
+                    padding:  EdgeInsets.only(bottom: ScreenSize.fSize_50()),
+                    child: ListView.builder(
+                        itemCount: reference.value.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.circular(ScreenSize.fSize_10()),
+                                  border: Border.all(
+                                    width: 2,
+                                    color: appColorController.boxColor,
+                                  )),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: ScreenSize.fSize_55(),
+                                      width: ScreenSize.horizontalBlockSize! * 90,
+                                      // color: Colors.red,
+                                      child: TextField(
+                                        controller: reference.value[index][0],
+                                        decoration: const InputDecoration(
+                                          labelText: "References Name:-",
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    CustomPaint(
+                                      painter: DottedLinePainter(),
+                                      size: const Size(
+                                          400, 0), // Adjust the size of the dotted line
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    Container(
+                                      height: ScreenSize.fSize_55(),
+                                      width: ScreenSize.horizontalBlockSize! * 90,
+                                      // color: Colors.red,
+                                      child: TextField(
+                                        controller: reference.value[index][1],
+                                        decoration: const InputDecoration(
+                                          labelText: "References Address:-",
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    CustomPaint(
+                                      painter: DottedLinePainter(),
+                                      size: const Size(
+                                          400, 0), // Adjust the size of the dotted line
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    Container(
+                                      height: ScreenSize.fSize_55(),
+                                      width: ScreenSize.horizontalBlockSize! * 90,
+                                      // color: Colors.red,
+                                      child: TextField(
+                                        controller: reference.value[index][2],
+                                        decoration: const InputDecoration(
+                                          labelText: "References Number:-",
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    CustomPaint(
+                                      painter: DottedLinePainter(),
+                                      size: const Size(
+                                          400, 0), // Adjust the size of the dotted line
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    Container(
+                                      height: ScreenSize.fSize_55(),
+                                      width: ScreenSize.horizontalBlockSize! * 90,
+                                      // color: Colors.red,
+                                      child: TextField(
+                                        controller: reference.value[index][3],
+                                        decoration: const InputDecoration(
+                                          labelText: "References Mail:-",
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                            SizedBox(height: ScreenSize.fSize_4()),
-                            CustomPaint(
-                              painter: DottedLinePainter(),
-                              size: const Size(
-                                  400, 0), // Adjust the size of the dotted line
-                            ),
-                            SizedBox(height: ScreenSize.fSize_4()),
-                            Container(
-                              height: ScreenSize.fSize_55(),
-                              width: ScreenSize.horizontalBlockSize! * 90,
-                              // color: Colors.red,
-                              child: TextField(
-                                controller: reference.value[index][1],
-                                decoration: const InputDecoration(
-                                  labelText: "References Address:-",
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: ScreenSize.fSize_4()),
-                            CustomPaint(
-                              painter: DottedLinePainter(),
-                              size: const Size(
-                                  400, 0), // Adjust the size of the dotted line
-                            ),
-                            SizedBox(height: ScreenSize.fSize_4()),
-                            Container(
-                              height: ScreenSize.fSize_55(),
-                              width: ScreenSize.horizontalBlockSize! * 90,
-                              // color: Colors.red,
-                              child: TextField(
-                                controller: reference.value[index][2],
-                                decoration: const InputDecoration(
-                                  labelText: "References Number:-",
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: ScreenSize.fSize_4()),
-                            CustomPaint(
-                              painter: DottedLinePainter(),
-                              size: const Size(
-                                  400, 0), // Adjust the size of the dotted line
-                            ),
-                            SizedBox(height: ScreenSize.fSize_4()),
-                            Container(
-                              height: ScreenSize.fSize_55(),
-                              width: ScreenSize.horizontalBlockSize! * 90,
-                              // color: Colors.red,
-                              child: TextField(
-                                controller: reference.value[index][3],
-                                decoration: const InputDecoration(
-                                  labelText: "References Mail:-",
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          );
+                        },
+                      ),
+                  )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            appImageDataController.noDatFound,
+                            scale: 1.3,
+                          ),
+                          Text(
+                            "No Data Found",
+                            style: appFontStyleData.resumeBuilder,
+                          ),
+                          SizedBox(height: ScreenSize.fSize_10()),
+                          Text(
+                            "Create One Now!",
+                            style: appFontStyleData.workTextStyle,
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                },
-              )
-            : Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      appImageDataController.noDatFound,
-                      scale: 1.3,
-                    ),
-                    Text(
-                      "No Data Found",
-                      style: appFontStyleData.resumeBuilder,
-                    ),
-                    SizedBox(height: ScreenSize.fSize_10()),
-                    Text(
-                      "Create One Now!",
-                      style: appFontStyleData.workTextStyle,
-                    ),
-                  ],
-                ),
-              ),
+            ),
+            resumeBannerADController.showBanner("/ReferenceScreen")
+          ],
+        ),
       ),
     );
   }

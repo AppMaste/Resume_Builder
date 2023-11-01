@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
 import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 
 import '../../../../utils/color.dart';
@@ -42,89 +43,103 @@ class _WorkExperienceScreenState extends State<KnownLanguageScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionBubble(
-        items: [
-          Bubble(
-            title: "Add Language",
-            iconColor: Colors.red,
-            bubbleColor: Colors.white,
-            titleStyle: GoogleFonts.beVietnamPro(
-              fontSize: 16,
-              color: const Color(0xFF658583),
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/KnownLanguageScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        floatingActionButton: FloatingActionBubble(
+          items: [
+            Bubble(
+              title: "Add Language",
+              iconColor: Colors.red,
+              bubbleColor: Colors.white,
+              titleStyle: GoogleFonts.beVietnamPro(
+                fontSize: 16,
+                color: const Color(0xFF658583),
+              ),
+              onPress: () async {
+                _animationController.reverse();
+                tapController.showbuttonad(context, "/AddKnownLanguageScreen", "/KnownLanguageScreen", "");
+                // Get.to(() => AddKnownLanguageScreen());
+              },
+              icon: Icons.info_outline_rounded,
             ),
-            onPress: () async {
-              _animationController.reverse();
-              tapController.showbuttonad(context, "/AddKnownLanguageScreen", "/KnownLanguageScreen", "");
-              // Get.to(() => AddKnownLanguageScreen());
-            },
-            icon: Icons.info_outline_rounded,
-          ),
-        ],
-        animation: _animation,
-        onPress: () => _animationController.isCompleted
-            ? _animationController.reverse()
-            : _animationController.forward(),
-        iconColor: Colors.white,
-        iconData: Icons.add,
-        backGroundColor: appColorController.boxColor,
-      ),
-      appBar:
-          appbarController.customAppBarController(context, "Known Language"),
-      body: Obx(
-        () => language.value.isNotEmpty
-            ? ListView.builder(
-                itemCount: language.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.all(ScreenSize.fSize_15()),
-                    child: TextField(
-                      controller: language.value[index],
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(
-                        hintText: "hintText",
-                        hintStyle: GoogleFonts.openSans(
-                          color: const Color(0xFF6E7474),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 3,
-                            color: appColorController.boxColor,
+          ],
+          animation: _animation,
+          onPress: () => _animationController.isCompleted
+              ? _animationController.reverse()
+              : _animationController.forward(),
+          iconColor: Colors.white,
+          iconData: Icons.add,
+          backGroundColor: appColorController.boxColor,
+        ),
+        appBar:
+            appbarController.customAppBarController(context, "Known Language"),
+        body: Stack(
+          children: [
+            Obx(
+              () => language.value.isNotEmpty
+                  ? Padding(
+                    padding:  EdgeInsets.only(bottom: ScreenSize.fSize_50()),
+                    child: ListView.builder(
+                        itemCount: language.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.all(ScreenSize.fSize_15()),
+                            child: TextField(
+                              controller: language.value[index],
+                              textInputAction: TextInputAction.done,
+                              decoration: InputDecoration(
+                                hintText: "Language Name",
+                                hintStyle: GoogleFonts.openSans(
+                                  color: const Color(0xFF6E7474),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 3,
+                                    color: appColorController.boxColor,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 3,
+                                    color: appColorController.boxColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                          // return appAllTextFieldController.objectiveFiels(
+                          //     context, language.value[index], "Objective");
+                        },
+                      ),
+                  )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            appImageDataController.noDatFound,
+                            scale: 1.3,
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 3,
-                            color: appColorController.boxColor,
+                          Text(
+                            "No Data Found",
+                            style: appFontStyleData.resumeBuilder,
                           ),
-                        ),
+                          SizedBox(height: ScreenSize.fSize_10()),
+                          Text(
+                            "Create One Now!",
+                            style: appFontStyleData.workTextStyle,
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                  // return appAllTextFieldController.objectiveFiels(
-                  //     context, language.value[index], "Objective");
-                },
-              )
-            : Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      appImageDataController.noDatFound,
-                      scale: 1.3,
-                    ),
-                    Text(
-                      "No Data Found",
-                      style: appFontStyleData.resumeBuilder,
-                    ),
-                    SizedBox(height: ScreenSize.fSize_10()),
-                    Text(
-                      "Create One Now!",
-                      style: appFontStyleData.workTextStyle,
-                    ),
-                  ],
-                ),
-              ),
+            ),
+            resumeBannerADController.showBanner("/KnownLanguageScreen"),
+          ],
+        ),
       ),
     );
   }

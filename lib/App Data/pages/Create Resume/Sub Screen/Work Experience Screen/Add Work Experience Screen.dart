@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../services/functions/App Functions/Tost Function.dart';
@@ -57,220 +58,226 @@ class _AddWorkExperienceScreenState extends State<AddWorkExperienceScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      floatingActionButton: FloatingActionBubble(
-        items: [
-          Bubble(
-            title: "Add More Experience",
-            iconColor: Colors.red,
-            bubbleColor: Colors.white,
-            titleStyle: GoogleFonts.beVietnamPro(
-              fontSize: 16,
-              color: const Color(0xFF658583),
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/AddWorkExperienceScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        floatingActionButton: FloatingActionBubble(
+          items: [
+            Bubble(
+              title: "Add More Experience",
+              iconColor: Colors.red,
+              bubbleColor: Colors.white,
+              titleStyle: GoogleFonts.beVietnamPro(
+                fontSize: 16,
+                color: const Color(0xFF658583),
+              ),
+              onPress: () {
+                setState(() {});
+                textControllers =
+                    List.generate(5, (index) => TextEditingController());
+                _animationController.reverse();
+              },
+              icon: Icons.info_outline_rounded,
             ),
-            onPress: () {
-              setState(() {});
-              textControllers =
-                  List.generate(5, (index) => TextEditingController());
-              _animationController.reverse();
-            },
-            icon: Icons.info_outline_rounded,
-          ),
-        ],
-        animation: _animation,
-        onPress: () => _animationController.isCompleted
-            ? _animationController.reverse()
-            : _animationController.forward(),
-        iconColor: Colors.white,
-        iconData: Icons.add,
-        backGroundColor: appColorController.boxColor,
-      ),
-      appBar: appbarController.customAppBarController(
-          context, "Add Work Experience"),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: ScreenSize.fSize_20()),
-                appFunctionController.personalInfoTextField(
-                  context,
-                  "Company Name",
-                  textControllers[0],
-                  TextInputType.name,
-                ),
-                appFunctionController.personalInfoTextField(
-                  context,
-                  "Position",
-                  textControllers[1],
-                  TextInputType.name,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(ScreenSize.fSize_14()),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: ScreenSize.fSize_150(),
-                        color: Colors.transparent,
-                        child: TextField(
-                          controller: textControllers[2],
-                          keyboardType: TextInputType.datetime,
-                          readOnly: date == null ? false : true,
-                          decoration: InputDecoration(
-                            hintText: date == null ? "Start Date" : date.toString(),
-                            suffixIcon: GestureDetector(
-                              child: const Icon(Icons.calendar_month),
-                            ),
-                            suffixIconColor: appColorController.boxColor,
-                            hintStyle: date == null
-                                ? GoogleFonts.openSans(
-                                    color: appColorController.workTextColor,
-                                  )
-                                : GoogleFonts.openSans(
-                                    color: Colors.black,
-                                    fontSize: ScreenSize.fSize_15(),
-                                  ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: appColorController.boxColor, width: 2),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: ScreenSize.fSize_150(),
-                        color: Colors.transparent,
-                        child: TextField(
-                          controller: textControllers[3],
-                          keyboardType: TextInputType.datetime,
-                          decoration: InputDecoration(
-                            hintText: "End Date",
-                            suffixIcon: GestureDetector(
-                              child: const Icon(Icons.calendar_month),
-                            ),
-                            suffixIconColor: appColorController.boxColor,
-                            hintStyle: GoogleFonts.openSans(
-                              color: appColorController.workTextColor,
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: appColorController.boxColor, width: 2),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
+          ],
+          animation: _animation,
+          onPress: () => _animationController.isCompleted
+              ? _animationController.reverse()
+              : _animationController.forward(),
+          iconColor: Colors.white,
+          iconData: Icons.add,
+          backGroundColor: appColorController.boxColor,
+        ),
+        appBar: appbarController.customAppBarController(
+            context, "Add Work Experience"),
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: ScreenSize.fSize_20()),
+                  appFunctionController.personalInfoTextField(
+                    context,
+                    "Company Name",
+                    textControllers[0],
+                    TextInputType.name,
                   ),
-                ),
-                SizedBox(height: ScreenSize.fSize_20()),
-                Padding(
-                  padding: EdgeInsets.all(ScreenSize.fSize_14()),
-                  child: Obx(
-                    () => Row(
+                  appFunctionController.personalInfoTextField(
+                    context,
+                    "Position",
+                    textControllers[1],
+                    TextInputType.name,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(ScreenSize.fSize_14()),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            textController.workShowButton.value =
-                                !textController.workShowButton.value;
-                          },
-                          child: textController.workShowButton.value == false
-                              ? Container(
-                                  width: ScreenSize.fSize_28(),
-                                  height: ScreenSize.fSize_28(),
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.circular(ScreenSize.fSize_4()),
-                                    border: Border.all(
+                        Container(
+                          width: ScreenSize.fSize_150(),
+                          color: Colors.transparent,
+                          child: TextField(
+                            controller: textControllers[2],
+                            keyboardType: TextInputType.datetime,
+                            readOnly: date == null ? false : true,
+                            decoration: InputDecoration(
+                              hintText: date == null ? "Start Date" : date.toString(),
+                              suffixIcon: GestureDetector(
+                                child: const Icon(Icons.calendar_month),
+                              ),
+                              suffixIconColor: appColorController.boxColor,
+                              hintStyle: date == null
+                                  ? GoogleFonts.openSans(
                                       color: appColorController.workTextColor,
-                                      width: 2,
+                                    )
+                                  : GoogleFonts.openSans(
+                                      color: Colors.black,
+                                      fontSize: ScreenSize.fSize_15(),
                                     ),
-                                  ),
-                                )
-                              : Container(
-                                  width: ScreenSize.fSize_28(),
-                                  height: ScreenSize.fSize_28(),
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.circular(ScreenSize.fSize_4()),
-                                    border: Border.all(
-                                      color: appColorController.boxColor,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  child: Icon(Icons.check,
-                                      color: appColorController.boxColor, fill: 0.5),
-                                ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: appColorController.boxColor, width: 2),
+                              ),
+                            ),
+                          ),
                         ),
-                        SizedBox(width: ScreenSize.fSize_10()),
-                        Text(
-                          "Currently Work Here",
-                          style: appFontStyleData.objectiveStyle(
-                              context, textController.workShowButton.value),
-                        ),
+                        Container(
+                          width: ScreenSize.fSize_150(),
+                          color: Colors.transparent,
+                          child: TextField(
+                            controller: textControllers[3],
+                            keyboardType: TextInputType.datetime,
+                            decoration: InputDecoration(
+                              hintText: "End Date",
+                              suffixIcon: GestureDetector(
+                                child: const Icon(Icons.calendar_month),
+                              ),
+                              suffixIconColor: appColorController.boxColor,
+                              hintStyle: GoogleFonts.openSans(
+                                color: appColorController.workTextColor,
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: appColorController.boxColor, width: 2),
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
-                ),
-                SizedBox(height: ScreenSize.fSize_20()),
-                appAllTextFieldController.objectiveFiels(
-                  context,
-                  textControllers[4],
-                  "Description",
-                  TextInputType.name,
-                ),
-                SizedBox(height: ScreenSize.fSize_30()),
-                Center(
-                  child: appFunctionController.createResumeButton(
-                    context,
-                    "SAVE",
-                    () async {
-                      final prefs = await SharedPreferences.getInstance();
-                      if (textControllers[0].text.isEmpty ||
-                          textControllers[1].text.isEmpty ||
-                          textControllers[2].text.isEmpty ||
-                          textControllers[3].text.isEmpty ||
-                          textControllers[4].text.isEmpty) {
-                        tostController.errorTost();
-                      } else {
-                        tostController.successTost();
-                        workList.value.add(
-                          [
-                            textControllers[0],
-                            textControllers[1],
-                            textControllers[2],
-                            textControllers[3],
-                            textControllers[4],
-                            textController.workShowButton.string,
-                          ],
-                        );
-                        workDetails = prefs.setStringList(
-                          "work",
-                          [
-                            textControllers[0].text,
-                            textControllers[1].text,
-                            textControllers[2].text,
-                            textControllers[3].text,
-                            textControllers[4].text,
-                            textController.workShowButton.string,
-                            date.toString(),
-                          ],
-                        );
-                        Get.back();
-                        log("listlistlist $workList");
-                      }
-                      workList.refresh();
-                      // }
-                    },
+                  SizedBox(height: ScreenSize.fSize_20()),
+                  Padding(
+                    padding: EdgeInsets.all(ScreenSize.fSize_14()),
+                    child: Obx(
+                      () => Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              textController.workShowButton.value =
+                                  !textController.workShowButton.value;
+                            },
+                            child: textController.workShowButton.value == false
+                                ? Container(
+                                    width: ScreenSize.fSize_28(),
+                                    height: ScreenSize.fSize_28(),
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(ScreenSize.fSize_4()),
+                                      border: Border.all(
+                                        color: appColorController.workTextColor,
+                                        width: 2,
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    width: ScreenSize.fSize_28(),
+                                    height: ScreenSize.fSize_28(),
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(ScreenSize.fSize_4()),
+                                      border: Border.all(
+                                        color: appColorController.boxColor,
+                                        width: 2,
+                                      ),
+                                    ),
+                                    child: Icon(Icons.check,
+                                        color: appColorController.boxColor, fill: 0.5),
+                                  ),
+                          ),
+                          SizedBox(width: ScreenSize.fSize_10()),
+                          Text(
+                            "Currently Work Here",
+                            style: appFontStyleData.objectiveStyle(
+                                context, textController.workShowButton.value),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                )
-              ],
+                  SizedBox(height: ScreenSize.fSize_20()),
+                  appAllTextFieldController.objectiveFiels(
+                    context,
+                    textControllers[4],
+                    "Description",
+                    TextInputType.name,
+                  ),
+                  SizedBox(height: ScreenSize.fSize_30()),
+                  Center(
+                    child: appFunctionController.createResumeButton(
+                      context,
+                      "SAVE",
+                      () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        if (textControllers[0].text.isEmpty ||
+                            textControllers[1].text.isEmpty ||
+                            textControllers[2].text.isEmpty ||
+                            textControllers[3].text.isEmpty ||
+                            textControllers[4].text.isEmpty) {
+                          tostController.errorTost();
+                        } else {
+                          tostController.successTost();
+                          workList.value.add(
+                            [
+                              textControllers[0],
+                              textControllers[1],
+                              textControllers[2],
+                              textControllers[3],
+                              textControllers[4],
+                              textController.workShowButton.string,
+                            ],
+                          );
+                          workDetails = prefs.setStringList(
+                            "work",
+                            [
+                              textControllers[0].text,
+                              textControllers[1].text,
+                              textControllers[2].text,
+                              textControllers[3].text,
+                              textControllers[4].text,
+                              textController.workShowButton.string,
+                              date.toString(),
+                            ],
+                          );
+                          Get.back();
+                          log("listlistlist $workList");
+                        }
+                        workList.refresh();
+                        // }
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          resumeBannerADController.showBanner("/AddWorkExperienceScreen"),
-        ],
+            resumeBannerADController.showBanner("/AddWorkExperienceScreen"),
+          ],
+        ),
       ),
     );
   }

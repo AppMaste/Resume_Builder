@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../utils/color.dart';
@@ -43,84 +44,90 @@ class _AddMoreSectionScreenState extends State<AddMoreSectionScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: FloatingActionBubble(
-          items: [
-            Bubble(
-              title: "Add More Section",
-              iconColor: Colors.red,
-              bubbleColor: Colors.white,
-              titleStyle: GoogleFonts.beVietnamPro(
-                fontSize: 16,
-                color: const Color(0xFF658583),
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/AddMoreSectionScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+          floatingActionButton: FloatingActionBubble(
+            items: [
+              Bubble(
+                title: "Add More Section",
+                iconColor: Colors.red,
+                bubbleColor: Colors.white,
+                titleStyle: GoogleFonts.beVietnamPro(
+                  fontSize: 16,
+                  color: const Color(0xFF658583),
+                ),
+                onPress: () async {
+                  _animationController.reverse();
+                  // Get.to(() => AddMoreSectionScreen());
+                },
+                icon: Icons.info_outline_rounded,
               ),
-              onPress: () async {
-                _animationController.reverse();
-                // Get.to(() => AddMoreSectionScreen());
-              },
-              icon: Icons.info_outline_rounded,
-            ),
-          ],
-          animation: _animation,
-          onPress: () => _animationController.isCompleted
-              ? _animationController.reverse()
-              : _animationController.forward(),
-          iconColor: Colors.white,
-          iconData: Icons.add,
-          backGroundColor: appColorController.boxColor,
-        ),
-        appBar: appbarController.customAppBarController(
-            context, "Add More Section"),
-        body: Padding(
-          padding: EdgeInsets.only(bottom: ScreenSize.fSize_55()),
-          child: Obx(
-            () => ListView.builder(
-              itemCount: TITLE.value.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Obx(
-                    () => Container(
-                      decoration: BoxDecoration(
-                        color: appColorController.boxColor.withOpacity(0.3),
-                        border: Border.all(
-                          color: appColorController.boxColor,
+            ],
+            animation: _animation,
+            onPress: () => _animationController.isCompleted
+                ? _animationController.reverse()
+                : _animationController.forward(),
+            iconColor: Colors.white,
+            iconData: Icons.add,
+            backGroundColor: appColorController.boxColor,
+          ),
+          appBar: appbarController.customAppBarController(
+              context, "Add More Section"),
+          body: Padding(
+            padding: EdgeInsets.only(bottom: ScreenSize.fSize_55()),
+            child: Obx(
+              () => ListView.builder(
+                itemCount: TITLE.value.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Obx(
+                      () => Container(
+                        decoration: BoxDecoration(
+                          color: appColorController.boxColor.withOpacity(0.3),
+                          border: Border.all(
+                            color: appColorController.boxColor,
+                          ),
+                          borderRadius:
+                              BorderRadius.circular(ScreenSize.fSize_10()),
                         ),
-                        borderRadius:
-                            BorderRadius.circular(ScreenSize.fSize_10()),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(ScreenSize.fSize_15()),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              TITLE.value[index],
-                              style: appFontStyleData.resumeBuilder,
-                            ),
-                            CupertinoSwitch(
-                              activeColor: appColorController.boxColor,
-                              value: BUTTON.value[index],
-                              onChanged: (value) async {
-                                final prefs =
-                                    await SharedPreferences.getInstance();
-                                abc = prefs.setBool("key", BUTTON.value[index]);
-                                BUTTON.value[index] = !BUTTON.value[index];
-                                createdList.value.addAll([TITLE.value[index]]);
-                                print(
-                                    "button.value[index] ${BUTTON.value[index]}");
-                                BUTTON.refresh();
-                              },
-                            )
-                          ],
+                        child: Padding(
+                          padding: EdgeInsets.all(ScreenSize.fSize_15()),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                TITLE.value[index],
+                                style: appFontStyleData.resumeBuilder,
+                              ),
+                              CupertinoSwitch(
+                                activeColor: appColorController.boxColor,
+                                value: BUTTON.value[index],
+                                onChanged: (value) async {
+                                  final prefs =
+                                      await SharedPreferences.getInstance();
+                                  abc = prefs.setBool("key", BUTTON.value[index]);
+                                  BUTTON.value[index] = !BUTTON.value[index];
+                                  createdList.value.addAll([TITLE.value[index]]);
+                                  print(
+                                      "button.value[index] ${BUTTON.value[index]}");
+                                  BUTTON.refresh();
+                                },
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }

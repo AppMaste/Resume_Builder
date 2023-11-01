@@ -111,15 +111,15 @@ class PreViewAppController2 extends GetxController {
             ),
           ),
           Positioned(
-            top: ScreenSize.horizontalBlockSize! * 8,
+            top: ScreenSize.horizontalBlockSize! * 5.5,
             left: ScreenSize.horizontalBlockSize! * 57.5,
             child: Container(
               color: Colors.transparent,
-              height: ScreenSize.fSize_24(),
-              width: ScreenSize.horizontalBlockSize! * 40,
+              height: ScreenSize.fSize_40(),
+              width: ScreenSize.horizontalBlockSize! * 30,
               child: TextField(
                 controller: PERSONAL.value.isEmpty
-                    ? textController.nameController.value
+                    ? textController.professionController.value
                     : PERSONAL.value[0][1],
                 style: GoogleFonts.openSans(
                   color: Colors.black,
@@ -381,7 +381,7 @@ class PreViewAppController2 extends GetxController {
                     child: Container(
                       color: Colors.transparent,
                       height: ScreenSize.fSize_40(),
-                      width: ScreenSize.horizontalBlockSize! * 42,
+                      width: ScreenSize.horizontalBlockSize! * 35,
                       child: TextField(
                         style: GoogleFonts.openSans(
                           color: Colors.white,
@@ -484,7 +484,7 @@ class PreViewAppController2 extends GetxController {
                     child: Container(
                       color: Colors.transparent,
                       height: ScreenSize.fSize_40(),
-                      width: ScreenSize.horizontalBlockSize! * 40,
+                      width: ScreenSize.horizontalBlockSize! * 35,
                       child: TextField(
                         controller: reference.value.isEmpty
                             ? textController.referenceName.value
@@ -536,7 +536,7 @@ class PreViewAppController2 extends GetxController {
                     child: Container(
                       color: Colors.transparent,
                       height: ScreenSize.fSize_40(),
-                      width: ScreenSize.horizontalBlockSize! * 40,
+                      width: ScreenSize.horizontalBlockSize! * 35,
                       child: TextField(
                         controller: reference.value.isEmpty
                             ? textController.referenceNumber.value
@@ -562,7 +562,7 @@ class PreViewAppController2 extends GetxController {
                     child: Container(
                       color: Colors.transparent,
                       height: ScreenSize.fSize_40(),
-                      width: ScreenSize.horizontalBlockSize! * 40,
+                      width: ScreenSize.horizontalBlockSize! * 35,
                       child: TextField(
                         controller: reference.value.isEmpty
                             ? textController.referenceEmail.value
@@ -589,7 +589,7 @@ class PreViewAppController2 extends GetxController {
                     child: Container(
                       color: Colors.transparent,
                       height: ScreenSize.fSize_40(),
-                      width: ScreenSize.horizontalBlockSize! * 40,
+                      width: ScreenSize.horizontalBlockSize! * 35,
                       child: TextField(
                         controller: reference.value.length < 2
                             ? textController.referenceName2.value
@@ -617,7 +617,7 @@ class PreViewAppController2 extends GetxController {
                     child: Container(
                       color: Colors.transparent,
                       height: ScreenSize.fSize_40(),
-                      width: ScreenSize.horizontalBlockSize! * 40,
+                      width: ScreenSize.horizontalBlockSize! * 35,
                       child: TextField(
                         controller: reference.value.length < 2
                             ? textController.referenceAddress2.value
@@ -643,7 +643,7 @@ class PreViewAppController2 extends GetxController {
                     child: Container(
                       color: Colors.transparent,
                       height: ScreenSize.fSize_40(),
-                      width: ScreenSize.horizontalBlockSize! * 40,
+                      width: ScreenSize.horizontalBlockSize! * 35,
                       child: TextField(
                         controller: reference.value.length < 2
                             ? textController.referenceNumber2.value
@@ -669,7 +669,7 @@ class PreViewAppController2 extends GetxController {
                     child: Container(
                       color: Colors.transparent,
                       height: ScreenSize.fSize_40(),
-                      width: ScreenSize.horizontalBlockSize! * 40,
+                      width: ScreenSize.horizontalBlockSize! * 35,
                       child: TextField(
                         controller: reference.value.length < 2
                             ? textController.referenceEmail2.value
@@ -1082,9 +1082,20 @@ class PreViewAppController2 extends GetxController {
             top: ScreenSize.horizontalBlockSize! * 125,
             child: Row(
               children: [
-                Image.asset(
-                    "assets/image/Template Image/Resume 7 Image/skill.png",
-                    scale: 29),
+                Container(
+                  height: ScreenSize.fSize_17(),
+                  width: ScreenSize.fSize_17(),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF333333),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Image.asset(
+                        "assets/image/Template Image/Resume 7 Image/skill.png",
+                        scale: 29,color: Colors.white),
+                  ),
+                ),
                 SizedBox(width: ScreenSize.fSize_8()),
                 Text(
                   "SKILLS",

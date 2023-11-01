@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
 import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 import '../../widgets/features/Appbar.dart';
 import '../../widgets/global/MediaQuery/size.dart';
@@ -28,36 +29,49 @@ class ChooseTemplateScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenSize.sizerInit(context);
-    return Scaffold(
-      appBar:
-          appbarController.customAppBarController(context, "Choose Template"),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          shrinkWrap: false,
-          // physics: const NeverScrollableScrollPhysics(),
-          cacheExtent: 9999,
-          itemCount: templateImage.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: ScreenSize.fSize_10(),
-              crossAxisSpacing: ScreenSize.fSize_10(),
-              childAspectRatio: 10 / 14),
-          itemBuilder: (context, index) {
-            return Container(
-              child: GestureDetector(
-                onTap: () {
-                  tapController.showbuttonad(context, "/TemplatePreviewScreen", "/ChooseTemplateScreen", index);
-                  // Get.to(() =>  TemplatePreviewScreen(),arguments: index);
-                },
-                child: Image.asset(
-                  templateImage[index],
-                  fit: BoxFit.cover,
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/ChooseTemplateScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        appBar:
+            appbarController.customAppBarController(context, "Choose Template"),
+        body: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Padding(
+                padding:  EdgeInsets.only(bottom: ScreenSize.fSize_50()),
+                child: GridView.builder(
+                  shrinkWrap: false,
+                  // physics: const NeverScrollableScrollPhysics(),
+                  cacheExtent: 9999,
+                  itemCount: templateImage.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: ScreenSize.fSize_10(),
+                      crossAxisSpacing: ScreenSize.fSize_10(),
+                      childAspectRatio: 10 / 14),
+                  itemBuilder: (context, index) {
+                    return Container(
+                      child: GestureDetector(
+                        onTap: () {
+                          tapController.showbuttonad(context, "/TemplatePreviewScreen", "/ChooseTemplateScreen", index);
+                          // Get.to(() =>  TemplatePreviewScreen(),arguments: index);
+                        },
+                        child: Image.asset(
+                          templateImage[index],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
-            );
-          },
+            ),
+            resumeBannerADController.showBanner("/ChooseTemplateScreen")
+          ],
         ),
       ),
     );

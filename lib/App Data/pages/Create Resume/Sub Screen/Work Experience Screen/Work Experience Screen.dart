@@ -45,200 +45,206 @@ class _WorkExperienceScreenState extends State<WorkExperienceScreen>
   @override
   Widget build(BuildContext context) {
     log("fajsfvjgasfav $workList");
-    return Scaffold(
-      floatingActionButton: FloatingActionBubble(
-        items: [
-          Bubble(
-            title: "Add Work Experience",
-            iconColor: Colors.red,
-            bubbleColor: Colors.white,
-            titleStyle: GoogleFonts.beVietnamPro(
-              fontSize: 16,
-              color: const Color(0xFF658583),
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/WorkExperienceScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        floatingActionButton: FloatingActionBubble(
+          items: [
+            Bubble(
+              title: "Add Work Experience",
+              iconColor: Colors.red,
+              bubbleColor: Colors.white,
+              titleStyle: GoogleFonts.beVietnamPro(
+                fontSize: 16,
+                color: const Color(0xFF658583),
+              ),
+              onPress: () async {
+                _animationController.reverse();
+                tapController.showbuttonad(context, "/AddWorkExperienceScreen", "/WorkExperienceScreen", "");
+                // Get.to(() => const AddWorkExperienceScreen());
+              },
+              icon: Icons.info_outline_rounded,
             ),
-            onPress: () async {
-              _animationController.reverse();
-              tapController.showbuttonad(context, "/AddWorkExperienceScreen", "/WorkExperienceScreen", "");
-              // Get.to(() => const AddWorkExperienceScreen());
-            },
-            icon: Icons.info_outline_rounded,
-          ),
-        ],
-        animation: _animation,
-        onPress: () => _animationController.isCompleted
-            ? _animationController.reverse()
-            : _animationController.forward(),
-        iconColor: Colors.white,
-        iconData: Icons.add,
-        backGroundColor: appColorController.boxColor,
-      ),
-      appBar:
-          appbarController.customAppBarController(context, "Work Experience"),
-      body: Stack(
-        children: [
-          Obx(
-            () => workList.value.isNotEmpty
-                ? Padding(
-                  padding:  EdgeInsets.only(bottom: ScreenSize.fSize_50()),
-                  child: ListView.builder(
-                      itemCount: workList.value.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(ScreenSize.fSize_10()),
-                                border: Border.all(
-                                  width: 2,
-                                  color: appColorController.boxColor,
-                                )),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: ScreenSize.fSize_55(),
-                                    width: ScreenSize.horizontalBlockSize! * 90,
-                                    // color: Colors.red,
-                                    child: TextField(
-                                      controller: workList.value[index][0],
-                                      decoration: const InputDecoration(
-                                        labelText: 'Company Name:',
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: ScreenSize.fSize_4()),
-                                  CustomPaint(
-                                    painter: DottedLinePainter(),
-                                    size: const Size(
-                                        400, 0), // Adjust the size of the dotted line
-                                  ),
-                                  SizedBox(height: ScreenSize.fSize_4()),
-                                  Container(
-                                    height: ScreenSize.fSize_55(),
-                                    width: ScreenSize.horizontalBlockSize! * 90,
-                                    // color: Colors.red,
-                                    child: TextField(
-                                      controller: workList.value[index][1],
-                                      decoration: const InputDecoration(
-                                        labelText: 'Position:',
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: ScreenSize.fSize_4()),
-                                  CustomPaint(
-                                    painter: DottedLinePainter(),
-                                    size: const Size(
-                                        400, 0), // Adjust the size of the dotted line
-                                  ),
-                                  SizedBox(height: ScreenSize.fSize_4()),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        height: ScreenSize.fSize_55(),
-                                        width: ScreenSize.fSize_80(),
-                                        // color: Colors.red,
-                                        child: TextField(
-                                          controller: workList.value[index][2],
-                                          decoration: const InputDecoration(
-                                            labelText: 'Start Date:',
-                                            border: InputBorder.none,
-                                          ),
+          ],
+          animation: _animation,
+          onPress: () => _animationController.isCompleted
+              ? _animationController.reverse()
+              : _animationController.forward(),
+          iconColor: Colors.white,
+          iconData: Icons.add,
+          backGroundColor: appColorController.boxColor,
+        ),
+        appBar:
+            appbarController.customAppBarController(context, "Work Experience"),
+        body: Stack(
+          children: [
+            Obx(
+              () => workList.value.isNotEmpty
+                  ? Padding(
+                    padding:  EdgeInsets.only(bottom: ScreenSize.fSize_50()),
+                    child: ListView.builder(
+                        itemCount: workList.value.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.circular(ScreenSize.fSize_10()),
+                                  border: Border.all(
+                                    width: 2,
+                                    color: appColorController.boxColor,
+                                  )),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: ScreenSize.fSize_55(),
+                                      width: ScreenSize.horizontalBlockSize! * 90,
+                                      // color: Colors.red,
+                                      child: TextField(
+                                        controller: workList.value[index][0],
+                                        decoration: const InputDecoration(
+                                          labelText: 'Company Name:',
+                                          border: InputBorder.none,
                                         ),
                                       ),
-                                      Container(
-                                        height: ScreenSize.fSize_55(),
-                                        width: ScreenSize.fSize_80(),
-                                        // color: Colors.red,
-                                        child: workList.value[index][5] == "true"
-                                            ? Center(
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  SizedBox(height: ScreenSize.fSize_10()),
-                                                  Text(
-                                                    "End Date:-",
-                                                    style: GoogleFonts.openSans(
-                                                        fontSize: ScreenSize.fSize_10()
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "Present",
-                                                    style: GoogleFonts.openSans(
-                                                        fontSize:
-                                                        ScreenSize.fSize_15(),
-                                                        fontWeight:
-                                                        FontWeight.w600),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                            : TextField(
-                                                controller: workList.value[index]
-                                                    [3],
-                                                decoration: const InputDecoration(
-                                                  labelText: 'End Date:',
-                                                  border: InputBorder.none,
-                                                ),
-                                              ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: ScreenSize.fSize_4()),
-                                  CustomPaint(
-                                    painter: DottedLinePainter(),
-                                    size: const Size(
-                                        400, 0), // Adjust the size of the dotted line
-                                  ),
-                                  SizedBox(height: ScreenSize.fSize_4()),
-                                  Container(
-                                    height: ScreenSize.fSize_55(),
-                                    width: ScreenSize.horizontalBlockSize! * 90,
-                                    // color: Colors.red,
-                                    child: TextField(
-                                      controller: workList.value[index][4],
-                                      decoration: const InputDecoration(
-                                        labelText: 'Description:',
-                                        border: InputBorder.none,
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    CustomPaint(
+                                      painter: DottedLinePainter(),
+                                      size: const Size(
+                                          400, 0), // Adjust the size of the dotted line
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    Container(
+                                      height: ScreenSize.fSize_55(),
+                                      width: ScreenSize.horizontalBlockSize! * 90,
+                                      // color: Colors.red,
+                                      child: TextField(
+                                        controller: workList.value[index][1],
+                                        decoration: const InputDecoration(
+                                          labelText: 'Position:',
+                                          border: InputBorder.none,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    CustomPaint(
+                                      painter: DottedLinePainter(),
+                                      size: const Size(
+                                          400, 0), // Adjust the size of the dotted line
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          height: ScreenSize.fSize_55(),
+                                          width: ScreenSize.fSize_80(),
+                                          // color: Colors.red,
+                                          child: TextField(
+                                            controller: workList.value[index][2],
+                                            decoration: const InputDecoration(
+                                              labelText: 'Start Date:',
+                                              border: InputBorder.none,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          height: ScreenSize.fSize_55(),
+                                          width: ScreenSize.fSize_80(),
+                                          // color: Colors.red,
+                                          child: workList.value[index][5] == "true"
+                                              ? Center(
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(height: ScreenSize.fSize_10()),
+                                                    Text(
+                                                      "End Date:-",
+                                                      style: GoogleFonts.openSans(
+                                                          fontSize: ScreenSize.fSize_10()
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "Present",
+                                                      style: GoogleFonts.openSans(
+                                                          fontSize:
+                                                          ScreenSize.fSize_15(),
+                                                          fontWeight:
+                                                          FontWeight.w600),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                              : TextField(
+                                                  controller: workList.value[index]
+                                                      [3],
+                                                  decoration: const InputDecoration(
+                                                    labelText: 'End Date:',
+                                                    border: InputBorder.none,
+                                                  ),
+                                                ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    CustomPaint(
+                                      painter: DottedLinePainter(),
+                                      size: const Size(
+                                          400, 0), // Adjust the size of the dotted line
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_4()),
+                                    Container(
+                                      height: ScreenSize.fSize_55(),
+                                      width: ScreenSize.horizontalBlockSize! * 90,
+                                      // color: Colors.red,
+                                      child: TextField(
+                                        controller: workList.value[index][4],
+                                        decoration: const InputDecoration(
+                                          labelText: 'Description:',
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
+                          );
+                        },
+                      ),
+                  )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            appImageDataController.noDatFound,
+                            scale: 1.3,
                           ),
-                        );
-                      },
+                          Text(
+                            "No Data Found",
+                            style: appFontStyleData.resumeBuilder,
+                          ),
+                          SizedBox(height: ScreenSize.fSize_10()),
+                          Text(
+                            "Create One Now!",
+                            style: appFontStyleData.workTextStyle,
+                          ),
+                        ],
+                      ),
                     ),
-                )
-                : Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          appImageDataController.noDatFound,
-                          scale: 1.3,
-                        ),
-                        Text(
-                          "No Data Found",
-                          style: appFontStyleData.resumeBuilder,
-                        ),
-                        SizedBox(height: ScreenSize.fSize_10()),
-                        Text(
-                          "Create One Now!",
-                          style: appFontStyleData.workTextStyle,
-                        ),
-                      ],
-                    ),
-                  ),
-          ),
-          resumeBannerADController.showBanner("/WorkExperienceScreen"),
-        ],
+            ),
+            resumeBannerADController.showBanner("/WorkExperienceScreen"),
+          ],
+        ),
       ),
     );
   }

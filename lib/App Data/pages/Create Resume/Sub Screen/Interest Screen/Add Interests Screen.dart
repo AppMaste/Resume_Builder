@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 // import 'package:resume_builder_app/App%20Data/services/functions/App%20Functions/app%20Functions.dart';
 // import 'package:resume_builder_app/App%20Data/utils/color.dart';
 // import 'package:resume_builder_app/App%20Data/widgets/features/Appbar.dart';
@@ -68,106 +70,120 @@ class AddInterestsScreen extends StatefulWidget {
 class _AddInterestsScreenState extends State<AddInterestsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: appbarController.customAppBarController(context, "Add interests"),
-      body: Obx(
-        () => ListView.builder(
-          itemCount: interestImage.value.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: ScreenSize.fSize_10(),
-                horizontal: ScreenSize.fSize_15(),
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: interestSelect.value[index] == true
-                      ? Colors.red[200]
-                      : appColorController.boxColor.withOpacity(0.3),
-                  border: Border.all(
-                    color: interestSelect.value[index] == true
-                        ? Colors.red
-                        : appColorController.boxColor,
-                  ),
-                  borderRadius: BorderRadius.circular(ScreenSize.fSize_10()),
-                ),
-                child: ListTile(
-                  focusColor: Colors.red,
-                  onTap: () async {
-                    showDialog(
-                      context: context,
-                      builder: (ctx) => AlertDialog(
-                        backgroundColor: appColorController.boxColor,
-                        title: Text(
-                          interestName[index],
-                          style:
-                              GoogleFonts.openSans(fontWeight: FontWeight.bold),
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/AddInterestsScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: appbarController.customAppBarController(context, "Add interests"),
+        body: Stack(
+          children: [
+            Obx(
+              () => Padding(
+                padding:  EdgeInsets.only(bottom: ScreenSize.fSize_50()),
+                child: ListView.builder(
+                  itemCount: interestImage.value.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: ScreenSize.fSize_10(),
+                        horizontal: ScreenSize.fSize_15(),
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: interestSelect.value[index] == true
+                              ? Colors.red[200]
+                              : appColorController.boxColor.withOpacity(0.3),
+                          border: Border.all(
+                            color: interestSelect.value[index] == true
+                                ? Colors.red
+                                : appColorController.boxColor,
+                          ),
+                          borderRadius: BorderRadius.circular(ScreenSize.fSize_10()),
                         ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        content:
-                            const Text("Are You Sure Adding?"),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              var aa = interestName.removeAt(index);
-                              var bb = interestImage.removeAt(index);
-                              var cc = interestSelect.removeAt(index);
-                              interest.refresh();
-                              interest2.refresh();
-                              interest3.refresh();
-                              interest.value.add(aa);
-                              interest2.value.add(bb);
-                              interest3.value.add(cc);
-                              print("aaaaaaaaaaaa $aa");
-                              print("bbbbbbbbbbbb $bb");
-                              print("cccccccccccc $cc");
-                              Navigator.of(ctx).pop();
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(14),
-                              child: Text(
-                                "Yes",
-                                style: GoogleFonts.openSans(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                        child: ListTile(
+                          focusColor: Colors.red,
+                          onTap: () async {
+                            showDialog(
+                              context: context,
+                              builder: (ctx) => AlertDialog(
+                                backgroundColor: appColorController.boxColor,
+                                title: Text(
+                                  interestName[index],
+                                  style:
+                                      GoogleFonts.openSans(fontWeight: FontWeight.bold),
                                 ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                content:
+                                    const Text("Are You Sure Adding?"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      var aa = interestName.removeAt(index);
+                                      var bb = interestImage.removeAt(index);
+                                      var cc = interestSelect.removeAt(index);
+                                      interest.refresh();
+                                      interest2.refresh();
+                                      interest3.refresh();
+                                      interest.value.add(aa);
+                                      interest2.value.add(bb);
+                                      interest3.value.add(cc);
+                                      print("aaaaaaaaaaaa $aa");
+                                      print("bbbbbbbbbbbb $bb");
+                                      print("cccccccccccc $cc");
+                                      Navigator.of(ctx).pop();
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.all(14),
+                                      child: Text(
+                                        "Yes",
+                                        style: GoogleFonts.openSans(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(ctx).pop();
+                                    },
+                                    child: Text(
+                                      "No",
+                                      style: GoogleFonts.openSans(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
+                            );
+                            // print("objectttttttttt ${interestName.removeAt(index)}");
+                            // print("objectttttttttt ${interestImage.removeAt(index)}");
+                          },
+                          leading: Image.asset(interestImage[index],
+                              color: Colors.black, scale: 14.0),
+                          title: Padding(
+                            padding: EdgeInsets.only(left: ScreenSize.fSize_25()),
+                            child: Text(
+                              interestName[index],
+                              style: GoogleFonts.openSans(fontWeight: FontWeight.w600),
                             ),
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                            },
-                            child: Text(
-                              "No",
-                              style: GoogleFonts.openSans(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          )
-                        ],
+                        ),
                       ),
                     );
-                    // print("objectttttttttt ${interestName.removeAt(index)}");
-                    // print("objectttttttttt ${interestImage.removeAt(index)}");
                   },
-                  leading: Image.asset(interestImage[index],
-                      color: Colors.black, scale: 14.0),
-                  title: Padding(
-                    padding: EdgeInsets.only(left: ScreenSize.fSize_25()),
-                    child: Text(
-                      interestName[index],
-                      style: GoogleFonts.openSans(fontWeight: FontWeight.w600),
-                    ),
-                  ),
                 ),
               ),
-            );
-          },
+            ),
+            resumeBannerADController.showBanner("/AddInterestsScreen")
+          ],
         ),
       ),
     );

@@ -674,7 +674,7 @@ class PreViewAppController extends GetxController {
             color: Colors.transparent,
             child: TextField(
               controller: workList.value.isEmpty
-                  ? textController.jobExperience24.value
+                  ? textController.jobExperience11.value
                   : workList.value[0][4],
               style: GoogleFonts.openSans(
                 fontWeight: FontWeight.w500,
@@ -702,7 +702,7 @@ class PreViewAppController extends GetxController {
             color: Colors.transparent,
             child: TextField(
               controller: workList.value.length < 2
-                  ? textController.jobExperience24.value
+                  ? textController.jobExperience21.value
                   : workList.value[1][4],
               style: GoogleFonts.openSans(
                 fontWeight: FontWeight.w500,

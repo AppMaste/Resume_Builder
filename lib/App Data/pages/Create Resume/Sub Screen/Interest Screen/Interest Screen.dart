@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
 import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
 
 // import 'package:resume_builder_app/App%20Data/pages/Create%20Resume/Sub%20Screen/Interest%20Screen/Add%20Interests%20Screen.dart';
@@ -50,132 +51,102 @@ class _InterestScreenState extends State<InterestScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appbarController.customAppBarController(context, "Interest"),
-      floatingActionButton: FloatingActionBubble(
-        items: [
-          Bubble(
-            title: "See All",
-            iconColor: Colors.red,
-            bubbleColor: Colors.white,
-            titleStyle: GoogleFonts.beVietnamPro(
-              fontSize: 16,
-              color: const Color(0xFF658583),
+    return WillPopScope(
+      onWillPop: () {
+        backController.showBackButton(context, "/InterestScreen");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        appBar: appbarController.customAppBarController(context, "Interest"),
+        floatingActionButton: FloatingActionBubble(
+          items: [
+            Bubble(
+              title: "See All",
+              iconColor: Colors.red,
+              bubbleColor: Colors.white,
+              titleStyle: GoogleFonts.beVietnamPro(
+                fontSize: 16,
+                color: const Color(0xFF658583),
+              ),
+              onPress: () async {
+                _animationController.reverse();
+                tapController.showbuttonad(
+                    context, "/AddInterestsScreen", "/InterestScreen", "");
+                // Get.to(() => const AddInterestsScreen());
+              },
+              icon: Icons.info_outline_rounded,
             ),
-            onPress: () async {
-              _animationController.reverse();
-              tapController.showbuttonad(
-                  context, "/AddInterestsScreen", "/InterestScreen", "");
-              // Get.to(() => const AddInterestsScreen());
-            },
-            icon: Icons.info_outline_rounded,
-          ),
-        ],
-        animation: _animation,
-        onPress: () => _animationController.isCompleted
-            ? _animationController.reverse()
-            : _animationController.forward(),
-        iconColor: Colors.white,
-        iconData: Icons.add,
-        backGroundColor: appColorController.boxColor,
-      ),
-      body: Obx(
-        () => interest.value.isNotEmpty
-            ? ListView.builder(
-                itemCount: interest.value.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: ScreenSize.fSize_10(),
-                      horizontal: ScreenSize.fSize_15(),
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: interest3.value[index] == true
-                            ? Colors.red[200]
-                            : appColorController.boxColor.withOpacity(0.3),
-                        border: Border.all(
-                          color: interest3.value[index] == true
-                              ? Colors.red
-                              : appColorController.boxColor,
-                        ),
-                        borderRadius:
-                            BorderRadius.circular(ScreenSize.fSize_10()),
+          ],
+          animation: _animation,
+          onPress: () => _animationController.isCompleted
+              ? _animationController.reverse()
+              : _animationController.forward(),
+          iconColor: Colors.white,
+          iconData: Icons.add,
+          backGroundColor: appColorController.boxColor,
+        ),
+        body: Stack(
+          children: [
+            Obx(
+              () => interest.value.isNotEmpty
+                  ? Padding(
+                    padding:  EdgeInsets.only(bottom: ScreenSize.fSize_50()),
+                    child: ListView.builder(
+                        itemCount: interest.value.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: ScreenSize.fSize_10(),
+                              horizontal: ScreenSize.fSize_15(),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: interest3.value[index] == true
+                                    ? Colors.red[200]
+                                    : appColorController.boxColor.withOpacity(0.3),
+                                border: Border.all(
+                                  color: interest3.value[index] == true
+                                      ? Colors.red
+                                      : appColorController.boxColor,
+                                ),
+                                borderRadius:
+                                    BorderRadius.circular(ScreenSize.fSize_10()),
+                              ),
+                              child: ListTile(
+                                title: Text(interest.value[index]),
+                                leading: Image.asset(interest2.value[index],
+                                    color: Colors.black, scale: 14.0),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                      child: ListTile(
-                        title: Text(interest.value[index]),
-                        leading: Image.asset(interest2.value[index],
-                            color: Colors.black, scale: 14.0),
-                      ),
+                  )
+                  : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      appImageDataController.noDatFound,
+                      scale: 1.3,
                     ),
-                  );
-                },
-              )
-            : Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                appImageDataController.noDatFound,
-                scale: 1.3,
+                    Text(
+                      "No Data Found",
+                      style: appFontStyleData.resumeBuilder,
+                    ),
+                    SizedBox(height: ScreenSize.fSize_10()),
+                    Text(
+                      "Create One Now!",
+                      style: appFontStyleData.workTextStyle,
+                    ),
+                  ],
+                ),
               ),
-              Text(
-                "No Data Found",
-                style: appFontStyleData.resumeBuilder,
-              ),
-              SizedBox(height: ScreenSize.fSize_10()),
-              Text(
-                "Create One Now!",
-                style: appFontStyleData.workTextStyle,
-              ),
-            ],
-          ),
+            ),
+            resumeBannerADController.showBanner("/InterestScreen"),
+          ],
         ),
       ),
     );
   }
 }
-
-/* body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              color: Colors.red,
-              height: ScreenSize.fSize_20(),
-              width: ScreenSize.fSize_140(),
-              child: DropdownButton(
-                  isExpanded: true,
-                  isDense: false,
-                  dropdownColor: appColorController.dividerColor,
-                  underline: Container(),
-                  // underline: Image.asset("assets/icons/down-arrow.png",height: ScreenSize.fSize_10()),
-                  icon: const Icon(Icons.arrow_drop_down,
-                      size: 0, color: Color(0xFF768AAB)),
-                  items: items.map((String items) {
-                    return DropdownMenuItem(
-                      value: items,
-                      child: Text(items,
-                          style: GoogleFonts.openSans(color: Colors.black)),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    var aa;
-                    setState(() {
-                      aa = dropdownvalue = newValue!.replaceAll("Month", "");
-                      textController.months.value = aa;
-                    });
-                  }),
-            ),
-            Text(
-              textController.months.value == ""
-                  ? "Please Select"
-                  : textController.months.toString(),
-              style: GoogleFonts.openSans(
-                color: Colors.black,
-              ),
-            ),
-            Image.asset(""),
-          ],
-        ),
-      ),*/

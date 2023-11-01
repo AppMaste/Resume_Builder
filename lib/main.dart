@@ -1,12 +1,12 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:resume_builder/ruf.dart';
-
 import 'App Data/pages/Choose Template Screen/Choose Template Screen.dart';
 import 'App Data/pages/Choose Template Screen/Template Preview Screen.dart';
 import 'App Data/pages/Create Resume/Create Resume Screen.dart';
@@ -57,7 +57,7 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
     importance: Importance.high, playSound: true);
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 
 Future<void> firebasemessgingBackgroundMessagingHandler(
     RemoteMessage message) async {
@@ -70,11 +70,11 @@ Future<void> main() async {
   await Firebase.initializeApp();
 
   FirebaseMessaging.onBackgroundMessage(
-          (message) => firebasemessgingBackgroundMessagingHandler(message));
+      (message) => firebasemessgingBackgroundMessagingHandler(message));
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-      AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
@@ -83,9 +83,8 @@ Future<void> main() async {
     sound: true,
   );
 
-
   FirebaseMessaging.onBackgroundMessage(
-          (message) => firebasemessgingBackgroundMessagingHandler(message));
+      (message) => firebasemessgingBackgroundMessagingHandler(message));
   // adController.appopenAd();
 
   return runApp(
@@ -105,22 +104,27 @@ Future<void> main() async {
         "/MainScreen": (context) => const MainScreen(),
         "/ResumeBuilderScreen": (context) => const ResumeBuilderScreen(),
         "/CreateResumeScreen": (context) => const CreateResumeScreen(),
-        "/ChooseTemplateScreen": (context) =>  ChooseTemplateScreen(),
-        "/ViewAndShareResumeScreen": (context) =>  ViewAndShareResumeScreen(),
-        "/AddMoreSectionScreen": (context) =>  AddMoreSectionScreen(),
-        "/PersonalInformationScreen": (context) => const PersonalInformationScreen(),
+        "/ChooseTemplateScreen": (context) => ChooseTemplateScreen(),
+        "/ViewAndShareResumeScreen": (context) => ViewAndShareResumeScreen(),
+        "/AddMoreSectionScreen": (context) => AddMoreSectionScreen(),
+        "/PersonalInformationScreen": (context) =>
+            const PersonalInformationScreen(),
         "/ObjectiveScreen": (context) => const ObjectiveScreen(),
         "/AddObjectiveScreen": (context) => const AddObjectiveScreen(),
         "/WorkExperienceScreen": (context) => const WorkExperienceScreen(),
-        "/AddWorkExperienceScreen": (context) => const AddWorkExperienceScreen(),
+        "/AddWorkExperienceScreen": (context) =>
+            const AddWorkExperienceScreen(),
         "/EducationScreen": (context) => const EducationScreen(),
-        "/AddEducationDetailsScreen": (context) => const AddEducationDetailsScreen(),
+        "/AddEducationDetailsScreen": (context) =>
+            const AddEducationDetailsScreen(),
         "/ProjectDetailsScreen": (context) => const ProjectDetailsScreen(),
-        "/AddProjectDetailsScreen": (context) => const AddProjectDetailsScreen(),
+        "/AddProjectDetailsScreen": (context) =>
+            const AddProjectDetailsScreen(),
         "/AchievementsScreen": (context) => const AchievementsScreen(),
-        "/AddAchievementDetailsScreen": (context) => const AddAchievementDetailsScreen(),
+        "/AddAchievementDetailsScreen": (context) =>
+            const AddAchievementDetailsScreen(),
         "/KnownLanguageScreen": (context) => const KnownLanguageScreen(),
-        "/AddKnownLanguageScreen": (context) =>  AddKnownLanguageScreen(),
+        "/AddKnownLanguageScreen": (context) => AddKnownLanguageScreen(),
         "/SkillsScreen": (context) => const SkillsScreen(),
         "/AddSkillsScreen": (context) => const AddSkillsScreen(),
         "/ReferenceScreen": (context) => const ReferenceScreen(),
@@ -130,18 +134,20 @@ Future<void> main() async {
         "/HobbiesScreen": (context) => const HobbiesScreen(),
         "/AddHobbiesScreen": (context) => const AddHobbiesScreen(),
         "/SocialScreen": (context) => const SocialScreen(),
-        "/TemplatePreviewScreen": (context) =>  TemplatePreviewScreen(),
-        "/AddSocialScreen": (context) =>  const AddSocialScreen(),
+        "/TemplatePreviewScreen": (context) => TemplatePreviewScreen(),
+        "/AddSocialScreen": (context) => const AddSocialScreen(),
       },
       // home: const SplashScreen(),
     ),
   );
 }
 
-// void main() {
-//   return runApp(
-//      const GetMaterialApp(
-//       home: DemoPage(),
-//     ),
-//   );
-// }
+/*
+Future<void> main() async {
+  return runApp(
+        GetMaterialApp(
+      home: MyApp(),
+    ),
+  );
+}
+*/
