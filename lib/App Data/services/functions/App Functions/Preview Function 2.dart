@@ -8,7 +8,6 @@ import 'package:resume_builder/App%20Data/services/functions/App%20Functions/sha
 
 // import 'package:resume_builder_app/App%20Data/services/functions/App%20Functions/shape.dart';
 import 'dart:math' as math;
-import '../../../../ruf.dart';
 import '../../../pages/Create Resume/Sub Screen/Achievements/Achievements Details Screen.dart';
 import '../../../pages/Create Resume/Sub Screen/Education Screen/Add Education Details Screen.dart';
 import '../../../pages/Create Resume/Sub Screen/Hobbies Screen/Add Hobbies Screen.dart';

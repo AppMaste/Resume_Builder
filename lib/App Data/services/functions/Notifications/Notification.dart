@@ -20,7 +20,7 @@ Future initConfig() async {
 
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    "HH", "Resume Builder",
+    "Hello!!", "Resume Builder",
     importance: Importance.high, playSound: true);
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

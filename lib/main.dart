@@ -1,15 +1,10 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:resume_builder/ruf.dart';
 import 'App Data/pages/Choose Template Screen/Choose Template Screen.dart';
 import 'App Data/pages/Choose Template Screen/Template Preview Screen.dart';
 import 'App Data/pages/Create Resume/Create Resume Screen.dart';
@@ -41,10 +36,8 @@ import 'App Data/pages/First Screen/Main Screen.dart';
 import 'App Data/pages/First Screen/Resume Builder Screen.dart';
 import 'App Data/pages/Starting Screens/Main Screen/Splash Screen.dart';
 import 'App Data/pages/View and Share Resume Screen/View and Share Resume Screen.dart';
-import 'App Data/services/functions/Appopen/Appopen Ad.dart';
 import 'App Data/services/functions/Notifications/Notification Service.dart';
 import 'App Data/services/functions/Notifications/Notification.dart';
-import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 
@@ -56,7 +49,6 @@ Future<void> main() async {
   MobileAds.instance.initialize();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(
-    // (message) => NotificationService().initNotification(),
           (message) => firebasemessgingBackgroundMessagingHandler(message));
 
   await flutterLocalNotificationsPlugin

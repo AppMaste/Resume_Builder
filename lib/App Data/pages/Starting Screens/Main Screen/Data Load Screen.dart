@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -21,6 +22,11 @@ class AppDataLoadScreen extends GetxController with WidgetsBindingObserver {
 
   @override
   void onInit() async {
+    FacebookAudienceNetwork.init();
+    super.onInit();
+    tz.initializeTimeZones();
+    NotificationService().initNotification();
+
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification!.android;
@@ -42,12 +48,17 @@ class AppDataLoadScreen extends GetxController with WidgetsBindingObserver {
         );
       }
     });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print("A new onMessageOpenedApp event was published!");
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {}
+    });
     super.onInit();
 
     WidgetsBinding.instance.addObserver(this);
     initConfig().whenComplete(() {});
-    firebaseConfig.value =
-        json.decode(remoteConfig.getString("resume"));
+    firebaseConfig.value = json.decode(remoteConfig.getString("resume"));
     // update();
     Future.delayed(const Duration(seconds: 1), () {
       AdData();
@@ -58,6 +69,11 @@ class AppDataLoadScreen extends GetxController with WidgetsBindingObserver {
     if (firebaseConfig.value.isNotEmpty) {
       adController.appopenAd();
       Future.delayed(const Duration(seconds: 3), () {
+        NotificationService().showNotification(
+            1,
+            firebaseConfig.value['Resume_Notification_Title'],
+            firebaseConfig.value['Resume_Notification_Body'],
+            firebaseConfig.value['Resume_Notification_Time']);
         Get.offAll(() => const MainScreen());
       });
     } else {
@@ -66,18 +82,13 @@ class AppDataLoadScreen extends GetxController with WidgetsBindingObserver {
       // update();
       AdData();
       tz.initializeTimeZones();
-      NotificationService().showNotification(
-        1,
-        firebaseConfig.value['Resume_Notification_Title'],
-        firebaseConfig.value['Resume_Notification_Body'],
-        firebaseConfig.value['Resume_Notification_Time'],
-      );
     }
   }
 
   var adCounter = 1.obs;
 
   AppOpenAd? _appOpenAd;
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // TODO: implement didChangeAppLifecycleState
