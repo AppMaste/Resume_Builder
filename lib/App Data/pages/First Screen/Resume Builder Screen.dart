@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/Controller/Tap Controller.dart';
 import '../../services/functions/App Functions/app Functions.dart';
 import '../../utils/color.dart';
@@ -134,6 +135,7 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
     return WillPopScope(
       onWillPop: () => _onWillPop(context),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         endDrawer: Drawer(
           child: Padding(
             padding: EdgeInsets.all(ScreenSize.fSize_10()),
@@ -335,12 +337,15 @@ class _ResumeBuilderScreenState extends State<ResumeBuilderScreen> {
                       context,
                       "View & Share Resume",
                       appImageDataController.viewandShare,
-                      () {
+                      () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        final data = prefs.getInt("Template");
+                        print("uireietwrywte $data");
                         tapController.showbuttonad(
                             context,
                             "/ViewAndShareResumeScreen",
                             "/ResumeBuilderScreen",
-                            "");
+                            data);
                         // Get.to(() => ViewAndShareResumeScreen());
                       },
                     ),

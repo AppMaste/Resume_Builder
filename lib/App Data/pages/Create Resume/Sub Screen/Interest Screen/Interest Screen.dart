@@ -57,6 +57,7 @@ class _InterestScreenState extends State<InterestScreen>
         return Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: appbarController.customAppBarController(context, "Interest"),
         floatingActionButton: FloatingActionBubble(
           items: [

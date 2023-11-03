@@ -50,6 +50,7 @@ class _AddMoreSectionScreenState extends State<AddMoreSectionScreen>
         return Future(() => false);
       },
       child: Scaffold(
+          resizeToAvoidBottomInset: false,
           floatingActionButton: FloatingActionBubble(
             items: [
               Bubble(

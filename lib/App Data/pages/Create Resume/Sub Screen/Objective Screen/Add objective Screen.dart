@@ -32,6 +32,7 @@ class _AddObjectiveScreenState extends State<AddObjectiveScreen> {
         return Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: appbarController.customAppBarController(context, "Add Objective"),
         body: object.value.isNotEmpty
             ? Stack(

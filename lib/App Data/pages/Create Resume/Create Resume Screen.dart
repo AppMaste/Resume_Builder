@@ -4,6 +4,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../services/Controller/Native and Banner Controller.dart';
 import '../../services/Controller/Tap Controller.dart';
@@ -139,6 +140,7 @@ class _CreateResumeScreenState extends State<CreateResumeScreen>
         return Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionBubble(
           items: [
             Bubble(
@@ -240,7 +242,10 @@ class _CreateResumeScreenState extends State<CreateResumeScreen>
                     ),
                     SizedBox(height: ScreenSize.fSize_50()),
                     GestureDetector(
-                      onTap: () {
+                      onTap: () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        final data = prefs.getInt("Template");
+                        print("uireietwrywte $data");
                         tapController.showbuttonad(context, "/ChooseTemplateScreen",
                             "/CreateResumeScreen", '');
                         // Get.to(() => ChooseTemplateScreen());

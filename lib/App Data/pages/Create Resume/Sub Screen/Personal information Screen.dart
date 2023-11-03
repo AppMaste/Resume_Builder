@@ -76,6 +76,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen>
         return Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionBubble(
           items: [
             Bubble(
@@ -87,6 +88,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen>
                 color: const Color(0xFF658583),
               ),
               onPress: () async {
+                setState(() {});
                 textControllers =
                     List.generate(6, (index) => TextEditingController());
                 _animationController.reverse();
@@ -121,9 +123,11 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen>
                               width: ScreenSize.fSize_120(),
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: appColorController.boxColor, width: 2.5),
+                                      color: appColorController.boxColor,
+                                      width: 2.5),
                                   image: DecorationImage(
-                                      image: FileImage(textController.profileImage),
+                                      image: FileImage(
+                                          textController.profileImage),
                                       fit: BoxFit.cover),
                                   color: Colors.transparent,
                                   shape: BoxShape.circle),
@@ -133,8 +137,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen>
                               width: ScreenSize.fSize_120(),
                               decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                    image:
-                                        AssetImage("assets/image/Icons/Profile.png"),
+                                    image: AssetImage(
+                                        "assets/image/Icons/Profile.png"),
                                   ),
                                   color: Colors.transparent,
                                   shape: BoxShape.circle),

@@ -54,6 +54,7 @@ class _SocialScreenState extends State<SocialScreen>
         return Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionBubble(
           items: [
             Bubble(

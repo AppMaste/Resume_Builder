@@ -50,6 +50,7 @@ class _HobbiesScreenState extends State<HobbiesScreen>
         return Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionBubble(
           items: [
             Bubble(

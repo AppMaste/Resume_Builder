@@ -5,6 +5,7 @@ import 'package:facebook_audience_network/ad/ad_native.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:resume_builder/App%20Data/utils/color.dart';
 import 'package:resume_builder/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -159,8 +160,8 @@ class ResumeAppNativeADController extends GetxController {
                   titleColor: Colors.black,
                   descriptionColor: Colors.grey,
                   buttonTitleColor: Colors.white,
-                  buttonColor: const Color(0xFF320B3A).withOpacity(0.8),
-                  buttonBorderColor: const Color(0xFFE65A55),
+                  buttonColor: appColorController.boxColor,
+                  // buttonBorderColor: const Color(0xFFE65A55),
                   listener: (result, value) {
                   },
                 ),

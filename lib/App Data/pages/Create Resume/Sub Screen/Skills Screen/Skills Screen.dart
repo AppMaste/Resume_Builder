@@ -50,6 +50,7 @@ class _WorkExperienceScreenState extends State<SkillsScreen>
         return Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionBubble(
           items: [
             Bubble(

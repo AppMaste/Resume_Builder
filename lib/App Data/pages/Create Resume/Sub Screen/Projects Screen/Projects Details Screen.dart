@@ -57,6 +57,7 @@ class _AddWorkExperienceScreenState extends State<AddProjectDetailsScreen>
         return Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionBubble(
           items: [
             Bubble(

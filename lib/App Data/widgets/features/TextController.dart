@@ -197,4 +197,6 @@ class TextControllerr extends GetxController {
   var jobExperience22 = TextEditingController().obs;
   var jobExperience23 = TextEditingController().obs;
   var jobExperience24 = TextEditingController().obs;
+
+  var jobExperience25 = TextEditingController().obs;
 }

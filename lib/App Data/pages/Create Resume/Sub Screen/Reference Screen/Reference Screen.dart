@@ -51,6 +51,7 @@ class _ReferenceScreenState extends State<ReferenceScreen>
         return Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionBubble(
           items: [
             Bubble(

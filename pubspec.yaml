@@ -47,7 +47,7 @@ dependencies:
   syncfusion_flutter_sliders: ^23.1.40
   fdottedline_nullsafety: ^2.0.1
   percent_indicator: ^4.2.3
-  share_plus: ^6.0.0
+  share_plus: ^6.3.4
   url_launcher: ^6.1.11
   screenshot: ^1.3.0
   image_gallery_saver: ^2.0.3
@@ -67,6 +67,9 @@ dependencies:
   gallery_saver: ^2.3.2
   flutter_to_pdf: ^0.0.1
   permission_handler: ^11.0.1
+  file_picker: ^5.2.10
+  open_file: ^3.3.2
+  shaped_image: ^1.0.0
 
 dev_dependencies:
   flutter_test:

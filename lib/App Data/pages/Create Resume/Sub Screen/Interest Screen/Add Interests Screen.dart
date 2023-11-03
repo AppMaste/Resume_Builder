@@ -76,6 +76,7 @@ class _AddInterestsScreenState extends State<AddInterestsScreen> {
         return Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: appbarController.customAppBarController(context, "Add interests"),
         body: Stack(

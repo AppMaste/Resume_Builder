@@ -2,20 +2,31 @@
 
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:math';
-
+import 'dart:typed_data';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:resume_builder/App%20Data/pages/Create%20Resume/Create%20Resume%20Screen.dart';
 import 'package:resume_builder/App%20Data/pages/Create%20Resume/Sub%20Screen/Personal%20information%20Screen.dart';
 import 'package:intl/intl.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/Controller/Tap Controller.dart';
+import '../../services/functions/App Functions/Preview Function 2.dart';
+import '../../services/functions/App Functions/Preview Function.dart';
+import '../../services/functions/App Functions/Tost Function.dart';
+import '../../utils/Resume Slider.dart';
 import '../../utils/color.dart';
 import '../../widgets/features/Appbar.dart';
 import '../../widgets/global/MediaQuery/size.dart';
 import '../Create Resume/Sub Screen/Interest Screen/Add Interests Screen.dart';
+import '../Create Resume/Sub Screen/Skills Screen/Add Skills Screen.dart';
 
 class ViewAndShareResumeScreen extends StatefulWidget {
   ViewAndShareResumeScreen({super.key});
@@ -26,21 +37,49 @@ class ViewAndShareResumeScreen extends StatefulWidget {
 }
 
 class _ViewAndShareResumeScreenState extends State<ViewAndShareResumeScreen> {
+  ScreenshotController screenshotController = ScreenshotController();
   var percent = 0.79;
+  var argument = Get.arguments;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  var container;
+  var imagestore;
+
+  getData() async {
+    var name = await SharedPreferences.getInstance();
+    argument = (name.getInt("Template"))!;
+  }
+
+
+
+  var resume11 = 20.0.obs;
+  var resume12 = 30.0.obs;
+  var resume13 = 40.0.obs;
+  var resume14 = 50.0.obs;
+  var resume15 = 60.0.obs;
+  var resume16 = 70.0.obs;
 
   @override
   Widget build(BuildContext context) {
-    print("objecttttt $saveResume");
-    print("objecttttt $resumeTime");
-    print("objecttttt $resumeDate");
-    print("objecttttt $resumeNumber");
+    // print("objecttttt $saveResume");
+    // print("objecttttt $resumeTime");
+    // print("objecttttt $resumeDate");
+    print("objecttttt ${argument}");
+
     return WillPopScope(
       onWillPop: () {
         backController.showBackButton(context, "/ViewAndShareResumeScreen");
         return Future(() => false);
       },
       child: Scaffold(
-        appBar: appbarController.customAppBarController(context, "Save Resumes"),
+        appBar:
+            appbarController.customAppBarController(context, "Save Resumes"),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -110,14 +149,16 @@ class _ViewAndShareResumeScreenState extends State<ViewAndShareResumeScreen> {
                                       children: [
                                         Container(
                                           // color: Colors.red,
-                                          width: ScreenSize.horizontalBlockSize! *
-                                              50,
+                                          width:
+                                              ScreenSize.horizontalBlockSize! *
+                                                  50,
                                           child: Text(
                                             "${saveResume.value[index]}",
                                             overflow: TextOverflow.ellipsis,
                                             style: GoogleFonts.openSans(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: ScreenSize.fSize_17()),
+                                                fontSize:
+                                                    ScreenSize.fSize_17()),
                                           ),
                                         ),
                                         CircularPercentIndicator(
@@ -151,7 +192,8 @@ class _ViewAndShareResumeScreenState extends State<ViewAndShareResumeScreen> {
                                       horizontal: ScreenSize.fSize_20(),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Last update: ${resumeDate.value[index]}, ${resumeTime.value[index]}",
@@ -160,6 +202,152 @@ class _ViewAndShareResumeScreenState extends State<ViewAndShareResumeScreen> {
                                         ),
                                         SizedBox(width: ScreenSize.fSize_38()),
                                         GestureDetector(
+                                          onTap: () {
+                                            container = MaterialApp(
+                                              debugShowCheckedModeBanner: false,
+                                              home: Scaffold(
+                                                body: Container(
+                                                    // padding: const EdgeInsets.all(30.0),
+                                                    // decoration: BoxDecoration(
+                                                    // border: Border.all(color: Colors.blueAccent, width: 5.0),
+                                                    // color: Colors.pink,
+                                                    // ),
+                                                    child: argument == 0
+                                                        ? preViewAppController
+                                                            .templatePreview()
+                                                        : argument == 1
+                                                            ? preViewAppController
+                                                                .template2Preview()
+                                                            : argument == 2
+                                                                ? preViewAppController
+                                                                    .template3Preview()
+                                                                : argument == 3
+                                                                    ? preViewAppController
+                                                                        .template4Preview()
+                                                                    : argument == 4
+                                                                        ? preViewAppController
+                                                                            .template5Preview()
+                                                                        : argument ==
+                                                                                5
+                                                                            ? preViewAppController.template6Preview()
+                                                                            : argument == 6
+                                                                                ? preViewAppController2.template7Preview()
+                                                                                : argument == 7
+                                                                                    ? preViewAppController2.template8Preview()
+                                                                                    : argument == 8
+                                                                                        ? preViewAppController2.template9Preview()
+                                                                                        : argument == 9
+                                                                                            ? preViewAppController2.template10Preview()
+                                                                                            : argument == 10
+                                                                                                ? preViewAppController2.template11Preview(
+                                                                                                    context,
+                                                                                                    // Slider 1
+                                                                                                    resume11CustomSlider.slider11(context, skillDoubleValue.value[0], (value) {
+                                                                                                      setState(() {});
+                                                                                                      skillDoubleValue.value[0] = value;
+                                                                                                    }),
+                                                                                                    // Slider 2
+                                                                                                    resume11CustomSlider.slider11(context, skillDoubleValue.value[1], (value) {
+                                                                                                      setState(() {});
+                                                                                                      skillDoubleValue.value[1] = value;
+                                                                                                    }),
+                                                                                                    // Slider 3
+                                                                                                    resume11CustomSlider.slider11(context, skillDoubleValue.value[2], (value) {
+                                                                                                      setState(() {});
+                                                                                                      skillDoubleValue.value[2] = value;
+                                                                                                    }),
+                                                                                                    // Slider 4
+                                                                                                    resume11CustomSlider.slider11(context, skillDoubleValue.value[3], (value) {
+                                                                                                      setState(() {});
+                                                                                                      skillDoubleValue.value[3] = value;
+                                                                                                    }),
+                                                                                                    // Slider 5
+                                                                                                    resume11CustomSlider.slider11(context, skillDoubleValue.value[4], (value) {
+                                                                                                      setState(() {});
+                                                                                                      skillDoubleValue.value[4] = value;
+                                                                                                    }),
+                                                                                                    // Slider 6
+                                                                                                    resume11CustomSlider.slider11(context, resume11.value, (value) {
+                                                                                                      setState(() {});
+                                                                                                      resume11.value = value;
+                                                                                                      // resume11
+                                                                                                    }),
+                                                                                                    // Professional Skill Slider 1
+                                                                                                    resume11CustomSlider.slider11(context, resume11.value, (value) {
+                                                                                                      setState(() {});
+                                                                                                      resume11.value = value;
+                                                                                                      // resume11
+                                                                                                    }),
+                                                                                                    // Professional Skill Slider 2
+                                                                                                    resume11CustomSlider.slider11(context, resume12.value, (value) {
+                                                                                                      setState(() {});
+                                                                                                      resume12.value = value;
+                                                                                                      // resume11
+                                                                                                    }),
+                                                                                                    // Professional Skill Slider 3
+                                                                                                    resume11CustomSlider.slider11(context, resume13.value, (value) {
+                                                                                                      setState(() {});
+                                                                                                      resume13.value = value;
+                                                                                                      // resume11
+                                                                                                    }),
+                                                                                                    // Professional Skill Slider 4
+                                                                                                    resume11CustomSlider.slider11(context, resume14.value, (value) {
+                                                                                                      setState(() {});
+                                                                                                      resume14.value = value;
+                                                                                                      // resume11
+                                                                                                    }),
+                                                                                                    // Professional Skill Slider 5
+                                                                                                    resume11CustomSlider.slider11(context, resume15.value, (value) {
+                                                                                                      setState(() {});
+                                                                                                      resume15.value = value;
+                                                                                                      // resume11
+                                                                                                    }),
+                                                                                                  )
+                                                                                                : argument == 11
+                                                                                                    ? preViewAppController2.template12Preview()
+                                                                                                    : argument == 12
+                                                                                                        ? preViewAppController2.template13Preview(
+                                                                                                            context,
+                                                                                                            skillDoubleValue.value[0],
+                                                                                                            (value) {
+                                                                                                              setState(() {});
+                                                                                                              skillDoubleValue.value[0] = value;
+                                                                                                            },
+                                                                                                            skillDoubleValue.value[1],
+                                                                                                            (value) {
+                                                                                                              setState(() {});
+                                                                                                              skillDoubleValue.value[1] = value;
+                                                                                                            },
+                                                                                                            skillDoubleValue.value[2],
+                                                                                                            (value) {
+                                                                                                              setState(() {});
+                                                                                                              skillDoubleValue.value[2] = value;
+                                                                                                            },
+                                                                                                            skillDoubleValue.value[3],
+                                                                                                            (value) {
+                                                                                                              setState(() {});
+                                                                                                              skillDoubleValue.value[3] = value;
+                                                                                                            },
+                                                                                                          )
+                                                                                                        : Container()),
+                                              ),
+                                            );
+                                            screenshotController
+                                                .captureFromWidget(
+                                                    InheritedTheme.captureAll(
+                                                        context,
+                                                        Material(
+                                                            child: container)),
+                                                    delay: const Duration(
+                                                        seconds: 1))
+                                                .then((capturedImage) async {
+                                              // imagestore = capturedImage;
+                                              getPdf(capturedImage);
+                                              tostController.successTost();
+                                              print(
+                                                  "image Store Path:$imagestore");
+                                            });
+                                          },
                                           child: Icon(
                                             Icons.download_rounded,
                                             color: appColorController.boxColor,
@@ -189,13 +377,13 @@ class _ViewAndShareResumeScreenState extends State<ViewAndShareResumeScreen> {
                                                   child: Container(
                                                     decoration: BoxDecoration(
                                                         color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                ScreenSize
-                                                                    .fSize_10())),
+                                                        borderRadius: BorderRadius
+                                                            .circular(ScreenSize
+                                                                .fSize_10())),
                                                     child: Padding(
                                                       padding: EdgeInsets.all(
-                                                          ScreenSize.fSize_14()),
+                                                          ScreenSize
+                                                              .fSize_14()),
                                                       child:
                                                           SingleChildScrollView(
                                                         physics:
@@ -221,7 +409,8 @@ class _ViewAndShareResumeScreenState extends State<ViewAndShareResumeScreen> {
                                                                   children: [
                                                                     Image.asset(
                                                                       "assets/image/local image/close.png",
-                                                                      scale: 32.0,
+                                                                      scale:
+                                                                          32.0,
                                                                       color: appColorController
                                                                           .boxColor,
                                                                     ),
@@ -274,8 +463,7 @@ class _ViewAndShareResumeScreenState extends State<ViewAndShareResumeScreen> {
                                                                         color: appColorController
                                                                             .boxColor,
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .w700,
+                                                                            FontWeight.w700,
                                                                       ),
                                                                     ),
                                                                     onPressed:
@@ -310,84 +498,12 @@ class _ViewAndShareResumeScreenState extends State<ViewAndShareResumeScreen> {
                                                     ),
                                                   ),
                                                 ),
-                                                // builder: (ctx) => AlertDialog(
-                                                //   backgroundColor: Colors.white,
-                                                //   shape: RoundedRectangleBorder(
-                                                //     borderRadius:
-                                                //         BorderRadius.circular(30.0),
-                                                //   ),
-                                                //   content: const Text(
-                                                //       "Are you Sure you want to delete the following resume?"),
-                                                //   icon:  Align(
-                                                //     alignment: Alignment.topRight,
-                                                //     child: GestureDetector(
-                                                //       onTap: () {
-                                                //         Get.back();
-                                                //       },
-                                                //       child: Icon(
-                                                //         Icons.cancel_outlined,
-                                                //         color: appColorController.boxColor,
-                                                //       ),
-                                                //     ),
-                                                //   ),
-                                                //   actions: [
-                                                //     TextButton(
-                                                //       onPressed: () {
-                                                //         // var aa = interestName.removeAt(index);
-                                                //         // var bb = interestImage.removeAt(index);
-                                                //         // var cc = interestSelect.removeAt(index);
-                                                //         // interest.refresh();
-                                                //         // interest2.refresh();
-                                                //         // interest3.refresh();
-                                                //         // interest.value.add(aa);
-                                                //         // interest2.value.add(bb);
-                                                //         // interest3.value.add(cc);
-                                                //         // print("aaaaaaaaaaaa $aa");
-                                                //         // print("bbbbbbbbbbbb $bb");
-                                                //         // print("cccccccccccc $cc");
-                                                //         Navigator.of(ctx).pop();
-                                                //       },
-                                                //       child: Container(
-                                                //         padding: const EdgeInsets.all(14),
-                                                //         child: Text(
-                                                //           "Delete",
-                                                //           style: GoogleFonts.openSans(
-                                                //             color: Colors.black,
-                                                //             fontWeight: FontWeight.bold,
-                                                //           ),
-                                                //         ),
-                                                //       ),
-                                                //     ),
-                                                //   ],
-                                                // ),
                                               );
-                                              // showDialog(
-                                              //   context: context,
-                                              //   builder: (ctx) =>
-                                              //       AlertDialog(
-                                              //         title: const Text(
-                                              //             "Alert Dialog Box"),
-                                              //         content: const Text(
-                                              //             "You have raised a Alert Dialog Box"),
-                                              //         actions: <Widget>[
-                                              //           TextButton(
-                                              //             onPressed: () {
-                                              //               Navigator.of(ctx).pop();
-                                              //             },
-                                              //             child: Container(
-                                              //               color: Colors.green,
-                                              //               padding: const EdgeInsets.all(
-                                              //                   14),
-                                              //               child: const Text("okay"),
-                                              //             ),
-                                              //           ),
-                                              //         ],
-                                              //       ),
-                                              // );
                                             },
                                             child: Icon(
                                               Icons.delete_forever,
-                                              color: appColorController.boxColor,
+                                              color:
+                                                  appColorController.boxColor,
                                             ),
                                           ),
                                         ),
@@ -410,5 +526,27 @@ class _ViewAndShareResumeScreenState extends State<ViewAndShareResumeScreen> {
         ),
       ),
     );
+  }
+
+  Future getPdf(Uint8List screenShot) async {
+    pw.Document pdf = pw.Document();
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (context) {
+          return pw.Center(
+              child: pw.Padding(
+                  padding:
+                      pw.EdgeInsets.symmetric(vertical: ScreenSize.fSize_15()),
+                  child: pw.Image(pw.MemoryImage(screenShot),
+                      fit: pw.BoxFit.fill)));
+        },
+      ),
+    );
+    final dir = await getDownloadsDirectory();
+    File pdfFile = File(
+        '/storage/emulated/0/Android/data/com.example.resume_builder/Resume.pdf');
+    print("objecttt $dir");
+    pdfFile.writeAsBytesSync(await pdf.save());
   }
 }

@@ -1,9 +1,10 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resume_builder/App%20Data/services/Controller/Native%20and%20Banner%20Controller.dart';
 import 'package:resume_builder/App%20Data/services/Controller/Tap%20Controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../widgets/features/Appbar.dart';
 import '../../widgets/global/MediaQuery/size.dart';
 import 'Template Preview Screen.dart';
@@ -56,7 +57,11 @@ class ChooseTemplateScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Container(
                       child: GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          final prefs = await SharedPreferences.getInstance();
+                          var aa = index;
+                          await prefs.setInt("Template", aa);
+                          print("asfmkjasfansfafafbjabf $aa");
                           tapController.showbuttonad(context, "/TemplatePreviewScreen", "/ChooseTemplateScreen", index);
                           // Get.to(() =>  TemplatePreviewScreen(),arguments: index);
                         },
